@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+MIRROR={{ item.mirror_url }}
+LOCALDIR={{ item.localdir }}/{{ item.os_name }}/{{ item.os_version }}
+REPOS=( {{ item.repos|join(" ") }} )
+
+mkdir --parents ${LOCALDIR}
+
+for i in ${REPOS[@]}; do
+	rsync --archive --verbose --stats --progress --hard-links ${MIRROR}/${i} ${LOCALDIR}
+done

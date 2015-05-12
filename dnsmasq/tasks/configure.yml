@@ -1,0 +1,24 @@
+---
+
+- name: Add dnsmasq base config
+  template: dest="{{ dnsmasq_conffile }}"
+            src=base.j2
+            owner="{{ dnsmasq_user }}"
+            group="{{ dnsmasq_group }}"
+            mode=0644
+  notify: restart dnsmasq
+
+- name: Creating dnsmasq config dir
+  file: path="{{ dnsmasq_confdir }}"
+        state=directory
+        owner="{{ dnsmasq_user }}"
+        group="{{ dnsmasq_group }}"
+        mode=0755
+
+- name: Add dnsmasq config for dhcp
+  template: dest="{{ dnsmasq_confdir }}/dhcp.conf"
+            src=dhcp.j2
+            owner="{{ dnsmasq_user }}"
+            group="{{ dnsmasq_group }}"
+            mode=0644
+  notify: restart dnsmasq

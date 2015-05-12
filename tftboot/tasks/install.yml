@@ -1,0 +1,7 @@
+---
+
+- name: install tftboot rpms.
+  yum: name={{ item }}
+       state=present
+  with_items: tftp_rpms
+  when: ansible_pkg_mgr == 'yum'

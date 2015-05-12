@@ -1,0 +1,24 @@
+---
+
+- name: Create xen domU xl config file
+  template: dest="/etc/xen/{{ item.name }}"
+    src="xen-xl.cfg"
+  with_items: vms
+
+- name: Create volume group for xen disk images
+  lvg: vg="vg_xen"
+       pvs="/dev/sdb"
+       state="present"
+
+- name: Create logical volumes for each vm
+  lvol: lv="{{ item.name }}"
+        size="{{ item.size|default("20480") }}"
+        state=present
+        vg="vg_xen"
+  with_items: vms
+  register: create_lvms
+
+- name: Start VM
+  command: xl -v create /etc/xen/{{ item.item.name }}
+  when: item.changed
+  with_items: create_lvms.results

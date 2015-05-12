@@ -1,0 +1,7 @@
+default {{ tftp.default }}
+
+{% for label in tftp.labels %}
+label {{ label.name }}
+kernel {{ label.kernel }}
+append {{ label.append }}
+{% endfor %}

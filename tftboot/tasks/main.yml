@@ -1,0 +1,5 @@
+---
+
+- include: install.yml
+- include: configure.yml
+- include: add_scheduled_repo_sync.yml
