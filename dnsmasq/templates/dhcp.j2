@@ -1,2 +1,3 @@
-dhcp-range={{ dnsmasq_dhcp.range }}
-dhcp-boot=pxelinux.0
+{% for k,v in dnsmasq_dhcp.items() %}
+{{ k ~ "=" ~ v }}
+{% endfor %}
