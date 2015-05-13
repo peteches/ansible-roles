@@ -15,10 +15,11 @@
         group="{{ dnsmasq_group }}"
         mode=0755
 
-- name: Add dnsmasq config for dhcp
-  template: dest="{{ dnsmasq_confdir }}/dhcp.conf"
-            src=dhcp.j2
+- name: Add dnsmasq configs
+  template: dest="{{ dnsmasq_confdir }}/{{ item.name }}.conf"
+            src=generic.j2
             owner="{{ dnsmasq_user }}"
             group="{{ dnsmasq_group }}"
             mode=0644
+  with_items: dnsmasq_configs
   notify: restart dnsmasq

@@ -58,13 +58,5 @@
             group=root
             mode=0644
 
-- name: Add dnsmasq config for tftp
-  template: dest="{{ dnsmasq_confdir }}/tftp.conf"
-            src=tftp.j2
-            owner="{{ dnsmasq_user }}"
-            group="{{ dnsmasq_group }}"
-            mode=0644
-  notify: restart dnsmasq
-
 - name: open tftpboot port 69 on the firewall
   command: iptables -A INPUT -p udp --dport 69 -j ACCEPT
