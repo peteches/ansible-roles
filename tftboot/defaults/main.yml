@@ -18,6 +18,3 @@ tftp:
     - name: centos7
       kernel: centos/x86_64/vmlinuz
       append: initrd=centos/x86_64/initrd.img ks=http://{{ ansible_virbr0.ipv4.address }}/ks/default.cfg
-
-tftp_server:
-  root: /var/lib/tftpboot/
