@@ -1,0 +1,16 @@
+---
+
+- name: create pxelinuxdir
+  file: dest={{ tftpbootdir }}/pxelinux.cfg
+        state=directory
+        recurse=true
+  delegate_to: "{{ vm.vm_host }}"
+
+- name: create default config
+  template: dest={{ tftpbootdir }}/pxelinux.cfg/01-{{ vm.vifs[0].net.mac|replace(':','-') }}
+            src=pxelinux.j2
+            owner=root
+            group=root
+            mode=0644
+  delegate_to: "{{ vm.vm_host }}"
+

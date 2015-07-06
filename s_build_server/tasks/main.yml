@@ -1,0 +1,8 @@
+---
+
+- include: kickstart.yml
+
+- include: pxeboot.yml
+
+- include: xen.yml
+  when: vm.type == "xen"

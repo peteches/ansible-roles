@@ -1,0 +1,33 @@
+---
+
+- name: Create xen domU xl config file
+  template: dest="/etc/xen/{{ vm.name }}"
+            src="xen-xl.cfg"
+  delegate_to: "{{ vm.vm_host }}"
+
+# Ugly ugly ugly hardcoded stuff ergghhh
+# I'll deal with it at some point.
+- name: Create volume group for xen disk images
+  lvg: vg="vg_xen"
+       pvs="/dev/sdb"
+       state="present"
+  delegate_to: "{{ vm.vm_host }}"
+
+- name: Create logical volumes for each vm
+  lvol: lv="{{ item.name|default(vm.name) }}"
+        size="{{ item.size|default("20480") }}"
+        state=present
+        vg="{{ item.vg }}"
+  with_items: vm.disks
+  delegate_to: "{{ vm.vm_host }}"
+
+- name: Check if domain is running
+  raw: sudo xl list | grep {{ vm.name }}
+  register: vm_running
+  ignore_errors: true
+  delegate_to: "{{ vm.vm_host }}"
+
+- name: Start VM
+  command: xl -v create /etc/xen/{{ vm.name }}
+  when: vm_running.rc != 0
+  delegate_to: "{{ vm.vm_host }}"

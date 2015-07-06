@@ -1,0 +1,13 @@
+---
+
+- name: create kickstart directory
+  file: dest={{ kickstartdir }}
+        state=directory
+        recurse=true
+  delegate_to: "{{ vm.vm_host }}"
+
+- name: add the kickstart.
+  template: dest={{ kickstartdir }}/{{ vm.name|default('default') }}.cfg
+            src=kickstart.j2
+  delegate_to: "{{ vm.vm_host }}"
+

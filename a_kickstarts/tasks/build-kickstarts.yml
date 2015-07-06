@@ -1,0 +1,10 @@
+---
+
+- name: create kickstart directory
+  file: dest={{ kickstartdir }}
+        state=directory
+        recurse=true
+
+- name: add the kickstart.
+  template: dest={{ kickstartdir }}/default.cfg
+            src=kickstart.cfg
