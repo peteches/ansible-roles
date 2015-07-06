@@ -1,0 +1,14 @@
+{% if named_config.acls is defined
+	and named_config.acls is not none -%}
+{%- for acl_name, match_list in named_config.acls.items() -%}
+	acl {{ acl_name }} {
+	{% for match in match_list %}
+    {% if match | ipaddr() %}
+		{{- match ~ ";\n" }}
+    {% elif match in groups['bind_servers'] %}
+    {{ hostvars[match].ansible_default_ipv4.address ~ ";\n" }}
+    {% endif %}
+	{% endfor %}
+};
+{% endfor -%}
+{% endif %}

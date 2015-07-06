@@ -1,0 +1,188 @@
+{% macro parse_options(options) -%}
+{% for option_name, option_val in options.items() %}
+{% if option_name == 'dual-stack-servers'
+	and option_val is not none %}
+	{{ option_name }} {% if option_val.port -%}
+	port {{ option_val.port }} {% endif %} {
+		{% if option_val.servers is sequence %}
+		{% for server in option_val.servers -%}
+			{{ server ~ ";\n" }}
+		{%- endfor %}
+		{% endif %}
+	};
+{% elif option_name in [ 'listen-on', 'listen-on-v6' ]
+	and option_val is not none %}
+	{{ option_name }} {% if option_val.port is defined -%}
+		{{ "port " ~ option_val.port }} {% endif %} {
+	{% if option_val.list is sequence %}
+	{% for addr in option_val.list %}
+		{{ addr ~ ";" }}
+	{% endfor %}
+	{% endif %}
+	};
+{% elif option_name == 'dns64'
+	and option_val is sequence %}
+	{% for prefix in option_val -%}
+	dns64 {{ prefix.ipv6_prefix }} {
+	{% if prefix.options is not none %}
+	{% for key, val in prefix.options.items() %}
+		{% if key in [ 'suffix',
+				'recursive-only',
+				'break-dnssec' ] -%}
+			{{ key ~ " " ~ val ~ ";\n" }}
+		{%- else -%}
+			{{ key }} {
+				{% for i in val -%}
+				{{ i ~ ";\n" }}
+				{%- endfor %}
+			};
+	{% endif -%}
+	{% endfor %}
+	{% endif %}
+	};
+	{% endfor %}
+{% elif option_name in [ 'deny-answer-addresses',
+			 'deny-answer-aliases' ]
+	and option_val is not none -%}
+	{{ option_name }} {
+	{% if option_val.list is sequence %}
+	{% for item in option_val.list %}
+		{{ item ~ ";" }}
+	{% endfor %}
+	{% endif %}
+	}
+	{% if option_val.exceptions is defined %}
+	except-from {
+		{% if option_val.excepions is sequence %}
+		{% for exception in option_val.exceptions %}
+		{{ exception ~ ";" }}
+		{% endfor %}
+		{% endif %}
+	}
+	{%- endif -%}
+	;
+{% elif option_name == 'rate-limit'
+	and option_val is not none %}
+	{{ option_name }} {
+	{% for k,v in option_val.items() -%}
+	{% if  k == 'exempt-clients' %}
+		{% if v is none %}
+    {{ k ~ " {};" }}
+    {% else %}
+		{{ k }} {
+		{% for addr in v %}
+			{{ addr ~ ";" }}
+		{% endfor %}
+		};
+    {% endif %}
+	{% else %}
+		{{ k ~ " " ~ v ~ ";" }}
+	{% endif %}
+	{% endfor -%}
+	};
+{% elif option_name == 'response-policy'
+	and option_val is not none %}
+	{{ option_name }} {
+		{% for zone in option_val %}
+		zone {{ zone.name }} {
+		{% for k,v in zone.opts.items() %}
+			{{ k ~ " " ~ v ~ ";" }}
+		{% endfor %}
+		};
+		{% endfor %}
+	};
+{% elif option_name == 'disable-algorithms'
+	and option_val is not none %}
+	{% if option_val is sequence %}
+	{% for dom in option_val -%}
+	{{ option_name ~ " " ~ dom.domain ~ " {" }}
+		{% for alg in dom.algorithms %}
+			{{ alg ~ ";" }}
+		{% endfor %}
+	};
+	{% endfor %}
+	{% endif %}
+{% elif option_val is sameas True %}
+	{{ option_name ~ " yes;" }}
+{% elif option_val is sameas False %}
+	{{ option_name ~ " no;" }}
+{% elif option_val is string %}
+  {% if option_name in [ 'dnssec-update-mode', 'check-dup-records',
+                         'check-mx-cname', 'transfer-format',
+                         'sig-validity-interval', 'query-source',
+                         'query-source-v6', 'notify-source',
+                         'max-journal-size', 'check-srv-cname',
+                         'check-mx', 'forward', 'stacksize',
+                         'datasize', 'files', 'check-wildcard',
+                         'check-spf', 'masterfile-format',
+                         'max-acache-size', 'transfer-source',
+                         'dnssec-validation', 'zone-statistics',
+                         'coresize', 'auto-dnssec', 'serial-update-method',
+                         ] %}
+	{{ option_name }} {{ option_val }};
+  {% else %}
+	{{ option_name }} "{{ option_val }}";
+  {% endif %}
+{% elif option_val is number %}
+	{{ option_name ~ " " ~ option_val ~ ";" }}
+{% elif option_val is sequence %}
+	{{ option_name ~ " " }}
+	{%- if option_name == 'root-delegation-only' -%}
+		{{ " " ~ "exclude" ~ " " }}
+	{%- endif -%}
+	{
+	{% for option in option_val %}
+	{% if option|truncate(5,True, "") == 'range' %}
+		{{ option }};
+  {% else %}
+    {% if option_name in ['rrset-order',
+                          'update-policy',
+                          ] %}
+      {{ option }};
+    {% else %}
+      "{{ option }}";
+    {% endif %}
+  {% endif %}
+	{% endfor %}
+	};
+{% endif %}
+{% endfor %}
+{%- endmacro %}
+
+{% macro parse_zone(name, options, type=None, class='IN') %}
+zone {{ name }}{% if class is defined %} {{ class }}{% endif %} {
+	type {% if type is not none -%}
+		{{ type }};
+		{% elif 'bind_slaves' in group_names %}
+		slave;
+		{% elif 'bind_masters' in group_names %}
+		master;
+		{% endif %}
+    {% if 'bind_slaves' in group_names %}
+      {{ parse_options(options.soptions) }}
+    {% elif 'bind_masters' in group_names %}
+      {{ parse_options(options.moptions) }}
+    {% endif %}
+    {{ parse_options(options.goptions) }}
+};
+{% endmacro %}
+
+{%- macro parse_view(name, options, zones, class='IN') -%}
+view {{ name ~ " " ~ class }} {
+	{{ parse_options(options) }}
+	{% if zones is sequence %}
+	{% for zone in zones %}
+	{% if zone.type is defined
+		and zone.class is defined %}
+		{{ parse_zone(name=zone.name, options=zone.options, type=zone.type, class=zone.class) }}
+	{% elif zone.type is defined %}
+	{{ parse_zone(name=zone.name, options=zone.options, type=zone.type) }}
+	{% elif zone.class is defined %}
+	{{ parse_zone(name=zone.name, options=zone.options, class=zone.class) }}
+	{% else %}
+	{{ parse_zone(name=zone.name, options=zone.options) }}
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+};
+{% endmacro %}

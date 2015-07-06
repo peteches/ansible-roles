@@ -1,0 +1,19 @@
+{%- if named_config.zones is defined
+	and named_config.zones is not none -%}
+
+{%- import 'macros.j2' as macros with context -%}
+
+{%- for zone in named_config.zones -%}
+	{%- if zone.type is defined
+		and zone.class is defined -%}
+		{{- macros.parse_zone(zone.name, zone.options, type=zone.type, class=zone.class) -}}
+	{%- elif zone.type is defined -%}
+		{{- macros.parse_zone(zone.name, zone.options, type=zone.type) -}}
+	{%- elif zone.class is defined -%}
+		{{- macros.parse_zone(zone.name, zone.options, class=zone.class) -}}
+	{%- else -%}
+		{{- macros.parse_zone(zone.name, zone.options) -}}
+	{%- endif -%}
+{%- endfor -%}
+
+{%- endif -%}

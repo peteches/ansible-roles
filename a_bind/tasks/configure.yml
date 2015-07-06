@@ -1,0 +1,39 @@
+---
+
+- name: create bind's working dir
+  file: path="{{ binddir }}"
+        state=directory
+        owner="{{ getent_passwd["named"][1] }}"
+        group="{{ getent_passwd["named"][2] }}"
+        mode=0775
+
+- name: Create managed keys directory
+  file: path={{ named_config.options['managed-keys-directory'] }}
+        state=directory
+        owner="{{ getent_passwd["named"][1] }}"
+        group="{{ getent_passwd["named"][2] }}"
+        mode=0750
+
+- name: Create keys directory
+  file: path="{{ named_config.options['key-directory'] }}"
+        state=directory
+        owner="{{ getent_passwd["named"][1] }}"
+        group="{{ getent_passwd["named"][2] }}"
+        mode=0750
+
+- name: create rndc key
+  template: dest=/etc/rndc.key
+            src=rndc.key.j2
+            owner="{{ getent_passwd["named"][1] }}"
+            group="{{ getent_passwd["named"][2] }}"
+            mode=0640
+
+- name: Create named.conf
+  template: dest=/etc/named.conf
+            src=named.conf
+            owner="{{ getent_passwd["named"][1] }}"
+            group="{{ getent_passwd["named"][2] }}"
+            mode=0644
+            validate="/usr/sbin/named-checkconf %s"
+  notify:
+    - restart bind

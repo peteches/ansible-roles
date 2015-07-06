@@ -1,0 +1,11 @@
+{% if named_config.stats_channels is defined
+	and named_config.stats_channels is not none %}
+statistics-channels {
+{% for channel in named_config.stats_channels %}
+	{{ channel.listen }}
+	allow {
+		{{ channel.allowed | join(';\n\t') }};
+	};
+{% endfor %}
+};
+{% endif %}

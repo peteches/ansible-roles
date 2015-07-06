@@ -1,0 +1,10 @@
+{% if named_config.masters is defined
+	and named_config.masters is not none %}
+{% for master in named_config.masters %}
+masters {{ master.name }} {
+	{% for master in master.list -%}
+		{{ master ~ ";\n" }}
+	{% endfor %}
+};
+{% endfor %}
+{% endif %}

@@ -1,0 +1,9 @@
+$ORIGIN {{ item.zone }}
+$TTL {{ item.default_ttl }}
+
+{{ item.zone }}. IN SOA {{ item.nameserver }} {{ item.email }} (
+{{ item.soa }}
+)
+
+{{ item.zone }}.		NS {{ item.nameserver }}
+{{ item.nameserver }}	A {{ item.nameserver_ip }}

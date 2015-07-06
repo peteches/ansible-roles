@@ -1,0 +1,6 @@
+{% if named_config.managed_keys is defined
+	and named_config.managed_keys is not none %}
+managed-keys {
+	{{ named_config.managed_keys | join(';\n\t') }};
+};
+{% endif %}

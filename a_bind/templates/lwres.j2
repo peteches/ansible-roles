@@ -1,0 +1,31 @@
+{% if named_config.lwres is defined
+	and named_config.lwres is iterable %}
+{% for lwres in named_config.lwres %}
+lwres {
+	listen-on {
+	{% for listen in lwres.listen_on %}
+		{{ listen ~ ";" }}
+	{% endfor -%}
+	};
+
+	{% if lwres.view is defined
+		and lwres.view is not none -%}
+		view {{ lwres.view ~ ";" }}
+	{% endif -%}
+
+	{% if lwres.search is defined
+		and lwres.search is not none -%}
+		search {
+		{% for search in lwres.search -%}
+			{{ search ~ ";" }}
+		{% endfor -%}
+	};
+	{% endif %}
+
+	{% if lwres.ndots is defined
+		and lwres.ndots is not none -%}
+		ndots {{ lwres.ndots ~ ";\n" }}
+	{%- endif %}
+};
+{% endfor %}
+{% endif %}

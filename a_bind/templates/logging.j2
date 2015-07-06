@@ -1,0 +1,27 @@
+{% if named_config.logging is defined
+	and named_config.logging is not none %}
+logging {
+
+{% if named_config.logging.channels is defined
+	and named_config.logging.channels is not none %}
+	{% for channel, channel_params in named_config.logging.channels.items() -%}
+	channel {{ channel }} {
+	{% for param in channel_params %}
+	{{ param ~ ";" }}
+	{% endfor -%}
+	};
+	{% endfor %}
+{% endif %}
+
+{% if named_config.logging.categories is defined 
+	and named_config.logging.categories is not none %}
+	{%- for category_name, categories in named_config.logging.categories.items() %}
+	category {{ category_name }} {
+	{% for category in categories %}
+	{{ category ~ ";\n" }}
+	{% endfor -%}
+	};
+{% endfor %}
+{% endif %}
+};
+{% endif %}

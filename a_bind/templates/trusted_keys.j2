@@ -1,0 +1,6 @@
+{% if named_config.trusted_keys is defined
+	and named_config.trusted_keys is not none %}
+trusted-keys {
+	{{ named_config.trusted_keys | join(';\n\t') }};
+};
+{% endif %}

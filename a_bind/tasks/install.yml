@@ -1,0 +1,7 @@
+---
+
+- name: Install bind
+  yum: name=bind state=latest
+  when: ansible_pkg_mgr == 'yum'
+
+

@@ -1,0 +1,9 @@
+{% if named_config.tsig_keys is defined
+	and named_config.tsig_keys is not none %}
+{% for key_name, key_params in named_config.tsig_keys.items() %}
+key {{ key_name }} {
+	algorithm {{ key_params['alg'] }};
+	secret {{ key_params['secret'] }};
+};
+{% endfor %}
+{% endif %}

@@ -1,0 +1,13 @@
+{% if named_config.views is defined
+	and named_config.views is not none %}
+
+{% import 'macros.j2' as macros with context %}
+
+{% for view in named_config.views -%}
+	{% if view.class is defined -%}
+	{{ macros.parse_view(name=view.name, options=view.options, zones=view.zones, class=view.class) }}
+	{% else -%}
+	{{ macros.parse_view(name=view.name, options=view.options, zones=view.zones) }}
+	{% endif %}
+{%- endfor %}
+{% endif %}

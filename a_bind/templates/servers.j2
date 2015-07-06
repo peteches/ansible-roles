@@ -1,0 +1,52 @@
+{% if named_config.servers is defined
+	and named_config.servers is not none %}
+{% for server in named_config.servers %}
+server {{ server.cidr }} {
+
+	{% if opt_val is string %}
+		{{ opt_name ~ " " ~ opt_val ~ ";" }}
+	{% else %}
+		{{ opt_name }} {
+		{{ opt_val | join(';\n\t') -}}
+		;
+		};
+	{% endif %}
+};
+{% endfor %}
+{% elif groups['bind_servers'] is defined
+  and groups['bind_servers'] is not none %}
+
+  {% for server in groups['bind_servers'] %}
+server {{ hostvars[server].ansible_default_ipv4.address }} {
+	bogus no;
+	provide-ixfr yes;
+	request-ixfr yes;
+	edns yes;
+	edns-udp-size 4096;
+	max-udp-size 4096;
+	# set by transfers-per-ns
+	# transfers ;
+	# transfers-format many-answers;
+	keys {
+		peteches;
+	};
+	{% if hostvars[server]['ansible_default_ipv4'] is defined
+		and hostvars[server]['ansible_default_ipv4']['address'] is defined
+		and hostvars[server]['ansible_default_ipv4']['address'] is not none %}
+
+	transfer-source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
+	notify-source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
+	# query_source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
+
+	{% elif hostvars[server]['ansible_default_ipv6'] is defined
+		and hostvars[server]['ansible_default_ipv6']['address'] is defined
+		and hostvars[server]['ansible_default_ipv6']['address'] is not none %}
+
+	transfer-source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
+	notify-source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
+	query_source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
+
+	{% endif %}
+};
+{% endfor %}
+{% endif %}

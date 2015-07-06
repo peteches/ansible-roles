@@ -1,0 +1,6 @@
+{% if named_config.includes is defined
+	and named_config.includes is not none %}
+{% for include_file in named_config.includes %}
+include "{{ include_file }}";
+{% endfor %}
+{% endif %}

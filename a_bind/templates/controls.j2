@@ -1,0 +1,40 @@
+{% if named_config.controls is defined
+	and named_config.controls is not none -%}
+controls {
+{% if named_config.controls.inet is defined
+	and named_config.controls.inet is iterable %}
+{%- for inet in named_config.controls.inet -%}
+	{{ "inet " ~ inet.ip ~ " port " ~ inet.port ~ " allow { " }}
+	{%- for addr in inet.allow -%}
+		{{ addr ~ "; " }}
+	{%- endfor -%}
+	} keys { {%- for key in inet.key_list -%}
+		{{ key ~ "; " }}
+	{%- endfor -%}
+	};
+{% endfor %}
+{% endif %}
+
+{% if named_config.controls.unix is defined
+	and named_config.controls.unix is iterable %}
+{%- for unix in named_config.controls.unix -%}
+	{{ "unix \"" ~ unix.path ~ "\" perm " ~ unix.perm ~ " owner " }}
+	{%- if unix.owner is defined and unix.owner is not none -%}
+		{{ unix.owner ~ " " }}
+	{%- else -%}
+		{{ getent_passwd['named'][1] ~ " " }}
+	{%- endif -%}
+	 group
+	{%- if unix.group is defined and unix.group is not none -%}
+		{{ " " ~ unix.group ~ " " }}
+	{%- else -%}
+		{{ " " ~ getent_passwd['named'][2] ~ " " }}
+	{%- endif -%}
+	keys { {% for key in unix.key_list -%}
+		{{ key ~ "; " }}
+	{%- endfor -%}
+	};
+{% endfor %}
+{% endif %}
+};
+{% endif %}

@@ -1,0 +1,6 @@
+---
+
+- name: Get uid + Gid of named
+  getent: database=passwd
+          key=named
+

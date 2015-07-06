@@ -1,0 +1,10 @@
+{% if named_config.options is defined
+	and named_config.options is not none %}
+options {
+
+{% import 'macros.j2' as macros with context %}
+
+{{ macros.parse_options(named_config.options) }}
+
+};
+{% endif %}
