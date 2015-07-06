@@ -1,23 +1,25 @@
 ---
 
-# gonna try adding no zonefiles use rndc instead
-# - name: Create folders for zones
-#   file: path="{{ binddir }}/{{ item.zone }}.d/"
-#         owner="{{ getent_passwd["named"][1] }}"
-#         group="{{ getent_passwd["named"][2] }}"
-#         mode=0750
-#         state=directory
-#   with_items: zones
+- name: Create folders for zones
+  file: path="{{ binddir }}/{{ item.zone }}.d/"
+        owner="{{ getent_passwd["named"][1] }}"
+        group="{{ getent_passwd["named"][2] }}"
+        mode=0755
+        state=directory
+  with_items: zones
 
-# - name: create minimal zone file
-#   template: dest="{{ binddir }}/{{ item.zone }}.d/{{ item.zone }}"
-#             owner="{{ getent_passwd["named"][1] }}"
-#             group="{{ getent_passwd["named"][2] }}"
-#             mode=0750
-#             src=zonefile.j2
-#             # validate="named-checkzone -i full {{ item.zone }} %s"
-#   with_items:
-#     - zones
-#   when: "'bind_masters' in group_names"
-#   notify:
-#     - restart bind
+- debug: var=item.zone
+  with_items: zones
+  when: "'bind_masters' in group_names"
+
+- name: create minimal zone file
+  template: dest="{{ binddir }}/{{ item.zone }}.d/{{ item.zone }}"
+            owner="{{ getent_passwd["named"][1] }}"
+            group="{{ getent_passwd["named"][2] }}"
+            mode=0750
+            src=zonefile.j2
+            # validate="named-checkzone -i full {{ item.zone }} %s"
+  with_items: zones
+  when: "'bind_masters' in group_names"
+  notify:
+    - restart bind

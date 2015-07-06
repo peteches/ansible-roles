@@ -2,7 +2,11 @@ $ORIGIN {{ item.zone }}
 $TTL {{ item.default_ttl }}
 
 {{ item.zone }}. IN SOA {{ item.nameserver }} {{ item.email }} (
-{{ item.soa }}
+	{{ item.soa.serial }};  serial
+	{{ item.soa.refresh }}; refresh
+	{{ item.soa.retry }};  retry
+	{{ item.soa.expire }};  expire
+	{{ item.soa.minimum }};  minimum
 )
 
 {{ item.zone }}.		NS {{ item.nameserver }}
