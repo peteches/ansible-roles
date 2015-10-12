@@ -34,17 +34,17 @@ server {{ hostvars[server].ansible_default_ipv4.address }} {
 		and hostvars[server]['ansible_default_ipv4']['address'] is defined
 		and hostvars[server]['ansible_default_ipv4']['address'] is not none %}
 
-	transfer-source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
-	notify-source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
-	# query_source {{ hostvars[server]['ansible_default_ipv4']['address'] }};
+	transfer-source {{ ansible_default_ipv4['address'] }};
+	notify-source {{ ansible_default_ipv4['address'] }};
+	# query_source {{ ansible_default_ipv4['address'] }};
 
 	{% elif hostvars[server]['ansible_default_ipv6'] is defined
 		and hostvars[server]['ansible_default_ipv6']['address'] is defined
 		and hostvars[server]['ansible_default_ipv6']['address'] is not none %}
 
-	transfer-source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
-	notify-source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
-	query_source-v6 {{ hostvars[server]['ansible_default_ipv6']['address'] }};
+	transfer-source-v6 {{ ansible_default_ipv6['address'] }};
+	notify-source-v6 {{ ansible_default_ipv6['address'] }};
+	query_source-v6 {{ ansible_default_ipv6['address'] }};
 
 	{% endif %}
 };

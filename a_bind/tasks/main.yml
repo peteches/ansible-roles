@@ -2,5 +2,4 @@
 
 - include: install.yml
 - include: gather_info.yml
-- include: zones.yml
 - include: configure.yml
