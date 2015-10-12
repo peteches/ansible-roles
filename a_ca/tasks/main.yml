@@ -1,0 +1,47 @@
+---
+
+- name: install easyrsa
+  yum: name=easy-rsa state=present
+
+- name: create rsa root
+  command: "cp -r /usr/share/easy-rsa/2.0 {{ a_ca_root }}"
+  args:
+    creates: "{{ a_ca_root }}"
+
+- name: keys directory
+  file: path={{ a_ca_keys }} state=directory
+
+- name: rsa vars
+  template: src=vars.j2 dest={{ a_ca_root }}/vars
+
+- name: clean all
+  shell: "source ./vars && ./clean-all"
+  args:
+    creates: "{{ a_ca_keys }}/serial"
+    chdir: "{{ a_ca_root }}"
+
+- name: create dh pem
+  shell: "source ./vars && ./build-dh"
+  args:
+    creates: "{{ a_ca_keys }}/dh2048.pem"
+    chdir: "{{ a_ca_root }}"
+
+- name: create ca
+  shell: "source ./vars && ./build-ca --batch"
+  args:
+    creates: "{{ a_ca_keys }}/ca.crt"
+    chdir: "{{ a_ca_root }}"
+
+- name: generate servers
+  shell: "source ./vars && ./build-key-server --batch {{ item }}"
+  with_items: a_ca_servers
+  args:
+    creates: "{{ a_ca_keys }}/{{ item }}.crt"
+    chdir: "{{ a_ca_root }}"
+
+- name: generate clients
+  shell: "source ./vars && ./build-key --batch {{ item }}"
+  with_items: a_ca_clients
+  args:
+    creates: "{{ a_ca_keys }}/{{ item }}.crt"
+    chdir: "{{ a_ca_root }}"

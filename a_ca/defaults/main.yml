@@ -1,0 +1,6 @@
+---
+
+a_ca_root: /etc/ca
+a_ca_keys: "{{ a_ca_root }}/keys"
+a_ca_servers: []
+a_ca_clients: []
