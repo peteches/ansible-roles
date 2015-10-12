@@ -1,0 +1,21 @@
+---
+
+- name: Create zone.d folders for each zone
+  file: dest={{ binddir }}/{{ item.zone }}.d
+        state='directory'
+        owner={{ getent_passwd["named"][1] }}
+        group={{ getent_passwd["named"][2] }}
+        mode=0700
+  when: "'bind_masters' in groups"
+  with_items: zones
+
+- name: Adding zone file
+  template: dest={{ binddir }}/{{ item.zone }}.d/{{ item.zone }}
+            src=zonefile.conf.j2
+            owner={{ getent_passwd["named"][1] }}
+            group={{ getent_passwd["named"][2] }}
+            mode=0600
+            # validate='named-checkzone {{item.zone}} %s'
+  when: "'bind_masters' in groups"
+  with_items: zones
+  notify: restart bind

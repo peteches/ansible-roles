@@ -1,0 +1,8 @@
+---
+
+# - name: ensure dnspython installed for ddns to work
+#   yum: name="{{ item }}"
+#        state=installed
+#   with_items:
+#     - python-dns
+#     - bind-utils

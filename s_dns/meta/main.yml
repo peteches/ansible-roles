@@ -1,0 +1,8 @@
+---
+
+dependencies:
+  - { role: a_bind, when: dns_application == 'bind' }
+
+handlers:
+  - name: add rrsets
+    shell: nsupdate -l {{ nsupdate_file }}

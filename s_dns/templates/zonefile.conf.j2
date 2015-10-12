@@ -1,0 +1,15 @@
+$ORIGIN {{ item.zone }}
+$TTL {{ item.default_ttl }}
+
+{{ item.zone }}. IN SOA {{ item.nameserver }} {{ item.email }} (
+	{{ item.soa.serial }};  serial
+	{{ item.soa.refresh }}; refresh
+	{{ item.soa.retry }};  retry
+	{{ item.soa.expire }};  expire
+	{{ item.soa.minimum }};  minimum
+)
+
+{% for record in item.rr %}
+{{ record.dnsname }}	IN {{ record.type }} {{ record.value }}
+{% endfor %}
+

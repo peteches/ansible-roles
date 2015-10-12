@@ -1,0 +1,3 @@
+- name: add rrsets
+  shell: echo "send" >> {{nsupdate_file }} && nsupdate -l {{ nsupdate_file }}
+
