@@ -1,0 +1,97 @@
+# vim: ft=zsh
+
+zparseopts -D -E -A Aargs -a args 1=sshopts \
+			2=sshopts \
+			4=sshopts \
+			6=sshopts \
+			A=sshopts \
+			a=sshopts \
+			C=sshopts \
+			f=sshopts \
+			g=sshopts \
+			K=sshopts \
+			k=sshopts \
+			M=sshopts \
+			N=sshopts \
+			n=sshopts \
+			q=sshopts \
+			s=sshopts \
+			T=sshopts \
+			t+=sshopts \
+			V=sshopts \
+			v=sshopts \
+			X=sshopts \
+			x=sshopts \
+			Y=sshopts \
+			y=sshopts \
+			z=sshopts \
+			b:=sshopts \
+			c:=sshopts \
+			D:=sshopts \
+			E:=sshopts \
+			e:=sshopts \
+			F:=sshopts \
+			I:=sshopts \
+			i:=sshopts \
+			L:=sshopts \
+			l:=sshopts \
+			m:=sshopts \
+			O:=sshopts \
+			o:=sshopts \
+			p:=sshopts \
+			Q:=sshopts \
+			R:=sshopts \
+			S:=sshopts \
+			W:=sshopts \
+			w:=sshopts \
+			h \
+			-help \
+			-sync-panes \
+			-same-window \
+			-with-windows \
+			-command:=Aargs
+
+if [[ $args =~ -h(elp)? || $# == 0 ]];then
+	print "usage: $0 [sshopts] [mssh opts] [sshhosts]"
+	print "       -h|--help		print this help"
+	print "       --same-window	don't open new tmux window for mssh connections."
+	print "       --sync-panes	enable 'sync-panes' tmux option."
+	print "       --with-windows	use windows instead of panes for each connection."
+	print "       --command <cmd>	run command on hosts. (be careful of quotes)"
+	if [[ $args =~ -h(elp)? ]]; then
+		# if specifically asked for help return 0
+		return 0
+	fi
+	# otherwise it's a blunder.
+	return 1
+fi
+
+# build tmux command:
+
+if [[ $args =~ -with-windows ]];then
+	TMUX_CMD="new-window"
+else
+	TMUX_CMD="split-window"
+fi
+
+if [[ $args =~ -same-window ]]; then
+	# we use the current pane
+
+	# for the first ssh connection we want to use the currently active pane
+	# then spawn new panes / windows for subsequent connections.
+	tmux set-buffer -b 0 "ssh $sshopts $1"
+	tmux paste-buffer -db 0
+else
+	# we need to create a new window for the first connection.
+	tmux new-window "ssh $sshopts $1 $Aargs[--command]"
+fi
+
+shift
+
+if [[ $args =~ -sync-panes ]]; then
+	tmux set-window-option synchronize-panes on
+fi
+
+for host in $*; do
+	tmux $TMUX_CMD "ssh $sshopts $host $Aargs[--command]"
+done

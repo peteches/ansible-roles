@@ -1,0 +1,30 @@
+---
+
+- include: install.yml
+
+- name: Adding main zshrc config
+  template: dest=~/.zshrc
+            src=zshrc
+            mode=0644
+
+- name: Adding dir for custom zsh
+  file: dest={{ zsh_customdir }}
+        state=directory
+        mode=0755
+
+- name: Adding functions dir for autoloading
+  file: dest={{ zsh_customdir }}/functions
+        state=directory
+        mode=0755
+
+- name: Adding zsh configs
+  template: dest={{ zsh_customdir }}/{{item}}
+            src={{ item }}
+            mode=0644
+  with_items: zsh_configs
+
+- name: Adding zsh functions
+  copy: dest={{ zsh_customdir }}/functions/{{ item }}
+        src={{ item }}
+        mode=0644
+  with_items: zsh_functions

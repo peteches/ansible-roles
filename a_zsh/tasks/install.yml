@@ -1,0 +1,13 @@
+---
+
+- name: Installing Zsh
+  portage: changed_use=yes
+           deep=yes
+           newuse=yes
+           noreplace=yes
+           package="app-shells/zsh"
+           state=present
+           update=yes
+  when: ansible_pkg_mgr  == "portage"
+  become: True
+  become_user: root

@@ -1,0 +1,22 @@
+---
+
+zsh_customdir: ~/.zsh_custom
+
+zsh_configs:
+  - aliases.zsh
+  - bindkeys.zsh
+  - bindkey.zsh
+  - completion.zsh
+  - env.zsh
+  - example.zsh
+  - opts.zsh
+  - paths.zsh
+  - traps.zsh
+  - zstyle.zsh
+
+zsh_functions:
+  - mssh
+  - openJenkinsJob
+  - sa
+  - stash
+  - tman
