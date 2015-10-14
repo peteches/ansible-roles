@@ -1,0 +1,12 @@
+---
+
+tmux_dir: ~/.tmux
+
+tmux_submodules:
+  - https://github.com/seebi/tmux-colors-solarized
+  - https://github.com/tmux-plugins/tmux-open
+  - https://github.com/tmux-plugins/tmux-resurrect
+  - https://github.com/tmux-plugins/tmux-logging
+
+tmux_confs:
+  - perm_pane.conf

@@ -1,0 +1,11 @@
+---
+
+- name: Install Tmux
+  portage: changed_use=yes
+           noreplace=yes
+           package="app-misc/tmux"
+           state=present
+           update=yes
+  when: ansible_pkg_mgr == "portage"
+  become: True
+  become_user: root
