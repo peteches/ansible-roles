@@ -1,103 +1,46 @@
-##################
-#  Source files  #
-##################
-# Don't use zero as base index for windows.
-set-option -g base-index 1
-set-option -g history-limit 10000
+# {{ ansible_managed }}
 
+############################
+#  Source files / plugins  #
+############################
 
-source ~/.tmux/solarized-colors/tmuxcolors-dark.conf
+# load plugins
+{%for plugin in tmux_submodules%}
+run {{tmux_dir}}/plugins/{{plugin|basename}}/*.tmux
+{%endfor%}
+
+# set colourscheme
+source {{tmux_dir}}/colours/{{tmux_colourscheme}}
 
 #############
 #  Options  #
 #############
-#
-# set default terminal to 256 colour
-set-option -g default-terminal screen-256color
 
-# add utf-8 support
-set-option -g utf8 on
-
-#title setting
-set-option -g automatic-rename on
-
-# time out for display messages
-set-option -g display-time 10000
-set-option -g display-panes-time 5000
-
-# avoid unsightly numbering
-set-option -g renumber-windows on
-
-# mode settings
-set-option -g mode-keys vi
-set -g mouse-utf8 off
-set -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+{%for opt, val in tmux_global_opts.items()%}
+set-option -g {{opt}} {{val}}
+{%endfor%}
 
 ##################
 #  Key Bindings  #
 ##################
 
-# Toggle mouse mode on
-# bind m run " \
-# if { tmux show-option -w | 'grep mode-mouse.*on'; } &>/dev/null; then \
-# 	toggle=off \
-# else \
-# 	toggle=on \
-# fi \
-#
-# tmux display-message \"mouse tmux: \$toggle\" \
-# tmux set-option -w mode-mouse \$toggle &>/dev/null \
-# for cmd in mouse-select-pane mouse-resize-pane mouse-select-window; do \
-# 	tmux set-option -g \$cmd \$toggle &>/dev/null \
-# done"
+# unbind unnecessary default bindings.
+{%for binding in tmux_unbindings%}
+unbind-key {{binding}}
+{%endfor%}
 
-# better the devil you know
-set-option -g prefix C-a
-bind a send-prefix
+# global bindings
+{%for binding, value in tmux_global_bindings.items()%}
+bind-key {{binding}} {{value}}
+{%endfor%}
 
-set-option -g renumber-windows on
-
-# setting up split window shortcuts
-unbind %
-bind | split-window -h
-bind - split-window -v
-
-# navigating panes
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-bind n next-window
-bind N previous-window
-bind C-n next-window -a
-
-# copy paste
-unbind [
-bind Escape copy-mode
-unbind p
-
-bind p paste-buffer
-
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind C-y run "tmux save-buffer - | xclip -i"
-bind C-p run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
-
-#############
-#  Plugins  #
-#############
-set-option -g @tpm_plugins "	\
-	tmux-plugins/tpm	\
-	tmux-plugins/tmux-open	\
-	"
-run-shell ~/.tmux/plugins/tpm/tpm
-
-# source local config
-source ~/.tmux_local.conf
+# bindings for key tables
+{% for table, bindings in tmux_table_bindings.items()%}
+# bindings for {{ table }}
+{% for binding, value in bindings.items()%}
+bind-key -t {{table}} {{binding}} {{value}}
+{%endfor%}
+{%endfor%}
 
 #####################
 #  set up sessions  #

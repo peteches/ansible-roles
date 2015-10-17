@@ -3,10 +3,58 @@
 tmux_dir: ~/.tmux
 
 tmux_submodules:
-  - https://github.com/seebi/tmux-colors-solarized
   - https://github.com/tmux-plugins/tmux-open
   - https://github.com/tmux-plugins/tmux-resurrect
   - https://github.com/tmux-plugins/tmux-logging
 
+tmux_colourschemes:
+  - https://github.com/seebi/tmux-colors-solarized
+
+tmux_colourscheme: tmux-colors-solarized/tmuxcolors-256.conf
+
 tmux_confs:
   - perm_pane.conf
+
+tmux_global_opts:
+  renumber-windows: "on"
+  prefix: "C-a"
+  mouse-select-window: "on"
+  mouse-resize-pane: "on"
+  mouse-select-pane: "on"
+  mode-mouse: "on"
+  mouse-utf8: "off"
+  mode-keys: "vi"
+  renumber-windows: "on"
+  display-panes-time: 5000
+  display-time: 10000
+  automatic-rename: "on"
+  utf8: "on"
+  history-limit: 1000000
+  base-index: 1
+  default-terminal: "screen-256color"
+
+tmux_global_bindings:
+  'C-p': run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
+  'C-y': run "tmux save-buffer - | xclip -i"
+  'p': paste-buffer
+  'Escape': copy-mode
+  'C-n': next-window -a
+  'N': previous-window
+  'n': next-window
+  'l': select-pane -R
+  'k': select-pane -U
+  'j': select-pane -D
+  'h': select-pane -L
+  '-': split-window -v
+  '|': split-window -h
+  'a': send-prefix
+
+tmux_table_bindings:
+  'vi-copy':
+    'y': copy-selection
+    'v': begin-selection
+
+tmux_unbindings:
+  - 'p'
+  - '['
+  - '%'
