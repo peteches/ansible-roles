@@ -1,0 +1,23 @@
+---
+
+- include: install.yml
+
+- name: Checkout colourschemes
+  git: clone=yes
+       dest={{vim_colour_dir}}/{{item|basename}}
+       repo={{item}}
+       update=yes
+  with_items: vim_colour_repos
+
+- name: Checkout Vim plugins
+  git: clone=yes
+       dest={{vim_dir}}/bundle/{{item|basename}}
+       repo={{item}}
+       update=yes
+  with_items: vim_plugin_repos
+
+- name: Adding other configs
+  copy: dest={{vim_dir}}
+        src={{item}}
+  with_items: vim_config_dirs
+

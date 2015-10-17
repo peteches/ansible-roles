@@ -1,0 +1,27 @@
+---
+
+- name: Installing vim
+  portage: changed_use=yes
+           deep=yes
+           newuse=yes
+           noreplace=yes
+           package="app-editors/vim"
+           state=present
+           update=yes
+  when: ansible_pkg_mgr  == "portage"
+  become: True
+  become_user: root
+
+- name: Installing packages required for some plugins
+  portage: changed_use=yes
+           deep=yes
+           newuse=yes
+           noreplace=yes
+           package={{item[ansible_pkg_mgr]}}
+           state=present
+           update=yes
+  with_items: vim_plugin_deps
+  become: True
+  become_user: root
+
+
