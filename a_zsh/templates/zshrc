@@ -1,63 +1,5 @@
 # add custom local fpath dir
-fpath=( ${HOME}/.zsh_custom/functions/ $fpath )
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.zsh_custom
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# source $ZSH/oh-my-zsh.sh
-# use antigen instead
-source $HOME/.antigen-repo/antigen.zsh
-
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=()
-plugins=(
-	adolfoabegg/browse-commit
-	colorize
-	common-aliases
-	copydir
-	copyfile
-	cp
-	djui/alias-tips
-	git
-	jira
-	jsontools
-	mosh
-	sudo
-	supercrabtree/k
-	systemd
-	taskwarrior
-	tmux
-	vagrant
-	vi-mode
-	web-search
-	yum
-	zsh_reload
-	zsh-users/zsh-syntax-highlighting
-)
-
-antigen use oh-my-zsh
-
-for plugin in ${plugins}; do
-	antigen bundle ${plugin}
-done
-
-antigen apply
-
-antigen theme $( shuf -n1 ~/.zsh_favlist )
-
-if [[ -e $HOME/.zsh_local ]]; then
-	source $HOME/.zsh_local # local stuff not to be put in repo.
-fi
-
-# User configuration
-
-for file in ${HOME}/.zsh_custom/*.zsh; do
-	source $file
-done
-
-# set fpath
-fpath=($HOME/.zsh_custom/functions $fpath)
+fpath=( {{zsh_customdir}}/functions/ $fpath )
 
 # now auto load any functions you can find.
 for fdir in ${fpath[@]}; do
@@ -66,6 +8,6 @@ for fdir in ${fpath[@]}; do
 	fi
 done
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/sbin:/usr/sbin:/home/peteches/.local/bin:/home/peteches/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/peteches/scripts:/home/peteches/bin:/home/peteches/.local/bin:/home/peteches/bin"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+for file in {{zsh_customdir}}/*.zsh; do
+	source $file
+done

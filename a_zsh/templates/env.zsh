@@ -56,3 +56,10 @@ export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 
 # set a keytimeout for when multi-key keybindings are used
 export KEYTIMEOUT=500
+
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/sbin:/usr/sbin:/home/peteches/.local/bin:/home/peteches/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/peteches/scripts:/home/peteches/bin:/home/peteches/.local/bin:/home/peteches/bin"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# Would you like to use another custom folder than $ZSH/custom?
+export ZSH_CUSTOM={{zsh_customdir}}

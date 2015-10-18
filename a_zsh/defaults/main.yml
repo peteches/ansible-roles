@@ -1,9 +1,11 @@
 ---
 
 zsh_customdir: ~/.zsh_custom
+zsh_antigen_dir: ~/.antigen-repo
 
 zsh_configs:
   - aliases.zsh
+  - antigen.zsh
   - bindkeys.zsh
   - bindkey.zsh
   - completion.zsh
@@ -20,3 +22,27 @@ zsh_functions:
   - sa
   - stash
   - tman
+
+zsh_plugins:
+ - adolfoabegg/browse-commit
+ - colorize
+ - common-aliases
+ - copydir
+ - copyfile
+ - cp
+ - djui/alias-tips
+ - git
+ - jira
+ - jsontools
+ - mosh
+ - sudo
+ - supercrabtree/k
+ - systemd
+ - taskwarrior
+ - tmux
+ - vagrant
+ - vi-mode
+ - web-search
+ - yum
+ - zsh_reload
+ - zsh-users/zsh-syntax-highlighting

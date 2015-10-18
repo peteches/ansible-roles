@@ -17,6 +17,11 @@
         state=directory
         mode=0755
 
+- name: Cloning antigen repo
+  git: clone=yes
+       dest={{zsh_antigen_dir}}
+       repo=https://github.com/zsh-users/antigen.git
+
 - name: Adding zsh configs
   template: dest={{ zsh_customdir }}/{{item}}
             src={{ item }}
