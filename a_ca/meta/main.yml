@@ -1,4 +1,1 @@
 ---
-
-dependencies:
-  - { role: a_yum_epel, tags: [ 'epel' ] }

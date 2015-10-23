@@ -1,6 +1,16 @@
 ---
 
-a_ca_root: /etc/ca
-a_ca_keys: "{{ a_ca_root }}/keys"
-a_ca_servers: []
-a_ca_clients: []
+a_ca_root: /etc/ca/
+a_ca_authorities: []
+
+a_ca_openssl_days: 3650
+a_ca_openssl_conf: openssl.cnf
+
+a_ca_openssl_keysize: 4096
+a_ca_openssl_days: 3650
+a_ca_openssl_key_country: GB
+a_ca_openssl_key_province: West Yorkshire
+a_ca_openssl_key_city: Halifax
+a_ca_openssl_key_org: peteches
+a_ca_openssl_key_email: ssl@peteches.co.uk
+a_ca_openssl_key_ou: VPN

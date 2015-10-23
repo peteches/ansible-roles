@@ -1,47 +1,77 @@
 ---
 
-- name: install easyrsa
-  yum: name=easy-rsa state=present
+- include: install.yml
 
-- name: create rsa root
-  command: "cp -r /usr/share/easy-rsa/2.0 {{ a_ca_root }}"
-  args:
-    creates: "{{ a_ca_root }}"
+- name: create rsa root dir
+  file: dest={{ a_ca_root ~ item.CA }}
+        owner=root
+        group=root
+        mode=0700
+        state=directory
+  with_items: a_ca_authorities
 
-- name: keys directory
-  file: path={{ a_ca_keys }} state=directory
-
-- name: rsa vars
-  template: src=vars.j2 dest={{ a_ca_root }}/vars
-
-- name: clean all
-  shell: "source ./vars && ./clean-all"
-  args:
-    creates: "{{ a_ca_keys }}/serial"
-    chdir: "{{ a_ca_root }}"
+- name: Create openssl conf
+  template: dest={{a_ca_root ~ item.CA }}/{{a_ca_openssl_conf}}
+            src=openssl.cnf.j2
+            owner=root
+            group=root
+            mode=0600
+  with_items: a_ca_authorities
 
 - name: create dh pem
-  shell: "source ./vars && ./build-dh"
+  shell: "openssl dhparam -out {{ a_ca_root ~ item.CA }}/dh{{a_ca_openssl_keysize}}.pem -rand /dev/urandom {{a_ca_openssl_keysize}}"
   args:
-    creates: "{{ a_ca_keys }}/dh2048.pem"
-    chdir: "{{ a_ca_root }}"
+    creates: "{{ a_ca_root ~ item.CA }}/dh{{a_ca_openssl_keysize}}.pem"
+    chdir: "{{ a_ca_root ~ item.CA  }}"
+  with_items: a_ca_authorities
+
+- name: Create tls auth file
+  shell: "openvpn --genkey --secret {{ a_ca_root ~ item.CA }}/tls-auth.key"
+  args:
+    creates: "{{ a_ca_root ~ item.CA }}/tls-auth.key"
+  with_items: a_ca_authorities
 
 - name: create ca
-  shell: "source ./vars && ./build-ca --batch"
+  shell: "CN={{item.1|replace('/','')}} openssl req -batch -days {{a_ca_openssl_days}} -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -x509 -keyout '{{a_ca_root ~ item.0.CA ~ item.1 }}_ca.key' -out '{{a_ca_root ~ item.0.CA ~ item.1}}_ca.crt' -config {{a_ca_openssl_conf}} && chmod 0600 \"{{a_ca_root ~ item.0.CA ~ item.1}}_ca.key\""
   args:
-    creates: "{{ a_ca_keys }}/ca.crt"
-    chdir: "{{ a_ca_root }}"
+    creates: "{{ a_ca_root ~ item.0.CA ~ item.1}}_ca.crt"
+    chdir: "{{ a_ca_root ~ item.0.CA }}"
+  with_nested:
+    - a_ca_authorities
+    - [ '/Server', '/Client' ]
 
 - name: generate servers
-  shell: "source ./vars && ./build-key-server --batch {{ item }}"
-  with_items: a_ca_servers
+  shell: "CN={{item.1}} openssl req -batch -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -keyout {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.key -out {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.csr -extensions server -config {{a_ca_openssl_conf}}"
+  with_subelements:
+    - a_ca_authorities
+    - servers
   args:
-    creates: "{{ a_ca_keys }}/{{ item }}.crt"
-    chdir: "{{ a_ca_root }}"
+    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{ item.1 }}.key"
+    chdir: "{{ a_ca_root ~ item.0.CA }}"
+
+- name: Sign server CSR requests
+  shell: "CN={{item.1}} openssl x509 -in {{a_ca_root ~ item.0.CA}}/S_{{item.1}}.csr -out {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt -sha512 -req -CA {{ a_ca_root ~ item.0.CA }}/Server_ca.crt -CAkey {{ a_ca_root ~ item.0.CA }}/Server_ca.key -CAcreateserial"
+  with_subelements:
+    - a_ca_authorities
+    - servers
+  args:
+    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt"
+    chdir: "{{ a_ca_root ~ item.0.CA }}"
 
 - name: generate clients
-  shell: "source ./vars && ./build-key --batch {{ item }}"
-  with_items: a_ca_clients
+  shell: "CN={{item.1}} openssl req -batch -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -keyout {{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.key -out {{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.csr -config {{a_ca_openssl_conf}}"
+  with_subelements:
+    - a_ca_authorities
+    - clients
   args:
-    creates: "{{ a_ca_keys }}/{{ item }}.crt"
-    chdir: "{{ a_ca_root }}"
+    creates: "{{a_ca_root ~ item.0.CA}}/C_{{item.1}}.key"
+    chdir: "{{ a_ca_root ~ item.0.CA }}"
+
+- name: Sign client CSR requests
+  shell: "CN={{item.1}} openssl x509 -in {{a_ca_root ~ item.0.CA}}/C_{{item.1}}.csr -out {{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.crt -sha512 -req -CA {{ a_ca_root ~ item.0.CA }}/Client_ca.crt -CAkey {{ a_ca_root ~ item.0.CA }}/Client_ca.key -CAcreateserial"
+  with_subelements:
+    - a_ca_authorities
+    - clients
+  args:
+    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt"
+    chdir: "{{ a_ca_root ~ item.0.CA }}"
