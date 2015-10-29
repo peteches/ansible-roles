@@ -1,0 +1,8 @@
+---
+
+dependencies:
+  - a_kde
+  - a_fonts
+  - a_zsh
+  - a_tmux
+  - a_vim

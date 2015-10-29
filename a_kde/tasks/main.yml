@@ -1,0 +1,5 @@
+---
+
+- include: konsole.yml
+
+- include: kded.yml

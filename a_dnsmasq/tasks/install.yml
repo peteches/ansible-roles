@@ -1,0 +1,6 @@
+---
+
+- name: install dnsmasq
+  yum: name=dnsmasq
+       state=present
+  when: ansible_pkg_mgr == 'yum'

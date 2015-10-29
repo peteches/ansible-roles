@@ -1,0 +1,34 @@
+---
+
+s_vpn_configdir: /etc/openvpn/
+
+s_vpn_names:
+  - peteches_vpn
+
+s_vpn_confs:
+  peteches_vpn:
+    server: vpn.peteches.co.uk
+    port: 1194
+    routes:
+        - 192.168.2.0 255.255.255.0
+
+nspawn_containers:
+  - name: peteches_vpn
+    machine: vpn
+    exec:
+      boot: off
+      parameters: '/usr/sbin/openvpn --cd {{s_vpn_configdir}} --config ./server.conf'
+    files:
+      readonly: "on"
+      bindreadonly: "{{s_vpn_configdir}}/peteches_vpn:{{s_vpn_configdir}}"
+    network:
+      port: "{{s_vpn_confs['peteches_vpn'].port}}"
+
+a_ca_authorities:
+  - CA: peteches_vpn
+    servers:
+      - vpn.peteches.co.uk
+    clients:
+      - nyarlothotep.peteches.co.uk
+      - mi-go.peteches.co.uk
+      - ithaqua.peteches.co.uk

@@ -1,0 +1,9 @@
+---
+
+dnsmasq_conffile: /etc/dnsmasq.conf
+dnsmasq_confdir: /etc/dnsmasq.d
+dnsmasq_user: root
+dnsmasq_group: root
+
+dnsmasq_dhcp:
+  dhcp-boot: pxelinux.0

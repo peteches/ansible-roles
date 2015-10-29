@@ -1,0 +1,5 @@
+---
+
+kerneldir: /kernels
+kernel: vmlinuz
+ramdisk: initrd.img

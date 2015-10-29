@@ -1,0 +1,48 @@
+---
+
+- include: install.yml
+
+- name: Create nspawn root directorys
+  file: dest={{nspawn_dir}}
+        mode=0700
+        owner=root
+        group=root
+        state=directory
+
+- name: Create nspawn config dir
+  file: dest={{nspawn_conf_dir}}
+        mode=0755
+        owner=root
+        group=root
+        state=directory
+
+- name: Extract container tarballs
+  unarchive: copy=no
+             creates={{nspawn_dir}}/{{item.machine}}
+             dest={{nspawn_dir}}
+             group=root
+             mode=0700
+             owner=root
+             src={{a_nspawn_machine_url}}/{{item.machine}}.tar.lzma
+  with_items: nspawn_containers
+
+- name: Configure containers
+  template: dest={{nspawn_conf_dir}}/{{item.name}}
+            owner=root
+            group=root
+            mode=0600
+            src={{item.machine}}.nspawn.j2
+  with_items: nspawn_containers
+
+- name: Create container's unit file
+  template: dest=/etc/systemd/system/{{item.machine}}@.service
+            owner=root
+            group=root
+            mode=0644
+            src=nspawn-unit-file.j2
+  with_items: nspawn_containers
+
+- name: Setup service startup
+  service: enabled=yes
+           name={{item.machine}}@{{item.name}}.service
+  with_items: nspawn_containers

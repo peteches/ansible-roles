@@ -1,0 +1,80 @@
+#  vim: filetype=zsh
+
+manpage=$1
+
+# give page up and page down clearer variable names.
+export pageup=${terminfo[kpp]}
+export pagedown=${terminfo[knp]}
+export manpref="^w"
+
+typeset -A bind_func_map
+typeset "bind_func_map[killman]"="${manpref}q"
+typeset "bind_func_map[manpgup]"="${manpref}${pageup}"
+typeset "bind_func_map[manpgdown]"="${manpref}${pagedown}"
+typeset "bind_func_map[manfind]"="${manpref}/"
+typeset "bind_func_map[manfnext]"="${manpref}n"
+typeset "bind_func_map[manfNext]"="${manpref}N"
+typeset "bind_func_map[manlineup]"="${manpref}k"
+typeset "bind_func_map[manlinedown]"="${manpref}j"
+
+def __bind() {
+	func=$1
+	binding=$2
+
+	zle -N $func $func
+	bindkey $binding $func
+}
+
+def __unbind() {
+	func=$1
+	binding=$2
+
+	bindkey -r $binding
+	unset -f $func
+	zle -D $i
+}
+
+if [[ -z $manpage ]]; then
+# Mac compatibility alert, macs don't do shuf. cos they ain't as cool as they pretend to be.`
+manpage=$( find /usr/share/man/man[0-9] -type f | shuf -n 1 )
+fi
+
+if [[ -n $TMUX_PANE ]]; then
+	# open up the manpage in a new split
+	tmux split-window -hd "man $manpage"
+
+	# record what the pane ID is of that pane for use later
+	MAN_PANE=$( tmux list-pane -F '#{pane_id} #{pane_start_command}' | awk -v manpage=$manpage '$NF == manpage { print $1 }' )
+
+
+	# define some functions for interacting with the man page
+	def killman(){
+		tmux kill-pane -t $MAN_PANE
+
+		for x in ${(k)bind_func_map[@]}; do
+			__unbind "$x" "${bind_func_map[$x]}"
+		done
+ 	}
+
+# 	# set a trap so when the spawning pane exits, so does the man page.
+# 	TRAPEXIT() {
+# 		killman
+# 	}
+
+	def manlineup() { tmux send-keys -t $MAN_PANE "kkkkk" }
+	def manlinedown() { tmux send-keys -t $MAN_PANE "jjjjj" }
+	def manpgdown() { tmux send-keys -t $MAN_PANE "${pagedown}" }
+	def manpgup() { tmux send-keys -t $MAN_PANE "${pageup}" }
+	def manfnext() { tmux send-keys -t $MAN_PANE "n" }
+	def manfNext() { tmux send-keys -t $MAN_PANE "N" }
+	def manfind() {
+		mp=$(tmux list-panes -F '#{session_name}:#{window_index}.#{pane_index} #{pane_start_command}' | awk -v manpage=$manpage '$NF == manpage {print $1}')
+		tmux command-prompt -p "Search man page: " "send-keys -t $mp /%1 c-m"
+	}
+
+	for x in ${(k)bind_func_map[@]}; do
+		__bind "$x" "${bind_func_map[$x]}"
+	done
+else
+	man $manpage
+fi

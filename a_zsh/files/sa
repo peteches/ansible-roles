@@ -1,2 +1,0 @@
-pat="$*"
-alias | grep -E "$pat"

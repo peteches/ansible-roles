@@ -1,0 +1,65 @@
+---
+
+- name: create vpn config dir
+  file: dest={{s_vpn_configdir}}/{{item}}
+        owner=root
+        group=root
+        mode=0755
+        state=directory
+  with_items: s_vpn_names
+
+- name: Create vpn server configs
+  template: dest={{s_vpn_configdir}}/{{item}}/server.conf
+            owner=root
+            group=root
+            mode=0640
+            src=server.conf.j2
+  with_items: s_vpn_names
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed
+
+- name: Copy client CA certificate to vpn config dir
+  shell: "cp -a {{a_ca_root ~ item}}/Client_ca.crt {{s_vpn_configdir}}/{{item}}/Client_ca.crt"
+  with_items: s_vpn_names
+  args:
+    creates: "{{s_vpn_configdir}}/{{item}}/Client_ca.crt"
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed
+
+- name: copy Server key to vpn config dir
+  shell: "cp -a {{a_ca_root ~ item}}/S_{{s_vpn_confs[item].server}}.key {{s_vpn_configdir}}/{{item}}/"
+  with_items: s_vpn_names
+  args:
+    creates: "{{a_ca_root ~ item}}/S_{{s_vpn_confs[item].server}}.key"
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed
+
+- name: copy Server certificate to vpn config dir
+  shell: "cp -a {{a_ca_root ~ item}}/S_{{s_vpn_confs[item].server}}.crt {{s_vpn_configdir}}/{{item}}/"
+  with_items: s_vpn_names
+  args:
+    creates: "{{a_ca_root ~ item}}/S_{{s_vpn_confs[item].server}}.crt"
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed
+
+- name: Copy diffie helman to vpn config dir
+  shell: "cp -a {{a_ca_root ~ item}}/dh{{a_ca_openssl_keysize}}.pem {{s_vpn_configdir}}/{{item}}/"
+  with_items: s_vpn_names
+  args:
+    creates: "{{s_vpn_configdir}}/{{item}}/dh{{a_ca_openssl_keysize}}.pem"
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed
+
+- name: Copy TLS auth file to vpn config dir
+  shell: "cp -a {{a_ca_root ~ item}}/tls-auth.key {{s_vpn_configdir}}/{{item}}/"
+  with_items: s_vpn_names
+  args:
+    creates: "{{s_vpn_configdir}}/{{item}}/tls-auth.key"
+  register: result
+- include: ../../a_nspawn/tasks/restart_container.yml service={{nspawn_containers[item].machine}}@{{item}}.service
+  when: result|changed

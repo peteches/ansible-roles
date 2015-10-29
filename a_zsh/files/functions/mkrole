@@ -1,0 +1,6 @@
+role_path=$1
+
+for dir in tasks files templates meta handlers vars defaults; do
+	mkdir --parents $role_path/$dir
+	echo --- > $role_path/$dir/main.yml
+done

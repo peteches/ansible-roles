@@ -1,0 +1,14 @@
+client
+dev tun
+proto udp
+remote {{s_vpn_confs[item].server}} {{s_vpn_confs[item].port}}
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+comp-lzo
+verb 3
+ca ca.crt
+cert client.crt
+key client.key
+

@@ -1,0 +1,13 @@
+---
+
+- name: ensure we have a .repo directory
+  file: dest={{a_repo_dir}}
+        state=directory
+
+- name: Clone Nerd Fonts
+  git: clone=yes
+       dest={{a_repo_dir}}/nerd-fonts
+       repo=https://github.com/ryanoasis/nerd-fonts.git
+
+- name: Install Nerd Fonts
+  shell: "{{a_repo_dir}}/nerd-fonts/install.sh"

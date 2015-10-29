@@ -1,0 +1,5 @@
+---
+
+dependencies:
+  - { role: a_nspawn }
+  - { role: a_ca }

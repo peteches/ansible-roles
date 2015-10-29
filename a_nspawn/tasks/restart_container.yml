@@ -1,0 +1,5 @@
+---
+
+- name: Restarting container
+  service: state=restart
+           name={{service}}

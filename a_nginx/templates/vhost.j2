@@ -1,0 +1,26 @@
+{% for block in item.keys() %}
+{{ block }} {
+
+    {% if item.options %}
+      {% for options in item.options %}
+        {{ options }};
+      {% endfor %}
+    {% endfor %}
+
+    {% if item.ssl_opts %}
+      {% for ssl_opt in item.ssl_opts %}
+        {{ ssl_opt }}
+      {% endfor %}
+    {% endif %}
+
+    {% if item.locations %}
+      {% for k,v in item.locations.items() %}
+        location {{ k }} {
+          {% for opt in v.items() %}
+            {{ opt }};
+          {% endfor %}
+      {% endfor %}
+    {% endif %}
+
+}
+{% endfor %}

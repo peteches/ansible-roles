@@ -41,22 +41,18 @@
     - [ '/Server', '/Client' ]
 
 - name: generate servers
-  shell: "CN={{item.1}} openssl req -batch -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -keyout {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.key -out {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.csr -extensions server -config {{a_ca_openssl_conf}}"
-  with_subelements:
-    - a_ca_authorities
-    - servers
+  shell: "CN={{s_vpn_confs[item].server}} openssl req -batch -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -keyout {{ a_ca_root ~ item }}/S_{{s_vpn_confs[item].server}}.key -out {{ a_ca_root ~ item }}/S_{{s_vpn_confs[item].server}}.csr -extensions server -config {{a_ca_openssl_conf}}"
+  with_items: s_vpn_names
   args:
-    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{ item.1 }}.key"
-    chdir: "{{ a_ca_root ~ item.0.CA }}"
+    creates: "{{ a_ca_root ~ item }}/S_{{ s_vpn_confs[item].server }}.key"
+    chdir: "{{ a_ca_root ~ item }}"
 
 - name: Sign server CSR requests
-  shell: "CN={{item.1}} openssl x509 -in {{a_ca_root ~ item.0.CA}}/S_{{item.1}}.csr -out {{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt -sha512 -req -CA {{ a_ca_root ~ item.0.CA }}/Server_ca.crt -CAkey {{ a_ca_root ~ item.0.CA }}/Server_ca.key -CAcreateserial"
-  with_subelements:
-    - a_ca_authorities
-    - servers
+  shell: "CN={{s_vpn_confs[item].server}} openssl x509 -in {{a_ca_root ~ item}}/S_{{s_vpn_confs[item].server}}.csr -out {{ a_ca_root ~ item }}/S_{{s_vpn_confs[item].server}}.crt -sha512 -req -CA {{ a_ca_root ~ item }}/Server_ca.crt -CAkey {{ a_ca_root ~ item }}/Server_ca.key -CAcreateserial"
+  with_items: s_vpn_names
   args:
-    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt"
-    chdir: "{{ a_ca_root ~ item.0.CA }}"
+    creates: "{{ a_ca_root ~ item }}/S_{{s_vpn_confs[item].server}}.crt"
+    chdir: "{{ a_ca_root ~ item }}"
 
 - name: generate clients
   shell: "CN={{item.1}} openssl req -batch -nodes -new -newkey rsa:{{a_ca_openssl_keysize}} -keyout {{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.key -out {{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.csr -config {{a_ca_openssl_conf}}"
@@ -73,5 +69,5 @@
     - a_ca_authorities
     - clients
   args:
-    creates: "{{ a_ca_root ~ item.0.CA }}/S_{{item.1}}.crt"
+    creates: "{{ a_ca_root ~ item.0.CA }}/C_{{item.1}}.crt"
     chdir: "{{ a_ca_root ~ item.0.CA }}"

@@ -1,0 +1,9 @@
+---
+
+- include: install.yml
+  when: ansible_hostname == 'azathoth'
+
+- include: setup.yml
+  when: ansible_hostname == 'azathoth'
+
+- include: configure.yml

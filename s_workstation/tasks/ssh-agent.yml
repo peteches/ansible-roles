@@ -1,0 +1,13 @@
+---
+
+- name: create user systemd default.target.wants
+  file: dest=~/.config/systemd/user/default.target.wants
+        state=directory
+
+- name: Add ssh-agent user service file
+  copy: dest=~/.config/systemd/user/ssh-agent.service
+        src=ssh-agent.service
+
+- name: Enabling ssh-agent user service
+  file: dest=~/.config/systemd/user/default.target.wants/ssh-agent.service
+        src=~/.config/systemd/user/ssh-agent.service

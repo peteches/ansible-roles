@@ -16,13 +16,6 @@ zsh_configs:
   - traps.zsh
   - zstyle.zsh
 
-zsh_functions:
-  - mssh
-  - openJenkinsJob
-  - sa
-  - stash
-  - tman
-
 zsh_plugins:
  - adolfoabegg/browse-commit
  - colorize

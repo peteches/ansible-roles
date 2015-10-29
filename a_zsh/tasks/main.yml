@@ -29,7 +29,6 @@
   with_items: zsh_configs
 
 - name: Adding zsh functions
-  copy: dest={{ zsh_customdir }}/functions/{{ item }}
-        src={{ item }}
+  copy: dest={{ zsh_customdir }}/
+        src=functions
         mode=0644
-  with_items: zsh_functions

@@ -1,0 +1,8 @@
+---
+
+- name: create default config
+  template: dest={{ tftpbootdir }}pxelinux.cfg/default
+            src=pxelinux_default.j2
+            owner=root
+            group=root
+            mode=0644

@@ -1,0 +1,6 @@
+---
+
+- name: Install lxmz libs to extract tarballs
+  yum: name=xz
+       state=latest
+  when: ansible_pkg_mgr == 'yum'
