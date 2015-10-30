@@ -1,14 +1,14 @@
 ---
 
 - name: Adding user systemd default.target.wants dir
-  file: dest=~/.config/systemd/user/default.target.wants
+  file: dest={{systemd_user_default_wants_dir}}
         state=directory
 
 - name: Adding tmux user unit file
-  copy: dest=~/.config/systemd/user/tmux.service
+  copy: dest={{systemd_user_dir}}/tmux.service
         src=tmux.service
 
 - name: Enabling tmux user service
-  file: dest=~/.config/systemd/user/default.target.wants/tmux.service
-        src=~/.config/systemd/user/tmux.service
+  file: dest={{systemd_user_default_wants_dir}}/tmux.service
+        src={{systemd_user_dir}}/tmux.service
         state=link
