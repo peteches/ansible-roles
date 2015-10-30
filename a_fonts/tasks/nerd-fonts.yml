@@ -10,4 +10,7 @@
        repo=https://github.com/ryanoasis/nerd-fonts.git
 
 - name: Install Nerd Fonts
-  shell: "{{a_repo_dir}}/nerd-fonts/install.sh"
+  shell: "./install.sh"
+  args:
+    chdir: "{{a_repo_dir}}/nerd-fonts"
+
