@@ -1,6 +1,6 @@
 ---
 
-- name: Installing Zsh
+- name: Installing zsh
   portage: changed_use=yes
            deep=yes
            newuse=yes
@@ -14,6 +14,13 @@
 
 - name: Installing Zsh
   apt: name=zsh
+       state=latest
+  when: ansible_pkg_mgr  == "apt"
+  become: True
+  become_user: root
+
+- name: Installing ack (required for some rc files)
+  apt: name=ack-grep
        state=latest
   when: ansible_pkg_mgr  == "apt"
   become: True

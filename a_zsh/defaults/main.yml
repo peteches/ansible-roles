@@ -16,6 +16,9 @@ zsh_configs:
   - traps.zsh
   - zstyle.zsh
 
+work_zsh_plugins:
+  - ssh://git@stash.skybet.net:7999/gdo/gdo_wrapper.git
+
 zsh_plugins:
  - adolfoabegg/browse-commit
  - colorize
@@ -39,3 +42,5 @@ zsh_plugins:
  - yum
  - zsh_reload
  - zsh-users/zsh-syntax-highlighting
+
+all_zsh_plugins: "{{ zsh_plugins + work_zsh_plugins }}"
