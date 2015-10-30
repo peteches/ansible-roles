@@ -6,6 +6,9 @@ antigen bundles <<EOF
 {%for plugin in zsh_plugins%}
 {{plugin|indent(2, true)}}
 {%endfor%}
+{%for plugin in work_zsh_plugins%}
+{{plugin|indent(2, true)}}
+{%endfor%}
 EOF
 antigen apply
 

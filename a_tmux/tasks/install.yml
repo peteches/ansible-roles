@@ -9,3 +9,11 @@
   when: ansible_pkg_mgr == "portage"
   become: True
   become_user: root
+
+- name: Install Tmux
+  apt: name=tmux
+       state=latest
+  when: ansible_pkg_mgr == "apt"
+  become: True
+  become_user: root
+

@@ -20,6 +20,22 @@
            package={{item[ansible_pkg_mgr]}}
            state=present
            update=yes
+  when: ansible_pkg_mgr == "portage"
+  with_items: vim_plugin_deps
+  become: True
+  become_user: root
+
+- name: Installing vim
+  apt: name=vim
+       state=latest
+  when: ansible_pkg_mgr  == "apt"
+  become: True
+  become_user: root
+
+- name: Installing packages required for some plugins
+  apt: name={{item[ansible_pkg_mgr]}}
+       state=present
+  when: ansible_pkg_mgr == "apt"
   with_items: vim_plugin_deps
   become: True
   become_user: root

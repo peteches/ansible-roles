@@ -6,7 +6,11 @@ vim_colour_dir: ~/vim/colors
 
 vim_plugin_deps:
   - portage: "dev-python/jedi"
+    apt: "python-jedi"
+  - apt: "python3-jedi"
   - portage: "dev-python/pep8"
+    apt: "pep8"
+  - apt: "python3-pep8"
 
 vim_config_dirs:
   - autoload
