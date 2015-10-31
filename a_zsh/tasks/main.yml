@@ -32,3 +32,8 @@
   copy: dest={{ zsh_customdir }}/
         src=functions
         mode=0644
+
+- name: Adding list of favorite zsh themes
+  template: dest={{zsh_customdir}}/zsh_themes
+            src=zsh_themes.j2
+            mode=0644
