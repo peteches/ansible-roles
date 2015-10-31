@@ -1,0 +1,5 @@
+---
+
+- include: "{{ ansible_pkg_mgr }}.yml"
+
+- include: plugins.yml

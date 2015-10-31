@@ -1,0 +1,17 @@
+---
+
+a_firefox_profile: peteches
+
+a_firefox_plugin_dir: ~/.mozilla/extensions/
+
+a_firefox_plugins:
+  - name: lastpass
+    url:  https://lastpass.com/download/cdn/lp_linux.xpi
+  - name: foxyproxy
+    url:  https://addons.mozilla.org/firefox/downloads/file/319162/foxyproxy_standard-4.5.5-sm+tb+fx.xpi
+  - name: ublock
+    url:  https://github.com/gorhill/uBlock/releases/download/1.3.2/uBlock0.firefox.xpi
+  - name: lightbeam
+    url:  https://addons.mozilla.org/firefox/downloads/latest/lightbeam/addon-363974-latest.xpi
+  - name: vimperator
+    url:  https://github.com/vimperator/vimperator-labs/releases/tag/vimperator-3.10.1
