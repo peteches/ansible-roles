@@ -1,0 +1,35 @@
+---
+
+- name: ensure package.use dir exists
+  file: dest=/etc/portage/package.use
+        state=directory
+  become: true
+
+- name: create vim use file
+  copy: dest=/etc/portage/package.use/vim
+        src=vim.use
+  become: true
+
+- name: Installing vim
+  portage: changed_use=yes
+           deep=yes
+           newuse=yes
+           noreplace=yes
+           package="app-editors/vim"
+           state=present
+           update=yes
+  become: True
+  become_user: root
+
+- name: Installing packages required for some plugins
+  portage: changed_use=yes
+           deep=yes
+           newuse=yes
+           noreplace=yes
+           package={{item}}
+           state=present
+           update=yes
+  with_items: vim_plugin_deps.portage
+  become: True
+  become_user: root
+
