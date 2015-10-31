@@ -8,9 +8,10 @@
   git: clone=yes
        dest={{a_repo_dir}}/nerd-fonts
        repo=https://github.com/ryanoasis/nerd-fonts.git
+  register: result
 
 - name: Install Nerd Fonts
   shell: "./install.sh"
   args:
     chdir: "{{a_repo_dir}}/nerd-fonts"
-
+  when: result|changed
