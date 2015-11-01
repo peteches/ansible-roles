@@ -1,8 +1,18 @@
 ---
 
+a_firefox_profile_dir: ~/.mozilla/firefox
+
 a_firefox_profile: peteches
 
-a_firefox_plugin_dir: ~/.mozilla/extensions/
+a_firefox_profile_default: 1
+
+a_firefox_plugin_dir: ~/.mozilla/extensions
+
+a_firefox_vimperator_rc_dir: ~/.vimperator
+
+a_firefox_vimperator_colours:
+  - molokai
+  - solarized
 
 a_firefox_plugins:
   - name: lastpass

@@ -1,17 +1,3 @@
 ---
 
-- name: create firefox plugin dir
-  file: dest={{a_firefox_plugin_dir}}
-        state=directory
-
-- name: collecting firefox plugins
-  get_url: force=yes
-           dest={{a_firefox_plugin_dir}}/{{item.name}}.xpi
-           url={{item.url}}
-           validate_certs=yes
-  with_items: a_firefox_plugins
-  register: result
-
-# - name: install firefox plugins
-#   shell: "firefox -P {{a_firefox_profile}} {{a_firefox_plugin_dir}}/*.xpi"
-#   when: result|changed
+- include: vimperator.yml
