@@ -1,0 +1,15 @@
+---
+
+- name: create facts dir
+  file: dest=/etc/ansible/facts.d/
+        state=directory
+        owner=root
+        group=root
+        mode=755
+
+- name: Adding skybet local facts
+  template: dest=/etc/ansible/facts.d/skybet.fact
+            src=skybet.fact.j2
+            owner=root
+            group=root
+            mode=0755

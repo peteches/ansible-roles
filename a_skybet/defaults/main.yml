@@ -1,0 +1,4 @@
+---
+
+a_skybet_antigen_plugins:
+  - ssh://git@stash.skybet.net:7999/gdo/gdo_wrapper.git

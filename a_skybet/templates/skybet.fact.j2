@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cat <<EOF
+{
+  "antigen_plugins": [
+    {%for plugin in a_skybet_antigen_plugins%}
+    "{{plugin}}"{%if not loop.last%}, {%endif%}
+    {%endfor%}
+  ]
+}
+EOF

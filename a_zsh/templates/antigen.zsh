@@ -2,9 +2,14 @@ source {{zsh_antigen_dir}}/antigen.zsh
 
 antigen use oh-my-zsh
 antigen bundles <<EOF
-{%for plugin in all_zsh_plugins%}
+{%for plugin in zsh_plugins%}
 {{plugin|indent(2, true)}}
 {%endfor%}
+{%if ansible_local.skybet.antigen_plugins is defined%}
+{%for plugin in ansible_local.skybet.antigen_plugins%}
+{{plugin|indent(2, true)}}
+{%endfor%}
+{%endif%}
 EOF
 antigen apply
 

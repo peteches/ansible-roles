@@ -43,8 +43,6 @@ zsh_plugins:
  - zsh_reload
  - zsh-users/zsh-syntax-highlighting
 
-all_zsh_plugins: "{{ zsh_plugins + work_zsh_plugins }}"
-
 a_zsh_themes:
   - adben
   - af-magic
