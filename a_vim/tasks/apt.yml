@@ -7,7 +7,7 @@
   become_user: root
 
 - name: Installing packages required for some plugins
-  apt: name={{item[ansible_pkg_mgr]}}
+  apt: name={{item}}
        state=present
   with_items: vim_plugin_deps.apt
   become: True
