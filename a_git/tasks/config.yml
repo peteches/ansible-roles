@@ -1,0 +1,11 @@
+---
+
+- name: Adding user gitconfig file
+  template: dest={{a_git_configfile}}
+            src=gitconfig.j2
+            mode=0644
+
+- name: Adding user gitignore file
+  template: dest={{a_git_ignorefile}}
+            src=gitignore.j2
+            mode=0644

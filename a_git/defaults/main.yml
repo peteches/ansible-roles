@@ -1,0 +1,33 @@
+---
+
+a_git_ignorefile: ~/.gitignore
+a_git_configfile: ~/.gitconfig
+
+a_git_config:
+  user:
+    name: Pete "Peteches" McCabe
+    email: pete@peteches.co.uk
+  push:
+    default: current
+  color:
+    diff: auto
+  core:
+    pager: less -r
+    editor: vim
+    excludesfile: "{{a_git_ignorefile}}"
+    mergetool: vimdiff
+  alias:
+    stash-unapply: "!git stash show -p | git apply -R"
+  tig:
+    commit-order: topo
+  diff:
+    context: 5
+    algorithm: patience
+
+a_git_ignore:
+  - ".*.sw?"
+  - "tags"
+  - "TAGS"
+  - "Vagrantfile"
+  - "doc"
+  - "fonts.dir"
