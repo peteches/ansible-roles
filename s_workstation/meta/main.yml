@@ -7,3 +7,4 @@ dependencies:
   - a_zsh
   - a_tmux
   - a_vim
+  - a_firefox

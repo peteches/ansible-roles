@@ -1,3 +1,4 @@
 ---
 
+- include: "{{ansible_pkg_mgr}}.yml"
 - include: ssh-agent.yml

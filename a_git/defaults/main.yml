@@ -5,8 +5,8 @@ a_git_configfile: ~/.gitconfig
 
 a_git_config:
   user:
-    name: Pete "Peteches" McCabe
-    email: pete@peteches.co.uk
+    name: "{{ansible_local[ansible_local.employer.name].a_git_author|default('Pete \"Peteches\" McCabe')}}"
+    email: "{{ansible_local[ansible_local.employer.name].a_git_email|default('pete@peteches.co.uk')}}"
   push:
     default: current
   color:

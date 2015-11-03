@@ -12,6 +12,7 @@ antigen bundles <<EOF
 	{%-endfor%}
     {%-endif%}
 {%endif%}
+
 EOF
 antigen apply
 
