@@ -63,3 +63,12 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM={{zsh_customdir}}
+
+{% if ansible_local[ansible_local.employer.name].a_zsh_cdpaths is defined
+    and ansible_local[ansible_local.employer.name].a_zsh_cdpaths is iterable %}
+    cdpath=({{ ansible_local[ansible_local.employer.name].a_zsh_cdpaths|join(" ")}})
+{%endif%}
+
+cdpath=( $cdpath {{a_zsh_cdpaths|join(" ")}})
+export cdpath
+

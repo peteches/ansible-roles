@@ -3,6 +3,9 @@
 zsh_customdir: ~/.zsh_custom
 zsh_antigen_dir: ~/.antigen-repo
 
+a_zsh_cdpaths:
+  - ~/area_51
+
 zsh_configs:
   - aliases.zsh
   - antigen.zsh

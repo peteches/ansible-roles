@@ -5,3 +5,7 @@ a_skybet_antigen_plugins:
 
 a_skybet_git_author: Pete 'Peteches' McCabe
 a_skybet_git_email: pete.mccabe@skybettingandgaming.com
+
+a_skybet_zsh_cdpaths:
+  - ~/workstation/repos
+  - ~/workstation/repos/cookbooks
