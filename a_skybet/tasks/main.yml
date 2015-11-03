@@ -5,7 +5,14 @@
         state=directory
         owner=root
         group=root
-        mode=755
+        mode=0755
+
+- name: Adding employer fact
+  copy: dest=/etc/ansible/facts.d/employer.fact
+        src=employer.fact
+        owner=root
+        group=root
+        mode=0755
 
 - name: Adding skybet local facts
   template: dest=/etc/ansible/facts.d/skybet.fact
