@@ -3,12 +3,14 @@ source {{zsh_antigen_dir}}/antigen.zsh
 antigen use oh-my-zsh
 antigen bundles <<EOF
 {%for plugin in zsh_plugins%}
-{{plugin|indent(2, true)}}
+    {{-plugin|indent(2, true)}}
 {%endfor%}
-{%if ansible_local.skybet.antigen_plugins is defined%}
-{%for plugin in ansible_local.skybet.antigen_plugins%}
-{{plugin|indent(2, true)}}
-{%endfor%}
+{%if ansible_local.employer.name is defined and ansible_local[ansible_local.employer.name] is defined%}
+    {%-if ansible_local[ansible_local.employer.name].antigen_plugins is iterable%}
+	{%-for plugin in ansible_local[ansible_local.employer.name].antigen_plugins%}
+	    {{-plugin|indent(2, true)}}
+	{%-endfor%}
+    {%-endif%}
 {%endif%}
 EOF
 antigen apply
