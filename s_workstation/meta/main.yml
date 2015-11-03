@@ -3,6 +3,7 @@
 dependencies:
   - a_kde
   - a_fonts
+  - a_git
   - a_zsh
   - a_tmux
   - a_vim
