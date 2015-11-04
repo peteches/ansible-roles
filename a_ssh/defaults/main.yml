@@ -1,0 +1,22 @@
+---
+
+a_ssh_user_dir: ~/.ssh
+a_ssh_user_conf: "{{a_ssh_user_dir}}/config"
+
+a_ssh_hosts:
+  - pattern: "Host *"
+    priority: 1000000
+    directives:
+      CanonicalizeHostname: yes
+      CanonicalDomains: "{{ansible_local[ansible_local.employer.name].a_ssh_canonicalDomains|join(' ')}}"
+  - pattern: "Host mi-go"
+    priority: 1
+    HostName: mi-go
+    directives:
+      User: peteches
+      Port: 22
+  - pattern: "Host azathoth.*.peteches.co.uk"
+    priority: 5
+    directives:
+      User: peteches
+      Port: 24
