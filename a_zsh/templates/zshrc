@@ -8,6 +8,11 @@ for fdir in ${fpath[@]}; do
 	fi
 done
 
-for file in {{zsh_customdir}}/*.zsh; do
+# set ext glob to allow the for loop to exclude antigen dir
+setopt extendedglob
+[[ -r {{zsh_customdir}}/antigen.zsh ]] && source {{zsh_customdir}}/antigen.zsh
+for file in {{zsh_customdir}}/*.zsh~*/antigen.zsh; do
 	source $file
 done
+# unet it again to maintain consistency, it should get set in the opts.zsh
+unsetopt extendedglob
