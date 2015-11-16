@@ -53,7 +53,7 @@ alias grhu='git reset --hard @{u}'
 ####################
 #  GLOBAL ALIASES  #
 ####################
-alias -g G=' | grep'
+alias -g G=' | noglob grep'
 alias -g C=' | column -t'
 alias -g V=' | vless -'
 alias -g ...='../..'
