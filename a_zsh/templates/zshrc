@@ -1,5 +1,5 @@
 # add custom local fpath dir
-fpath=( {{zsh_customdir}}/functions/ $fpath )
+fpath=( {{a_zsh_customdir}}/functions/ $fpath )
 
 # now auto load any functions you can find.
 for fdir in ${fpath[@]}; do
@@ -10,8 +10,8 @@ done
 
 # set ext glob to allow the for loop to exclude antigen dir
 setopt extendedglob
-[[ -r {{zsh_customdir}}/antigen.zsh ]] && source {{zsh_customdir}}/antigen.zsh
-for file in {{zsh_customdir}}/*.zsh~*/antigen.zsh; do
+[[ -r {{a_zsh_customdir}}/antigen.zsh ]] && source {{a_zsh_customdir}}/antigen.zsh
+for file in {{a_zsh_customdir}}/*.zsh~*/antigen.zsh; do
 	source $file
 done
 # unet it again to maintain consistency, it should get set in the opts.zsh

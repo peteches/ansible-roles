@@ -8,32 +8,32 @@
             mode=0644
 
 - name: Adding dir for custom zsh
-  file: dest={{ zsh_customdir }}
+  file: dest={{ a_zsh_customdir }}
         state=directory
         mode=0755
 
 - name: Adding functions dir for autoloading
-  file: dest={{ zsh_customdir }}/functions
+  file: dest={{ a_zsh_customdir }}/functions
         state=directory
         mode=0755
 
 - name: Cloning antigen repo
   git: clone=yes
-       dest={{zsh_antigen_dir}}
+       dest={{a_zsh_antigen_dir}}
        repo=https://github.com/zsh-users/antigen.git
 
 - name: Adding zsh configs
-  template: dest={{ zsh_customdir }}/{{item}}
+  template: dest={{ a_zsh_customdir }}/{{item}}
             src={{ item }}
             mode=0644
-  with_items: zsh_configs
+  with_items: a_zsh_configs
 
 - name: Adding zsh functions
-  copy: dest={{ zsh_customdir }}/
+  copy: dest={{ a_zsh_customdir }}/
         src=functions
         mode=0644
 
 - name: Adding list of favorite zsh themes
-  template: dest={{zsh_customdir}}/zsh_themes
+  template: dest={{a_zsh_customdir}}/zsh_themes
             src=zsh_themes.j2
             mode=0644

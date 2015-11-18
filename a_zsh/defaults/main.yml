@@ -1,12 +1,12 @@
 ---
 
-zsh_customdir: ~/.zsh_custom
-zsh_antigen_dir: ~/.antigen-repo
+a_zsh_customdir: ~/.zsh_custom
+a_zsh_antigen_dir: ~/.antigen-repo
 
 a_zsh_cdpaths:
   - ~/area_51
 
-zsh_configs:
+a_zsh_configs:
   - aliases.zsh
   - antigen.zsh
   - bindkeys.zsh
@@ -19,10 +19,7 @@ zsh_configs:
   - traps.zsh
   - zstyle.zsh
 
-work_zsh_plugins:
-  - ssh://git@stash.skybet.net:7999/gdo/gdo_wrapper.git
-
-zsh_plugins:
+a_zsh_plugins:
  - adolfoabegg/browse-commit
  - colorize
  - common-aliases
