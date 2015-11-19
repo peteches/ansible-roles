@@ -41,3 +41,6 @@ bind-key {{binding}} {{value}}
 bind-key -t {{table}} {{binding}} {{value}}
 {%endfor%}
 {%endfor%}
+
+# initialise first session
+new-session -s {{ ansible_hostname }}

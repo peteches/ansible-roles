@@ -1,0 +1,9 @@
+---
+
+- name: Install generic useful packages
+  portage: package={{item}}
+           state=installed
+           sync=yes
+           update=yes
+  become: true
+  with_items: a_workstation_packages.portage
