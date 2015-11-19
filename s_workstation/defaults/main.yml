@@ -7,3 +7,6 @@ a_workstation_packages:
     - curl
     - htop
     - krdc
+    - xchat
+    - socat
+    - ipython3
