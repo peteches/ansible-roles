@@ -8,6 +8,7 @@ vim_plugin_deps:
   portage:
     - dev-python/jedi
     - dev-python/pep8
+    - app-text/pandoc
   apt:
     - "python-jedi"
     - "python3-jedi"
