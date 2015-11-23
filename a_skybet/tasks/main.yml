@@ -20,3 +20,35 @@
             owner=root
             group=root
             mode=0755
+
+- name: Ensure systemd dir exists
+  file: dest=/etc/systemd/system
+        state=directory
+
+- name: Add SkyProxy service file
+  copy: dest=/etc/systemd/system/skyproxy@.service
+        src=skyproxy.service
+        owner=root
+        group=root
+        mode=0644
+
+- name: Ensure skyproxy env dir exists
+  file: dest=/etc/skyproxy/
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+
+- name: Ensure skyproxy env files exists
+  template: dest=/etc/skyproxy/{{item.name}}
+            src=skyproxy_env.j2
+            owner=root
+            group=root
+            mode=0644
+  with_items: a_skybet_proxies
+
+- name: Enable skyproxy
+  service: name=skyproxy@{{item.name}}.service
+           enabled=yes
+           state=started
+  with_items: a_skybet_proxies

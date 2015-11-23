@@ -24,6 +24,11 @@ a_git_config:
     context: 5
     algorithm: patience
 
+a_git_software:
+  apt:
+    - git
+    - tig
+
 a_git_ignore:
   - ".*.sw?"
   - "tags"

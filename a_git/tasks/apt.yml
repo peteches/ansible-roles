@@ -1,0 +1,7 @@
+---
+
+- name: Install git related software
+  apt: name={{item}}
+       state=latest
+  with_items: a_git_software.apt
+  become: true

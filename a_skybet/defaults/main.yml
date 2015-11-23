@@ -7,5 +7,15 @@ a_skybet_git_author: Pete 'Peteches' McCabe
 a_skybet_git_email: pete.mccabe@skybettingandgaming.com
 
 a_skybet_zsh_cdpaths:
-  - ~/workstation/repos
-  - ~/workstation/repos/cookbooks
+  - ~/area_51/workstation/repos
+  - ~/area_51/workstation/repos/cookbooks
+
+a_skybet_proxies:
+  - name: guea
+    bind: 127.0.0.1
+    port: 8080
+    remote: gueagw02.skybet.net
+  - name: gueb
+    bind: 127.0.0.1
+    port: 8081
+    remote: guebgw02.skybet.net

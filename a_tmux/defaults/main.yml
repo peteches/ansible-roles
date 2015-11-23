@@ -18,11 +18,7 @@ tmux_confs:
 tmux_global_opts:
   renumber-windows: "on"
   prefix: "C-a"
-  mouse-select-window: "on"
-  mouse-resize-pane: "on"
-  mouse-select-pane: "on"
-  mode-mouse: "on"
-  mouse-utf8: "off"
+  mouse: "on"
   mode-keys: "vi"
   renumber-windows: "on"
   display-panes-time: 5000

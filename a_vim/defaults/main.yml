@@ -44,7 +44,6 @@ vim_plugin_repos:
   - https://github.com/mitechie/pyflakes-pathogen
   - https://github.com/mrk21/yaml-vim.git
   - https://github.com/navicore/vis.vim.git
-  - https://github.com/peteches/vim-jsoneditoronline
   - https://github.com/rogerz/vim-json
   - https://github.com/rstacruz/sparkup
   - https://github.com/ryanoasis/vim-devicons

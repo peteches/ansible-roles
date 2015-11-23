@@ -1,0 +1,13 @@
+[Unit]
+Description = Ssh socksv5 proxy into %i
+Documentation=man:ssh
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/%p/%i
+ExecStart=/usr/bin/ssh -D ${SOCKS_BIND}:${SOCKS_PORT} -MNnttvl mccabep -o ControlMaster=yes -o ControlPath=/var/run/%%h-%%p-%%r ${REMOTE_HOST}
+ExecStop=/usr/bin/ssh -o ControlPath=/var/run/%%h-%%p-%%r -O exit
+Restart=always
+
+[Install]
+WantedBy=default.target
