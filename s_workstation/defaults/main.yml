@@ -10,3 +10,4 @@ a_workstation_packages:
     - xchat
     - socat
     - ipython3
+    - python3-pip
