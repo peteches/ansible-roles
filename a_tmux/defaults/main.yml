@@ -6,6 +6,7 @@ tmux_submodules:
   - https://github.com/tmux-plugins/tmux-open
   - https://github.com/tmux-plugins/tmux-resurrect
   - https://github.com/tmux-plugins/tmux-logging
+  - git@github.com:peteches/tmux-continuum.git
 
 tmux_colourschemes:
   - https://github.com/seebi/tmux-colors-solarized
@@ -28,6 +29,8 @@ tmux_global_opts:
   history-limit: 1000000
   base-index: 1
   default-terminal: "screen-256color"
+  '@continuum-boot': 'on'
+  '@continuum-restore': 'on'
 
 tmux_global_bindings:
   'C-p': run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
