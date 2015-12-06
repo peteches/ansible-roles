@@ -1,0 +1,9 @@
+---
+
+- name: Install git related software
+  portage: package={{item}}
+           state=installed
+           sync=yes
+           update=yes
+  become: true
+  with_items: a_git_software.portage

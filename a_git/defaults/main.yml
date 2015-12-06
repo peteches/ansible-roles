@@ -28,6 +28,9 @@ a_git_software:
   apt:
     - git
     - tig
+  portage:
+    - dev-vcs/git
+    - dev-vcs/tig
 
 a_git_ignore:
   - ".*.sw?"
