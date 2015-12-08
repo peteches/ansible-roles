@@ -31,7 +31,6 @@ vim_plugin_repos:
   - https://github.com/airblade/vim-gitgutter.git
   - https://github.com/AndrewRadev/switch.vim.git
   - https://github.com/bling/vim-airline
-  - https://github.com/christoomey/vim-tmux-runner.git
   - https://github.com/davidhalter/jedi-vim
   - https://github.com/fmoralesc/vim-pad.git
   - https://github.com/godlygeek/tabular
