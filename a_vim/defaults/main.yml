@@ -25,6 +25,7 @@ vim_config_dirs:
   - syntax
   - vim-pandoc-templates
   - vimrc
+  - UltiSnips
 
 vim_plugin_repos:
   - git@github.com:peteches/pep8.git
