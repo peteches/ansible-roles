@@ -69,7 +69,6 @@ vim_plugin_repos:
   - https://github.com/vasconcelloslf/vim-interestingwords.git
   - https://github.com/vim-pandoc/vim-pandoc.git
   - https://github.com/vim-pandoc/vim-pandoc-syntax.git
-  - https://github.com/vim-ruby/vim-ruby.git
   - https://github.com/wincent/ferret.git
   - https://github.com/zhaocai/vim-textobj-function.git
 
