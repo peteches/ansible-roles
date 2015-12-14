@@ -23,14 +23,19 @@
            regexp=" = "
            replace="="
 
-- name: Add about:config opts for firefox
-  lineinfile: dest={{a_firefox_profile_dir}}/user.js
-              create=yes
-              line="user_pref(\"{{item.key}}\", {% if item.value is string and not (item.value == "true" or item.value == "false")%}\"{%endif%}{% if item.value == True%}true{%elif item.value == False%}false{%else%}{{item.value|string}}{%endif%}{% if item.value is string and not (item.value == "true" or item.value == "false")%}\"{%endif%});"
-              regexp="user_pref\({{item.key}},[^)]+\);"
-              state=present
-  with_dict: a_firefox_user_prefs
+- name: Add extension dir
+  file: dest={{a_firefox_profile_dir}}/extensions/
+        state=directory
 
 - name: Add extensions
-  copy: dest={{a_firefox_profile_dir}}/
-        src=extensions
+  copy: dest={{a_firefox_profile_dir}}/extensions/{{item}}
+        src=extensions/{{item}}
+  with_items: a_firefox_extensions
+
+- name: install extensions
+  shell: firefox {{a_firefox_profile_dir}}/extensions/*
+
+- name: Add about:config opts for firefox
+  template: dest={{a_firefox_profile_dir}}/user.js
+            src=user.js.j2
+  with_dict: a_firefox_user_prefs
