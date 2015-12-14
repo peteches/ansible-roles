@@ -1,27 +1,58 @@
 ---
-
-a_firefox_profile_dir: ~/.mozilla/firefox
-
-a_firefox_profile: peteches
-
+a_firefox_profile_name: peteches
+a_firefox_config_dir: ~/.mozilla/firefox/
+a_firefox_profile_dir: "{{a_firefox_config_dir}}/qwsa1234.{{a_firefox_profile_name}}"
 a_firefox_profile_default: 1
 
-a_firefox_plugin_dir: ~/.mozilla/extensions
+a_firefox_profile_ini_opts:
+  Name: "{{a_firefox_profile_name}}"
+  IsRelative: 1
+  Path: "{{a_firefox_profile_dir|basename}}"
+  Default: "{{ a_firefox_profile_default }}"
 
-a_firefox_vimperator_rc_dir: ~/.vimperator
-
-a_firefox_vimperator_colours:
-  - molokai
-  - solarized
-
-a_firefox_plugins:
-  - name: lastpass
-    url:  https://lastpass.com/download/cdn/lp_linux.xpi
-  - name: foxyproxy
-    url:  https://addons.mozilla.org/firefox/downloads/file/319162/foxyproxy_standard-4.5.5-sm+tb+fx.xpi
-  - name: ublock
-    url:  https://github.com/gorhill/uBlock/releases/download/1.3.2/uBlock0.firefox.xpi
-  - name: lightbeam
-    url:  https://addons.mozilla.org/firefox/downloads/latest/lightbeam/addon-363974-latest.xpi
-  - name: vimperator
-    url:  https://github.com/vimperator/vimperator-labs/releases/tag/vimperator-3.10.1
+a_firefox_user_prefs:
+    "browser.search.defaulturl": https://duckduckgo.com
+    "app.update.auto": false
+    "beacon.enabled": false
+    "browser.fixup.alternate.enabled": false
+    "browser.newtab.preload": false
+    "browser.newtabpage.introShown": true
+    "browser.pocket.enabled": false
+    "browser.safebrowsing.enabled": false
+    "browser.safebrowsing.malware.enabled": false
+    "browser.search.suggest.enabled": false
+    "browser.selfsupport.url": ''
+    "browser.send_pings": false
+    "browser.shell.checkDefaultBrowser": false
+    "browser.toolbarbuttons.introduced.pocket-button": true
+    "datareporting.healthreport.service.enabled": false
+    "datareporting.healthreport.uploadEnabled": false
+    "datareporting.policy.dataSubmissionEnabled": false
+    "dom.battery.enabled": false
+    "dom.indexedDB.enabled": false
+    "extensions.autoDisableScopes": 14
+    "extensions.getAddons.cache.enabled": false
+    "extensions.lastpass.ffhasloggedin": true
+    "extensions.lastpass.ffhasloggedinsuccessfully": true
+    "extensions.lastpass.loginusers": lastpass%40petemccabe.gb.net
+    "extensions.lastpass.rememberPassword": false
+    "extensions.lastpass.rememberUsername": true
+    "extensions.lastpass.showHomepageAfterLogin": false
+    "extensions.vimperator.firsttime": false
+    "general.warnOnAboutConfig": false
+    "keyword.enabled": false
+    "loop.enabled": false
+    "media.peerconnection.enabled": false
+    "network.cookie.cookieBehavior": 1
+    "network.dns.disablePrefetch": true
+    "network.http.sendRefererHeader": 0
+    "network.prefetch-next": false
+    "pdfjs.disabled": true
+    "privacy.donottrackheader.enabled": true
+    "privacy.donottrackheader.value": 1
+    "privacy.trackingprotection.enabled": true
+    "privacy.trackingprotection.pbmode.enabled": true
+    "toolkit.telemetry.enabled": false
+    "webgl.disabled": true
+    "extensions.enabledAddons": "support%40lastpass.com:3.2.40,tiletabs%40DW-dev:13.3,foxyproxy%40eric.h.jung:4.5.5,vimperator%40mozdev.org:3.10.1.1-let-fixed,https-everywhere%40eff.org:5.1.0,treestyletab%40piro.sakura.ne.jp:0.16.2015113001.1-let-fixed,%7B972ce4c6-7e08-4474-a285-3208198ce6fd%7D:38.4.0"
+    "browser.uiCustomization.state": "{\\\"placements\\\":{\\\"PanelUI-contents\\\":[\\\"edit-controls\\\",\\\"zoom-controls\\\",\\\"new-window-button\\\",\\\"privatebrowsing-button\\\",\\\"save-page-button\\\",\\\"print-button\\\",\\\"history-panelmenu\\\",\\\"fullscreen-button\\\",\\\"find-button\\\",\\\"preferences-button\\\",\\\"add-ons-button\\\",\\\"developer-button\\\"],\\\"liberator-statusline\\\":[\\\"liberator-mode-toolbar\\\",\\\"liberator-message-toolbar\\\",\\\"liberator-status\\\"],\\\"addon-bar\\\":[\\\"addonbar-closebutton\\\",\\\"status-bar\\\"],\\\"PersonalToolbar\\\":[\\\"personal-bookmarks\\\"],\\\"nav-bar\\\":[\\\"urlbar-container\\\",\\\"search-container\\\",\\\"bookmarks-menu-button\\\",\\\"downloads-button\\\",\\\"home-button\\\",\\\"loop-button\\\",\\\"umatrix-button\\\"],\\\"TabsToolbar\\\":[\\\"tabbrowser-tabs\\\",\\\"lpt_lastpass-compact-btn\\\",\\\"foxyproxy-toolbar-icon\\\",\\\"https-everywhere-button\\\",\\\"tiletabs-buttonmenu\\\",\\\"ublock0-button\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\",\\\"new-tab-button\\\",\\\"alltabs-button\\\"],\\\"toolbar-menubar\\\":[\\\"menubar-items\\\"]},\\\"seen\\\":[\\\"ublock0-button\\\",\\\"umatrix-button\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\"],\\\"dirtyAreaCache\\\":[\\\"liberator-statusline\\\",\\\"addon-bar\\\",\\\"PersonalToolbar\\\",\\\"nav-bar\\\",\\\"TabsToolbar\\\",\\\"toolbar-menubar\\\"],\\\"currentVersion\\\":4,\\\"newElementCount\\\":0}"
