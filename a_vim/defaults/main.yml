@@ -25,6 +25,7 @@ vim_config_dirs:
   - syntax
   - vim-pandoc-templates
   - vimrc
+  - UltiSnips
 
 vim_plugin_repos:
   - git@github.com:peteches/pep8.git
@@ -68,7 +69,6 @@ vim_plugin_repos:
   - https://github.com/vasconcelloslf/vim-interestingwords.git
   - https://github.com/vim-pandoc/vim-pandoc.git
   - https://github.com/vim-pandoc/vim-pandoc-syntax.git
-  - https://github.com/vim-ruby/vim-ruby.git
   - https://github.com/wincent/ferret.git
   - https://github.com/zhaocai/vim-textobj-function.git
 
