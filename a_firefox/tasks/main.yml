@@ -13,7 +13,6 @@
 - name: Add Profile to profiles.ini
   ini_file: dest={{a_firefox_config_dir}}/profiles.ini
             section=Profile0
-            backup=true
             option={{item.key}}
             value={{item.value}}
   with_dict: a_firefox_profile_ini_opts
@@ -24,12 +23,8 @@
            replace="="
 
 - name: Add about:config opts for firefox
-  lineinfile: dest={{a_firefox_profile_dir}}/user.js
-              create=yes
-              line="user_pref(\"{{item.key}}\", {% if item.value is string and not (item.value == "true" or item.value == "false")%}\"{%endif%}{% if item.value == True%}true{%elif item.value == False%}false{%else%}{{item.value|string}}{%endif%}{% if item.value is string and not (item.value == "true" or item.value == "false")%}\"{%endif%});"
-              regexp="user_pref\({{item.key}},[^)]+\);"
-              state=present
-  with_dict: a_firefox_user_prefs
+  template: dest={{a_firefox_profile_dir}}/user.js
+            src=user.js.j2
 
 - name: Add extensions
   copy: dest={{a_firefox_profile_dir}}/
