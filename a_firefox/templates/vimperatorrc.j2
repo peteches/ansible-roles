@@ -1,0 +1,53 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+""""""""""
+"  MAPS  "
+""""""""""
+
+nnoremap <silent> "<leader>p" :emenu File.New Private Window<Return>
+
+nnoremap <silent> "\\f" <Esc>:js<Space>window.openNewTabWith(window.content.window.document.getElementById('r1-0').querySelector('a.result__a').getAttribute('href'))<Return>
+nnoremap ; :
+
+nnoremap <leader>b <esc>:buffer<space>
+
+nnoremap [t gT
+nnoremap ]t gt
+nnoremap <Esc> :stop<Return>
+nnoremap Q :emenu Tools.Web Developer.Toggle Tools<CR>
+nnoremap "<leader>s" :js uri=gBrowser.contentDocument.location.href; if (!uri.match(/^https/)) {uri = uri.replace('http','https')};gBrowser.loadURIWithFlags(uri);<Return>
+
+nnoremap j 10j
+nnoremap k 10k
+
+""""""""""""
+"  Options  "
+"""""""""""""
+
+set defsearch=duckduckgo
+set focuscontent
+set gui=nonavigation
+set complete=lst
+
+""""""""""""""""""
+"  colourscheme  "
+""""""""""""""""""
+
+colorscheme default
+
+""""""""""""""""""
+"  Autocommands  "
+""""""""""""""""""
+
+autocmd PageLoad pastebin javascript window.content.window.document.getElementById('paste_user').value="Peteches"
+
+"""""""""""""""
+"  Functions  "
+"""""""""""""""
+
+""""""""""""""""""""""""""
+"  source other scripts  "
+""""""""""""""""""""""""""
+
+" vim: set ft=vimperator:
+

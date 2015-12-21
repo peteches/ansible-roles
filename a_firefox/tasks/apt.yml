@@ -1,0 +1,13 @@
+---
+
+- name: Ensure firefox is available in pure debian
+  lineinfile: dest=/etc/apt/sources.list
+              line="deb http://packages.linuxmint.com debian import"
+              state=present
+  when: ansible_distribution == 'Debian'
+
+- name: Installing firefox
+  apt: name=firefox
+       state=latest
+  become: true
+
