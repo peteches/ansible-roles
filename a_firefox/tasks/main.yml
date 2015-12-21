@@ -29,3 +29,4 @@
 - name: Add extensions
   copy: dest={{a_firefox_profile_dir}}/
         src=extensions
+

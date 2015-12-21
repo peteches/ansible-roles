@@ -16,3 +16,4 @@
   copy: dest={{a_firefox_vimperator_rc_dir}}/colors/{{item}}.vimp
         src=colours/{{item}}.vimp
   with_items: a_firefox_vimperator_colours
+

@@ -72,3 +72,4 @@ style -name tab chrome://* <<EOM
     background : #002b36 !important;
   }
 EOM
+
