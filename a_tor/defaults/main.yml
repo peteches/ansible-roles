@@ -1,0 +1,5 @@
+---
+
+a_tor_user: tor
+a_tor_bind_addr: localhost
+a_tor_bind_port: 9050

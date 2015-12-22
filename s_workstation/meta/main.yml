@@ -8,3 +8,4 @@ dependencies:
   - a_tmux
   - a_vim
   - a_firefox
+  - a_tor
