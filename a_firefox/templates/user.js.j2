@@ -1,8 +1,8 @@
 {% for pref, val in a_firefox_user_prefs.items() %}
 {% if val == True%}
-user_pref("{{pref}}", "true");
+user_pref("{{pref}}", true);
 {% elif val == False%}
-user_pref("{{pref}}", "false");
+user_pref("{{pref}}", false);
 {% elif val is number %}
 user_pref("{{pref}}", {{val}}); # test
 {%else%}
