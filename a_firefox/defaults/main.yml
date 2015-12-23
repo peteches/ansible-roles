@@ -13,6 +13,8 @@ a_firefox_profile_ini_opts:
   Path: "{{a_firefox_profile_dir|basename}}"
   Default: "{{ a_firefox_profile_default }}"
 
+# For details about options available see:
+# http://kb.mozillazine.org/About:config_entries
 a_firefox_user_prefs:
     "app.update.auto": false
     "beacon.enabled": false
@@ -28,8 +30,8 @@ a_firefox_user_prefs:
     "browser.selfsupport.url": ''
     "browser.send_pings": false
     "browser.shell.checkDefaultBrowser": false
-    "browser.toolbarbuttons.introduced.pocket-button": true
     "browser.tabs.warnOnClose": false
+    "browser.toolbarbuttons.introduced.pocket-button": true
     "browser.uiCustomization.state": "{\\\"placements\\\":{\\\"PanelUI-contents\\\":[\\\"edit-controls\\\",\\\"zoom-controls\\\",\\\"new-window-button\\\",\\\"privatebrowsing-button\\\",\\\"save-page-button\\\",\\\"print-button\\\",\\\"history-panelmenu\\\",\\\"fullscreen-button\\\",\\\"find-button\\\",\\\"preferences-button\\\",\\\"add-ons-button\\\",\\\"developer-button\\\"],\\\"liberator-statusline\\\":[\\\"liberator-mode-toolbar\\\",\\\"liberator-message-toolbar\\\",\\\"liberator-status\\\"],\\\"addon-bar\\\":[\\\"addonbar-closebutton\\\",\\\"status-bar\\\"],\\\"PersonalToolbar\\\":[\\\"personal-bookmarks\\\"],\\\"nav-bar\\\":[\\\"urlbar-container\\\",\\\"search-container\\\",\\\"bookmarks-menu-button\\\",\\\"downloads-button\\\",\\\"home-button\\\",\\\"loop-button\\\"],\\\"TabsToolbar\\\":[\\\"tabbrowser-tabs\\\",\\\"new-tab-button\\\",\\\"lpt_lastpass-compact-btn\\\",\\\"foxyproxy-toolbar-icon\\\",\\\"toggle-button--jid1-mnnxcxisbpnsxq-effjetpack-pb-button\\\",\\\"modifyheaders-addonbar-button\\\",\\\"tiletabs-buttonmenu\\\",\\\"https-everywhere-button\\\",\\\"action-button--jid1-f9uj2thwoam5gqjetpack-lightbeam_idget\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\",\\\"alltabs-button\\\"],\\\"toolbar-menubar\\\":[\\\"menubar-items\\\"]},\\\"seen\\\":[\\\"toggle-button--jid1-mnnxcxisbpnsxq-effjetpack-pb-button\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\",\\\"action-button--jid1-f9uj2thwoam5gqjetpack-lightbeam_idget\\\"],\\\"dirtyAreaCache\\\":[\\\"TabsToolbar\\\",\\\"PanelUI-contents\\\",\\\"liberator-statusline\\\",\\\"addon-bar\\\",\\\"PersonalToolbar\\\",\\\"nav-bar\\\",\\\"toolbar-menubar\\\"],\\\"currentVersion\\\":4,\\\"newElementCount\\\":0}"
     "datareporting.healthreport.service.enabled": false
     "datareporting.healthreport.uploadEnabled": false
@@ -44,12 +46,101 @@ a_firefox_user_prefs:
     "extensions.https_everywhere._observatory.popup_shown": true
     "extensions.https_everywhere.firstrun_context_menu": false
     "extensions.https_everywhere.toolbar_hint_shown": true
+    "extensions.lastpass.Icon": 4
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.StoreLostPWOTP": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.autoauto": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.autoautoVal": 25
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.automaticallyFill": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.capturenewformfill": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.changedpopupfill": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.clearClipboard": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.clearClipboardSecsVal": 30
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.clearfilledfieldsonlogoff": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.defaultffid": "21935866"
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.donotoverwritefilledfields": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.dontfillautocompleteoff": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.helptranslateformfill": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.highlightFields": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.idleLogoff": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.idleLogoffVal": 5
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.lastpollcheck": 1450857215
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.logOffWhenCloseBrowser": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.logOffWhenCloseBrowserVal": 0
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.noexport": 0
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.noremember": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.notificationsAfterClick": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.notificationsBottom": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.offerGeneratePasswd": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.openloginstart": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.pageOpenSameTab": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.pageOpenTab": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.pollServer": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.pollServerVal": 15
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.recentUsed": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.recentUsedCount": 10
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.searchNotes": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.searchforsiteswithinaddressbar": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showAcctsInGroups": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showAcctsInSidebar": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showChangePasswordNotifications": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showFillNotifications": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showFormFillNotifications": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showNotifications": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showSaveSiteNotifications": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.showmatchingbadge": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.toplevelmatchingsites": false
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.usepopupfill": true
+    "extensions.lastpass.a8928ebce6cdb02765928e7306604342d9a4228500d9373cb7742c80010dd713.warninsecureforms": true
+    "extensions.lastpass.defaultffidHkKeyCode": 0
+    "extensions.lastpass.defaultffidHkMods": ""
+    "extensions.lastpass.disableffpwasked": true
+    "extensions.lastpass.enablenamedpipes": true
+    "extensions.lastpass.ffhasloggedin": true
     "extensions.lastpass.ffhasloggedin": true
     "extensions.lastpass.ffhasloggedinsuccessfully": true
+    "extensions.lastpass.ffhasloggedinsuccessfully": true
+    "extensions.lastpass.generateHkKeyCode": 71
+    "extensions.lastpass.generateHkMods": "alt"
+    "extensions.lastpass.hidecontextmenu": false
+    "extensions.lastpass.homeHkKeyCode": 104
+    "extensions.lastpass.homeHkMods": "control alt"
+    "extensions.lastpass.language": ""
+    "extensions.lastpass.loginusers": "lastpass%40petemccabe.gb.net"
     "extensions.lastpass.loginusers": lastpass%40petemccabe.gb.net
+    "extensions.lastpass.logoffHkKeyCode": 0
+    "extensions.lastpass.logoffHkMods": ""
+    "extensions.lastpass.nextHkKeyCode": 33
+    "extensions.lastpass.nextHkMods": "alt"
+    "extensions.lastpass.notificationsBottom": false
+    "extensions.lastpass.offerGeneratePasswd": false
+    "extensions.lastpass.openloginstart": false
+    "extensions.lastpass.prevHkKeyCode": 34
+    "extensions.lastpass.prevHkMods": "alt"
+    "extensions.lastpass.recheckHkKeyCode": 73
+    "extensions.lastpass.recheckHkMods": "alt"
+    "extensions.lastpass.rememberPassword": false
     "extensions.lastpass.rememberPassword": false
     "extensions.lastpass.rememberUsername": true
+    "extensions.lastpass.rememberUsername": true
+    "extensions.lastpass.saveallHkKeyCode": 0
+    "extensions.lastpass.saveallHkMods": ""
+    "extensions.lastpass.searchHkKeyCode": 87
+    "extensions.lastpass.searchHkMods": "alt"
+    "extensions.lastpass.searchforsiteswithinaddressbar": true
+    "extensions.lastpass.showAcctsInSidebar": false
+    "extensions.lastpass.showChangePasswordNotifications": true
+    "extensions.lastpass.showFillNotifications": false
+    "extensions.lastpass.showFormFillNotifications": false
     "extensions.lastpass.showHomepageAfterLogin": false
+    "extensions.lastpass.showHomepageAfterLogin": false
+    "extensions.lastpass.showLoginNotifications": false
+    "extensions.lastpass.showNotifications": true
+    "extensions.lastpass.showSaveSiteNotifications": false
+    "extensions.lastpass.submitHkKeyCode": 0
+    "extensions.lastpass.submitHkMods": ""
+    "extensions.lastpass.toolbarinitdone": true
+    "extensions.lastpass.toolbarinitversion": 3
+    "extensions.lastpass.useCompact": false
     "general.warnOnAboutConfig": false
     "keyword.enabled": false
     "loop.enabled": false
@@ -67,5 +158,6 @@ a_firefox_user_prefs:
     "privacy.trackingprotection.pbmode.enabled": true
     "security.OCSP.enabled": 1
     "security.OCSP.require": true
+    "security.tls.version.min": 2
     "toolkit.telemetry.enabled": false
     "webgl.disabled": true
