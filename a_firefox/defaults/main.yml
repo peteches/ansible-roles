@@ -1,4 +1,5 @@
 ---
+
 a_firefox_profile_name: peteches
 a_firefox_config_dir: ~/.mozilla/firefox/
 a_firefox_profile_dir: "{{a_firefox_config_dir}}/qwsa1234.{{a_firefox_profile_name}}"
@@ -28,8 +29,8 @@ a_firefox_user_prefs:
     "browser.selfsupport.url": ''
     "browser.send_pings": false
     "browser.shell.checkDefaultBrowser": false
-    "browser.toolbarbuttons.introduced.pocket-button": true
     "browser.tabs.warnOnClose": false
+    "browser.toolbarbuttons.introduced.pocket-button": true
     "browser.uiCustomization.state": "{\\\"placements\\\":{\\\"PanelUI-contents\\\":[\\\"edit-controls\\\",\\\"zoom-controls\\\",\\\"new-window-button\\\",\\\"privatebrowsing-button\\\",\\\"save-page-button\\\",\\\"print-button\\\",\\\"history-panelmenu\\\",\\\"fullscreen-button\\\",\\\"find-button\\\",\\\"preferences-button\\\",\\\"add-ons-button\\\",\\\"developer-button\\\"],\\\"liberator-statusline\\\":[\\\"liberator-mode-toolbar\\\",\\\"liberator-message-toolbar\\\",\\\"liberator-status\\\"],\\\"addon-bar\\\":[\\\"addonbar-closebutton\\\",\\\"status-bar\\\"],\\\"PersonalToolbar\\\":[\\\"personal-bookmarks\\\"],\\\"nav-bar\\\":[\\\"urlbar-container\\\",\\\"search-container\\\",\\\"bookmarks-menu-button\\\",\\\"downloads-button\\\",\\\"home-button\\\",\\\"loop-button\\\"],\\\"TabsToolbar\\\":[\\\"tabbrowser-tabs\\\",\\\"new-tab-button\\\",\\\"lpt_lastpass-compact-btn\\\",\\\"foxyproxy-toolbar-icon\\\",\\\"toggle-button--jid1-mnnxcxisbpnsxq-effjetpack-pb-button\\\",\\\"modifyheaders-addonbar-button\\\",\\\"tiletabs-buttonmenu\\\",\\\"https-everywhere-button\\\",\\\"action-button--jid1-f9uj2thwoam5gqjetpack-lightbeam_idget\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\",\\\"alltabs-button\\\"],\\\"toolbar-menubar\\\":[\\\"menubar-items\\\"]},\\\"seen\\\":[\\\"toggle-button--jid1-mnnxcxisbpnsxq-effjetpack-pb-button\\\",\\\"action-button--jid0-9xfbwuwnvpx4wwsfbwmcm4jj69ejetpack-self-destructing-cookies\\\",\\\"action-button--jid1-f9uj2thwoam5gqjetpack-lightbeam_idget\\\"],\\\"dirtyAreaCache\\\":[\\\"TabsToolbar\\\",\\\"PanelUI-contents\\\",\\\"liberator-statusline\\\",\\\"addon-bar\\\",\\\"PersonalToolbar\\\",\\\"nav-bar\\\",\\\"toolbar-menubar\\\"],\\\"currentVersion\\\":4,\\\"newElementCount\\\":0}"
     "datareporting.healthreport.service.enabled": false
     "datareporting.healthreport.uploadEnabled": false
@@ -44,6 +45,9 @@ a_firefox_user_prefs:
     "extensions.https_everywhere._observatory.popup_shown": true
     "extensions.https_everywhere.firstrun_context_menu": false
     "extensions.https_everywhere.toolbar_hint_shown": true
+    "extensions.jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.clearCache": 1
+    "extensions.jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.displayNotification": false
+    "extensions.jid0-9XfBwUWnvPx4wWsfBWMCm4Jj69E@jetpack.gracePeriod": 300
     "extensions.lastpass.ffhasloggedin": true
     "extensions.lastpass.ffhasloggedinsuccessfully": true
     "extensions.lastpass.loginusers": lastpass%40petemccabe.gb.net
