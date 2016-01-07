@@ -1,0 +1,8 @@
+
+---
+
+- name: Install git related software
+  dnf: name={{item}}
+       state=latest
+  with_items: a_git_software.dnf
+  become: true

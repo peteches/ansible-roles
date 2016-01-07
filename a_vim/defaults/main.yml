@@ -14,6 +14,11 @@ vim_plugin_deps:
     - "python3-jedi"
     - "pep8"
     - "python3-pep8"
+  dnf:
+    - "python-jedi"
+    - "python3-jedi"
+    - "python-pep8"
+    - "python3-pep8"
 
 vim_config_dirs:
   - autoload
@@ -28,7 +33,7 @@ vim_config_dirs:
   - UltiSnips
 
 vim_plugin_repos:
-  - git@github.com:peteches/pep8.git
+  - https://github.com/peteches/pep8.git
   - https://github.com/airblade/vim-gitgutter.git
   - https://github.com/AndrewRadev/switch.vim.git
   - https://github.com/bling/vim-airline

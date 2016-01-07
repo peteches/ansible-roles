@@ -1,0 +1,7 @@
+---
+
+- name: Install generic useful packages
+  dnf: name={{item}}
+       state=latest
+  become: True
+  with_items: a_workstation_packages.dnf

@@ -1,0 +1,4 @@
+- name: Installing firefox
+  dnf: name=firefox
+       state=latest
+  become: true
