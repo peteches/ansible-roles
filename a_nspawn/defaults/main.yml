@@ -2,4 +2,4 @@
 
 nspawn_dir: /var/lib/machines
 nspawn_conf_dir: /etc/systemd/nspawn
-a_nspawn_machine_url: https://peteches.co.uk/nspawn/containers/
+a_nspawn_machine_url: https://nspawn.peteches.co.uk/peteches-nspawn/

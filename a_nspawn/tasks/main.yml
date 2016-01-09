@@ -1,6 +1,6 @@
 ---
 
-- include: install.yml
+- include: "{{ ansible_pkg_mgr }}.yml"
 
 - name: Create nspawn root directorys
   file: dest={{nspawn_dir}}
