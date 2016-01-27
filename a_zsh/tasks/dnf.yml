@@ -1,0 +1,13 @@
+---
+
+- name: Installing Zsh
+  dnf: name=zsh
+       state=latest
+  become: True
+  become_user: root
+
+- name: Installing ack (required for some rc files)
+  dnf: name=ack
+       state=latest
+  become: True
+  become_user: root

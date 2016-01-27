@@ -6,7 +6,7 @@ tmux_submodules:
   - https://github.com/tmux-plugins/tmux-open
   - https://github.com/tmux-plugins/tmux-resurrect
   - https://github.com/tmux-plugins/tmux-logging
-  - git@github.com:peteches/tmux-continuum.git
+  - https://github.com/peteches/tmux-continuum.git
 
 tmux_colourschemes:
   - https://github.com/seebi/tmux-colors-solarized

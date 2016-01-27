@@ -1,0 +1,8 @@
+---
+
+- name: Install Tmux
+  apt: name=tmux
+       state=latest
+  become: True
+  become_user: root
+

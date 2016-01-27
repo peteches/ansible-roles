@@ -1,0 +1,12 @@
+
+- name: Installing Zsh
+  apt: name=zsh
+       state=latest
+  become: True
+  become_user: root
+
+- name: Installing ack (required for some rc files)
+  apt: name=ack-grep
+       state=latest
+  become: True
+  become_user: root
