@@ -19,3 +19,22 @@ a_skybet_proxies:
     bind: 127.0.0.1
     port: 8081
     remote: guebgw02.skybet.net
+
+a_skybet_username: mccabep
+
+a_skybet_ssh_config:
+  - pattern: 'Host gw02'
+    priority: 100
+    directives:
+      User: "{{a_skybet_username}}"
+      Hostname: gueagw02.skybet.net
+  - pattern: 'Host gue*'
+    priority: 101
+    directives:
+      User: "{{a_skybet_username}}"
+      ProxyCommand: ssh gw02 nc %h %p 2>/dev/null
+  - pattern: 'Match user git'
+    priority: 10
+    directives:
+      RequestTTY: no
+

@@ -2,18 +2,10 @@
 
 cat <<EOF
 {
-  "antigen_plugins": [
-    {%for plugin in a_skybet_antigen_plugins%}
-    "{{plugin}}"{%if not loop.last%}, {%endif%}
-    {%endfor%}
-  ],
+  "antigen_plugins": {{a_skybet_antigen_plugins|to_json}},
   "a_git_author": "{{a_skybet_git_author}}",
   "a_git_email": "{{a_skybet_git_email}}",
-  "a_zsh_cdpaths": [
-    {%for path in a_skybet_zsh_cdpaths%}
-    "{{path}}"{%if not loop.last%},
-    {%endif%}
-    {%endfor%}
-  ]
+  "a_zsh_cdpaths": {{a_skybet_zsh_cdpaths|to_json}},
+  "a_ssh_config": {{a_skybet_ssh_config|to_json}}
 }
 EOF
