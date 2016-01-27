@@ -1,4 +1,4 @@
-{%for declaration in a_ssh_hosts|sort(attribute='priority')-%}
+{%for declaration in a_ssh_config|sort(attribute='priority')-%}
 {{declaration.pattern}}
 {%for directive, value in declaration.directives.items()%}
 	{{directive}} {{value}}

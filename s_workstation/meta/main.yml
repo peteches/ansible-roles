@@ -7,5 +7,6 @@ dependencies:
   - a_zsh
   - a_tmux
   - a_vim
+  - a_ssh
   - a_firefox
-  - a_tor
+  - { role: 'a_tor', when: ansible_local.employer.name == 'home' }

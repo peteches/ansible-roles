@@ -3,6 +3,17 @@
 a_repo_dir: ~/.repos
 
 a_workstation_packages:
+  dnf:
+    - curl
+    - htop
+    - krdc
+    - xchat
+    - socat
+    - python3-ipython
+    - python3-pip
+    - jq
+    - xclip
+    - vim-X11
   apt:
     - curl
     - htop
