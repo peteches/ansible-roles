@@ -1,6 +1,6 @@
 ---
 
-a_kde_share_dir: ~/.kde4/share
+a_kde_share_dir: ~/.kde/share
 
 a_kde_apps_dir: "{{a_kde_share_dir}}/apps"
 a_kde_config_dir: "{{a_kde_share_dir}}/config"
