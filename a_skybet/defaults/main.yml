@@ -11,11 +11,11 @@ a_skybet_zsh_cdpaths:
   - ~/area_51/workstation/repos/cookbooks
 
 a_skybet_proxies:
-  - name: guea
+  guea:
     bind: 127.0.0.1
     port: 8080
     remote: gueagw02.skybet.net
-  - name: gueb
+  gueb:
     bind: 127.0.0.1
     port: 8081
     remote: guebgw02.skybet.net

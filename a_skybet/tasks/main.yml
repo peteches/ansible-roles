@@ -40,15 +40,15 @@
         mode=0755
 
 - name: Ensure skyproxy env files exists
-  template: dest=/etc/skyproxy/{{item.name}}
+  template: dest=/etc/skyproxy/{{item.key}}
             src=skyproxy_env.j2
             owner=root
             group=root
             mode=0644
-  with_items: a_skybet_proxies
+  with_dict: a_skybet_proxies
 
 - name: Enable skyproxy
-  service: name=skyproxy@{{item.name}}.service
+  service: name=skyproxy@{{item.key}}.service
            enabled=yes
            state=started
-  with_items: a_skybet_proxies
+  with_dict: a_skybet_proxies
