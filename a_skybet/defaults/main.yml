@@ -23,16 +23,11 @@ a_skybet_proxies:
 a_skybet_username: mccabep
 
 a_skybet_ssh_config:
-  - pattern: 'Host gw02'
-    priority: 100
-    directives:
-      User: "{{a_skybet_username}}"
-      Hostname: gueagw02.skybet.net
   - pattern: 'Host gue*'
     priority: 101
     directives:
       User: "{{a_skybet_username}}"
-      ProxyCommand: ssh gw02 nc %h %p 2>/dev/null
+      ProxyCommand: nc --proxy-type socks5 --proxy {{a_skybet_proxies.guea.bind}}:{{a_skybet_proxies.guea.port}} %h %p
   - pattern: 'Match user git'
     priority: 10
     directives:
