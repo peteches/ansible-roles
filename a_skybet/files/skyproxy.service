@@ -5,7 +5,7 @@ Documentation=man:ssh
 [Service]
 Type=simple
 EnvironmentFile=/etc/%p/%i
-ExecStart=/usr/bin/ssh -D ${SOCKS_BIND}:${SOCKS_PORT} -MNnttvl mccabep -o ControlMaster=yes -o ControlPath=/var/run/%%h-%%p-%%r ${REMOTE_HOST}
+ExecStart=/usr/bin/ssh -D ${SOCKS_BIND}:${SOCKS_PORT} -nttvl mccabep ${REMOTE_HOST} -C 'top -d 60'
 ExecStop=/usr/bin/ssh -o ControlPath=/var/run/%%h-%%p-%%r -O exit
 Restart=always
 
