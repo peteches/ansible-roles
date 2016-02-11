@@ -60,6 +60,7 @@ set noshowmode
 set modeline
 set modelines=5
 set notimeout ttimeout ttimeoutlen=200
+set nrformats=hex
 set number
 set pastetoggle=<F2>
 set ruler
