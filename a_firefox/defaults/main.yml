@@ -40,7 +40,6 @@ a_firefox_user_prefs:
     "datareporting.healthreport.uploadEnabled": false
     "datareporting.policy.dataSubmissionEnabled": false
     "dom.battery.enabled": false
-    "dom.indexedDB.enabled": false
     "extensions.autoDisableScopes": 14
     "extensions.CanvasBlocker@kkapsner.de.showNotifications": false
     "extensions.enabledAddons": "tiletabs%40DW-dev:13.4,foxyproxy%40eric.h.jung:4.5.5,vimperator%40mozdev.org:3.10.1.1-let-fixed,https-everywhere%40eff.org:5.1.0,treestyletab%40piro.sakura.ne.jp:0.16.2015113001.1-let-fixed,support%40lastpass.com:3.2.40,jid1-MnnxcxisBPnSXQ%40jetpack:1.0.5,%7B972ce4c6-7e08-4474-a285-3208198ce6fd%7D:38.4.0"
