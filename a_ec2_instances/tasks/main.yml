@@ -1,0 +1,29 @@
+---
+
+- name: Launch EC2 instances
+  ec2:
+    image: "{{ a_ec2_instances_ami }}"
+    instance_type: "{{ a_ec2_instances_type }}"
+    exact_count: "{{ a_ec2_instances_count }}"
+    count_tag: "{{ a_ec2_instances_count_tags }}"
+    instance_tags: "{{ a_ec2_instances_instance_tags }}"
+    profile: "{{ a_ec2_boto_profile|default('omit') }}"
+    wait: yes
+    region: "{{ a_ec2_instances_region }}"
+  register: ec2
+
+- name: Add new hosts to hostgroup
+  add_host: hostname={{ item.public_ip }}
+            groupname={{a_ec2_instances_groupname}}
+  with_items: ec2.instances
+
+- name: wait for ssh to come up
+  wait_for: name={{item.public_dns_name }}
+            port=22
+            delay=60
+            timeout=320
+            state=started
+  with_items: ec2.instances
+
+
+- debug: var=groups[{{a_ec2_instances_groupname}}]

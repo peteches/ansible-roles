@@ -1,0 +1,18 @@
+---
+s_owncloud_deault_region: eu-central-1
+
+s_owncloud_ec2_ami: ami-875042eb
+s_owncloud_ec2_type: t2.micro
+s_owncloud_ec2_count: 1
+s_owncloud_ec2_instance_tags:
+  class: webserver
+  service: owncloud
+s_owncloud_ec2_count_tags : "{{ s_owncloud_ec2_instance_tags}}"
+s_owncloud_ec2_profile: EC2_profile
+s_owncloud_ec2_groupname: owncloud
+s_owncloud_ec2_region: "{{ s_owncloud_deault_region }}"
+
+s_owncloud_ebs_name: peteches-owncloud-data
+s_owncloud_ebs_vol_type: standard
+s_owncloud_ebs_vol_size: 25
+
