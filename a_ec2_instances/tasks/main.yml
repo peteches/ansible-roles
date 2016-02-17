@@ -2,14 +2,16 @@
 
 - name: Launch EC2 instances
   ec2:
-    image: "{{ a_ec2_instances_ami }}"
-    instance_type: "{{ a_ec2_instances_type }}"
-    exact_count: "{{ a_ec2_instances_count }}"
-    count_tag: "{{ a_ec2_instances_count_tags }}"
-    instance_tags: "{{ a_ec2_instances_instance_tags }}"
-    profile: "{{ a_ec2_boto_profile|default('omit') }}"
+    image: "{{ item.ami }}"
+    instance_type: "{{ item.type }}"
+    exact_count: "{{ item.count }}"
+    count_tag: "{{ item.count_tags }}"
+    instance_tags: "{{ item.instance_tags }}"
+    profile: "{{ item.boto_profile|default('omit') }}"
     wait: yes
-    region: "{{ a_ec2_instances_region }}"
+    region: "{{ item.region }}"
+    group: "{{ item.security_groups }}"
+  with_items: "{{ a_ec2_instances }}"
   register: ec2
 
 - name: Add new hosts to hostgroup
@@ -18,8 +20,8 @@
   with_items: ec2.instances
 
 - name: wait for ssh to come up
-  wait_for: name={{item.public_dns_name }}
-            port=22
+  wait_for: host={{item.public_dns_name }}
+            port=24
             delay=60
             timeout=320
             state=started

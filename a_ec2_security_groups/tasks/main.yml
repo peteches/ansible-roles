@@ -1,0 +1,14 @@
+---
+
+- debug: var=a_ec2_security_groups
+
+- name: Adding AWS Security Group
+  ec2_group:
+    name: "{{ item.name }}"
+    description: "{{ item.desc }}"
+    region: "{{ item.region }}"
+    rules: "{{ item.rules | default(omit) }}"
+    rules_egress: "{{ item.rules_egress|default(omit) }}"
+    state: "{{ item.state }}"
+    vpc_id: "{{ item.vpc_id|default(omit) }}"
+  with_items: "{{ a_ec2_security_groups }}"

@@ -1,18 +1,37 @@
 ---
 s_owncloud_deault_region: eu-central-1
 
-s_owncloud_ec2_ami: ami-875042eb
-s_owncloud_ec2_type: t2.micro
-s_owncloud_ec2_count: 1
-s_owncloud_ec2_instance_tags:
-  class: webserver
-  service: owncloud
-s_owncloud_ec2_count_tags : "{{ s_owncloud_ec2_instance_tags}}"
-s_owncloud_ec2_profile: EC2_profile
-s_owncloud_ec2_groupname: owncloud
-s_owncloud_ec2_region: "{{ s_owncloud_deault_region }}"
+s_owncloud_ec2_security_groups:
+  - name: remote Access
+    desc: Allow remote access to instances
+    region: "{{ s_owncloud_deault_region }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    state: present
 
-s_owncloud_ebs_name: peteches-owncloud-data
-s_owncloud_ebs_vol_type: standard
-s_owncloud_ebs_vol_size: 25
+
+s_owncloud_ec2_instance_tags:
+      class: webserver
+      service: owncloud
+
+s_owncloud_ec2_count_tags: "{{ s_owncloud_ec2_instance_tags }}"
+
+s_owncloud_ec2_instances:
+  - security_groups: remote Access
+    ami: ami-875042eb
+    type: t2.micro
+    count: 1
+    instance_tags: "{{ s_owncloud_ec2_instance_tags }}"
+    count_tags : "{{ s_owncloud_ec2_count_tags}}"
+    profile: EC2_profile
+    groupname: owncloud
+    region: "{{ s_owncloud_deault_region }}"
+
+s_owncloud_ebs_volumes:
+  - name: peteches-owncloud-data
+    vol_type: standard
+    vol_size: 25
 

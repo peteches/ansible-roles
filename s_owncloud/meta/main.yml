@@ -2,12 +2,7 @@
 
 
 dependencies:
+  - role: a_ec2_security_groups
+    a_ec2_security_groups: "{{ s_owncloud_ec2_security_groups }}"
   - role: a_ec2_instances
-    a_ec2_instances_ami: "{{ s_owncloud_ec2_ami }}"
-    a_ec2_instances_type: "{{ s_owncloud_ec2_type }}"
-    a_ec2_instances_count: "{{ s_owncloud_ec2_count }}"
-    a_ec2_instances_count_tags: "{{ s_owncloud_ec2_count_tags }}"
-    a_ec2_instances_instance_tags: "{{ s_owncloud_ec2_instance_tags }}"
-    a_ec2_instances_region: "{{ s_owncloud_ec2_region }}"
-    a_ec2_instances_groupname: "{{ s_owncloud_ec2_groupname }}"
-    a_ec2_instances_boto_profile: "{{ s_owncloud_ec2_profile }}"
+    a_ec2_instances: "{{ s_owncloud_ec2_instances }}"
