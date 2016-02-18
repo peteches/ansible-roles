@@ -33,10 +33,11 @@ vim_config_dirs:
   - UltiSnips
 
 vim_plugin_repos:
-  - https://github.com/peteches/pep8.git
-  - https://github.com/airblade/vim-gitgutter.git
   - https://github.com/AndrewRadev/switch.vim.git
+  - https://github.com/SirVer/ultisnips.git
+  - https://github.com/airblade/vim-gitgutter.git
   - https://github.com/bling/vim-airline
+  - https://github.com/ctrlpvim/ctrlp.vim
   - https://github.com/davidhalter/jedi-vim
   - https://github.com/fmoralesc/vim-pad.git
   - https://github.com/godlygeek/tabular
@@ -45,16 +46,16 @@ vim_plugin_repos:
   - https://github.com/kana/vim-textobj-indent.git
   - https://github.com/kana/vim-textobj-user.git
   - https://github.com/kbarrette/mediummode.git
-  - https://github.com/ctrlpvim/ctrlp.vim
   - https://github.com/mitechie/pyflakes-pathogen
   - https://github.com/mrk21/yaml-vim.git
   - https://github.com/navicore/vis.vim.git
+  - https://github.com/pearofducks/ansible-vim.git
+  - https://github.com/peteches/pep8.git
   - https://github.com/rogerz/vim-json
   - https://github.com/rstacruz/sparkup
   - https://github.com/ryanoasis/vim-devicons
   - https://github.com/scrooloose/nerdtree
   - https://github.com/scrooloose/syntastic.git
-  - https://github.com/SirVer/ultisnips.git
   - https://github.com/tommcdo/vim-exchange.git
   - https://github.com/tpope/vim-abolish.git
   - https://github.com/tpope/vim-afterimage.git
@@ -72,8 +73,8 @@ vim_plugin_repos:
   - https://github.com/tpope/vim-tbone.git
   - https://github.com/tpope/vim-unimpaired.git
   - https://github.com/vasconcelloslf/vim-interestingwords.git
-  - https://github.com/vim-pandoc/vim-pandoc.git
   - https://github.com/vim-pandoc/vim-pandoc-syntax.git
+  - https://github.com/vim-pandoc/vim-pandoc.git
   - https://github.com/wincent/ferret.git
   - https://github.com/zhaocai/vim-textobj-function.git
 
