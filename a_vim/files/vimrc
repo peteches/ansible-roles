@@ -196,6 +196,9 @@ let g:pep8_opts = [ '--max-line-length=90' ]
 nnoremap : ;
 nnoremap ; :
 
+vnoremap : ;
+vnoremap ; :
+
 "Visual block far more useful than regular visual mode
 nnoremap v <C-v>
 " for the rare occasion characterwise visuals are useful.
