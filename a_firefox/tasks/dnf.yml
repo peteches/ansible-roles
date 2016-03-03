@@ -1,4 +1,5 @@
 - name: Installing firefox
   dnf: name=firefox
        state=latest
+  become_user: root
   become: true

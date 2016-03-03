@@ -4,4 +4,5 @@
   dnf: name={{item}}
        state=latest
   become: True
+  become_user: root
   with_items: a_workstation_packages.dnf
