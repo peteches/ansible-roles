@@ -5,6 +5,7 @@
 - name: add tor user
   user: name={{a_tor_user}}
         state=present
+        createhome=no
   become: true
   become_user: root
 
@@ -20,8 +21,6 @@
   template: dest=/etc/tor/torrc
             src=torrc.j2
             mode=0644
-            owner={{a_tor_user}}
-            validate="/usr/bin/tor --verify-config -f %s"
   become: true
   become_user: root
   notify: restart tor

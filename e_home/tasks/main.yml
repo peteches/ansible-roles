@@ -1,0 +1,15 @@
+---
+
+- name: create facts dir
+  file: dest=/etc/ansible/facts.d/
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+
+- name: Adding employer fact
+  copy: dest=/etc/ansible/facts.d/employer.fact
+        src=employer.fact
+        owner=root
+        group=root
+        mode=0755
