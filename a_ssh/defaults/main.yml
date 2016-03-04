@@ -4,6 +4,10 @@ a_ssh_user_dir: ~/.ssh
 a_ssh_user_conf: "{{a_ssh_user_dir}}/config"
 
 a_ssh_default_hosts:
+  - pattern: "Match user git"
+    priority: 9999
+    directives:
+      RequestTTY: no
   - pattern: "Host *"
     priority: 1000000
     directives:
