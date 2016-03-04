@@ -1,0 +1,9 @@
+---
+
+- name: Add keyboard layouts
+  ini_file: dest={{a_kde_config_dir}}/kxkbrc
+            section={{item.section}}
+            option={{item.key}}
+            value={{item.value}}
+            state=present
+  with_items: '{{a_kde_kxkb}}'

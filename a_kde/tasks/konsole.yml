@@ -1,11 +1,7 @@
 ---
 
-- name: Ensure konsole config dir exists
-  file: dest={{a_kde_config_dir}}/konsole
-        state=directory
-
 - name: Add konsole rc file
-  template: dest={{a_kde_config_dir}}/konsole/konsolerc
+  template: dest={{a_kde_config_dir}}/konsolerc
             src=konsolerc.j2
 
 - name: Ensure konsole apps dir exists

@@ -1,5 +1,13 @@
 ---
 
+- name: Ensure konsole config dir exists
+  file: dest={{a_kde_config_dir}}
+        state=directory
+
+- name: Ensure konsole share dir exists
+  file: dest={{a_kde_apps_dir}}
+        state=directory
+
 - include: konsole.yml
 
-- include: kded.yml
+- include: kxkb.yml

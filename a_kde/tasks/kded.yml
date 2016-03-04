@@ -1,9 +1,0 @@
----
-
-- name: Create kded keyboard dir
-  file: dest={{a_kde_apps_dir}}/kded/session/keyboard
-        state=directory
-
-- name: Add keyboard layout config
-  template: dest={{a_kde_apps_dir}}/kded/session/keyboard/layout_memory.xml
-            src=layout_memory.xml.j2

@@ -1,6 +1,17 @@
 ---
 
-a_kde_share_dir: ~/.kde/share
+a_kde_apps_dir: "~/.local/share"
+a_kde_config_dir: "~/.config/"
 
-a_kde_apps_dir: "{{a_kde_share_dir}}/apps"
-a_kde_config_dir: "{{a_kde_share_dir}}/config"
+a_kde_keyboard_layout: gb
+
+a_kde_kxkb:
+  - section: Layout
+    key: LayoutList
+    value: 'gb,us'
+  - section: Layout
+    key: Options
+    value: caps:ctrl_modifier
+  - section: Layout
+    key: ShowLayoutIndicator
+    value: 'True'
