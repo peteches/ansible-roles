@@ -8,8 +8,8 @@
         mode=0755
 
 - name: Adding employer fact
-  copy: dest=/etc/ansible/facts.d/employer.fact
-        src=employer.fact
+  template: dest=/etc/ansible/facts.d/employer.fact
+        src=employer.fact.j2
         owner=root
         group=root
         mode=0755
@@ -17,6 +17,8 @@
 - name: Adding employer facts
   template: dest=/etc/ansible/facts.d/{{e_employer_name}}.fact
             src=employer.facts.j2
+            owner=root
+            group=root
             mode=0755
 
 - name: Adding local users
