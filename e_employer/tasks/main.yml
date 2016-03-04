@@ -14,6 +14,10 @@
         group=root
         mode=0755
 
+- name: Adding employer facts
+  template: dest=/etc/ansible/facts.d/{{e_employer_name}}.fact
+            src=employer.facts.j2
+
 - name: Adding local users
   user: append=yes
         createhome={{item.createhome}}
@@ -22,4 +26,4 @@
         password={{item.password}}
         shell={{item.shell}}
         state={{item.state}}
-  with_items: '{{e_home_users}}'
+  with_items: '{{e_employer_users}}'
