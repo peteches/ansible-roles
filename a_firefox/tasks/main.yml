@@ -1,5 +1,7 @@
 ---
 
+- include: "{{ansible_pkg_mgr}}.yml"
+
 - name: create Profile Dir
   file: path={{a_firefox_profile_dir}}
         state=directory
@@ -47,3 +49,4 @@
         state=absent
   with_items: a_firefox_extensions_to_unpack
 
+- include: plugins.yml

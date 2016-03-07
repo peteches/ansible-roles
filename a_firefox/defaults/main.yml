@@ -5,6 +5,14 @@ a_firefox_config_dir: ~/.mozilla/firefox/
 a_firefox_profile_dir: "{{a_firefox_config_dir}}/qwsa1234.{{a_firefox_profile_name}}"
 a_firefox_profile_default: 1
 
+a_firefox_vimperator_rc_dir: ~/.vimperator
+a_firefox_plugins:
+  vimperator:
+    rc_dir: ~/.vimperator
+    colours:
+      - molokai
+      - solarized
+
 a_firefox_extensions_to_unpack:
   - foxyproxy@eric.h.jung
   - lp4

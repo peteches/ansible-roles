@@ -5,15 +5,15 @@
             src=vimperatorrc.j2
 
 - name: create vimperator RC dir
-  file: dest={{a_firefox_vimperator_rc_dir}}
+  file: dest={{a_firefox_plugins.vimperator.rc_dir}}
         state=directory
 
 - name: create vimperator colourscheme dir
-  file: dest={{a_firefox_vimperator_rc_dir}}/colors
+  file: dest={{a_firefox_plugins.vimperator.rc_dir}}/colors
         state=directory
 
 - name: Add vimperator colourschemes
-  copy: dest={{a_firefox_vimperator_rc_dir}}/colors/{{item}}.vimp
+  copy: dest={{a_firefox_plugins.vimperator.rc_dir}}/colors/{{item}}.vimp
         src=colours/{{item}}.vimp
-  with_items: a_firefox_vimperator_colours
+  with_items: "{{a_firefox_plugins.vimperator.colours}}"
 
