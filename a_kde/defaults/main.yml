@@ -3,6 +3,55 @@
 a_kde_apps_dir: "~/.local/share"
 a_kde_config_dir: "~/.config/"
 
+a_kde_konsolerc:
+  - section: Desktop Entry
+    key: DefaultProfile
+    value: Shell.profile
+  - section: KonsoleWindow
+    key: ShowMenuBarByDefault
+    value: false
+  - section: TabBar
+    key: TabBarVisibility
+    value: AlwaysHideTabBar
+
+a_kde_konsole_shell_profile:
+  - section: Appearance
+    key: AntiAliasFonts
+    value:  True
+  - section: Appearance
+    key: BoldIntense
+    value:  False
+  - section: Appearance
+    key: ColorScheme
+    value:  DarkPastels
+  - section: Appearance
+    key: Font
+    value:  Sauce Code Pro,10,-1,5,75,0,0,0,0,0
+  - section: 'Encoding Options'
+    key: DefaultEncoding
+    value:  UTF-8
+  - section: General
+    key: Command
+    value:  /usr/bin/tmux -u2 new-session -As konsole
+  - section: General
+    key: Name
+    value:  peteches
+  - section: 'Interaction Options'
+    key: MouseWheelZoomEnabled
+    value:  False
+  - section: Scrolling
+    key: HistoryMode
+    value:  0
+  - section: Scrolling
+    key: ScollBarPosition
+    value:  2
+  - section: 'Terminal Features'
+    key: FlowControlEnabled
+    value:  False
+
+
+
+
 a_kde_keyboard_layout: gb
 
 a_kde_kxkb:

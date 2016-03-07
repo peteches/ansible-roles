@@ -1,13 +1,29 @@
 ---
 
-- name: Add konsole rc file
-  template: dest={{a_kde_config_dir}}/konsolerc
-            src=konsolerc.j2
+- name: Edit konsolerc
+  ini_file: dest={{a_kde_config_dir}}/konsolerc
+            section={{ item.section }}
+            option={{ item.key }}
+            value={{ item.value }}
+  with_items: "{{ a_kde_konsolerc }}"
+
+- name: replace spaces in konsolerc
+  replace: dest={{a_kde_config_dir}}/konsolerc
+           regexp=' = '
+           replace='='
 
 - name: Ensure konsole apps dir exists
   file: dest={{a_kde_apps_dir}}/konsole
         state=directory
 
 - name: Add konsole shell profile
-  template: dest={{a_kde_apps_dir}}/konsole/Shell.profile
-            src=Shell.profile.j2
+  ini_file: dest={{a_kde_apps_dir}}/konsole/Shell.profile
+            section={{item.section}}
+            option={{item.key}}
+            value={{item.value}}
+  with_items: "{{ a_kde_konsole_shell_profile }}"
+
+- name: replace spaces in konsolerc
+  replace: dest={{a_kde_apps_dir}}/konsole/Shell.profile
+           regexp=' = '
+           replace='='
