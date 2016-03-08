@@ -3,5 +3,3 @@
 - include: "{{ ansible_pkg_mgr }}.yml"
 
 - include: config.yml
-
-- include: systemd.yml
