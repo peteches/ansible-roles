@@ -27,21 +27,17 @@ a_zsh_plugins:
  - copyfile
  - cp
  - djui/alias-tips
+ - fedora
  - git
- - jira
  - jsontools
- - mosh
  - sudo
- - supercrabtree/k
  - systemd
- - taskwarrior
  - tmux
  - vagrant
  - vi-mode
  - web-search
- - yum
- - zsh_reload
  - zsh-users/zsh-syntax-highlighting
+ - zsh_reload
 
 a_zsh_themes:
   - adben
