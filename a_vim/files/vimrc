@@ -79,6 +79,7 @@ set textwidth=1000
 set title
 set viminfo='1000,f1,:100,/100,%,!
 set visualbell
+set wildignore=build
 set wildmenu
 
 
