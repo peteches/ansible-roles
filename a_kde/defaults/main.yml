@@ -43,7 +43,7 @@ a_kde_konsole_shell_profile:
     key: HistoryMode
     value:  0
   - section: Scrolling
-    key: ScollBarPosition
+    key: ScrollBarPosition
     value:  2
   - section: 'Terminal Features'
     key: FlowControlEnabled
