@@ -34,6 +34,7 @@ a_git_software:
   dnf:
     - git
     - tig
+    - git-gui
 
 a_git_ignore:
   - ".*.sw?"
