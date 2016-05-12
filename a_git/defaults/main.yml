@@ -43,3 +43,4 @@ a_git_ignore:
   - "Vagrantfile"
   - "doc"
   - "fonts.dir"
+  - "*.pyc"
