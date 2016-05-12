@@ -6,7 +6,7 @@ a_kde_config_dir: "~/.config/"
 a_kde_konsolerc:
   - section: Desktop Entry
     key: DefaultProfile
-    value: Shell.profile
+    value: peteches.profile
   - section: KonsoleWindow
     key: ShowMenuBarByDefault
     value: false
