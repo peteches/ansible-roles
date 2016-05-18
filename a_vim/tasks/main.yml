@@ -6,7 +6,8 @@
   git: clone=yes
        dest={{vim_colour_dir}}/{{item|basename}}
        repo={{item}}
-       update=yes
+       update=no
+       depth=1
   with_items: vim_colour_repos
 
 - name: Checkout Vim plugins
@@ -14,6 +15,7 @@
        dest={{vim_dir}}/bundle/{{item|basename}}
        repo={{item}}
        update=yes
+       depth=1
   with_items: vim_plugin_repos
 
 - name: Adding other configs
