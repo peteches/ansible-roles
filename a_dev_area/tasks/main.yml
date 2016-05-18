@@ -1,0 +1,14 @@
+---
+
+- name: Create personal area_51
+  file: name={{ ansible_local[ansible_local.employer.name].a_dev_dir }}
+        state=directory
+  when: ansible_local[ansible_local.employer.name].a_dev_dir
+
+- name: Clone repos
+  git: clone=yes
+       dest={{ ansible_local[ansible_local.employer.name].a_dev_dir}}/{{ item|basename }}
+       repo={{item}}
+       update=no
+  with_items: "{{ansible_local[ansible_local.employer.name].a_dev_repos}}"
+  when: ansible_local[ansible_local.employer.name].a_dev_dir

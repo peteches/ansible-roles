@@ -1,6 +1,7 @@
 ---
 
 dependencies:
+  - a_dev_area
   - a_kde
   - a_fonts
   - a_git
