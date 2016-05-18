@@ -11,3 +11,5 @@
 - include: konsole.yml
 
 - include: kxkb.yml
+
+- include: kwinrules.yml

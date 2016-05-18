@@ -49,7 +49,77 @@ a_kde_konsole_shell_profile:
     key: FlowControlEnabled
     value:  False
 
-
+a_kde_kwin:
+  rules:
+    - section: 1
+      key: Description
+      value: Settings for konsole
+    - section: 1
+      key: clientmachine
+      value: "{{ ansible_fqdn }}"
+    - section: 1
+      key: clientmachinematch
+      value: 0
+    - section: 1
+      key: maximizehoriz
+      value: true
+    - section: 1
+      key: maximizehorizrule
+      value: 2
+    - section: 1
+      key: maximizevert
+      value: true
+    - section: 1
+      key: maximizevertrule
+      value: 2
+    - section: 1
+      key: noborder
+      value: true
+    - section: 1
+      key: noborderrule
+      value: 2
+    - section: 1
+      key: wmclass
+      value: konsole
+    - section: 1
+      key: wmclasscomplete
+      value: false
+    - section: 1
+      key: wmclassmatch
+      value: 1
+    - section: General
+      key: count
+      value: 1
+    - section: General
+      key: ColorScheme
+      value: '[$d]'
+    - section: General
+      key: fixed
+      value: '[$d]'
+    - section: General
+      key: font
+      value: '[$d]'
+    - section: General
+      key: menuFont
+      value: '[$d]'
+    - section: General
+      key: smallestReadableFont
+      value: '[$d]'
+    - section: General
+      key: toolBarFont
+      value: '[$d]'
+    - section: General
+      key: widgetStyle
+      value: '[$d]'
+    - section: Icons
+      key: Theme
+      value: '[$d]'
+    - section: KDE
+      key: ColorScheme
+      value: '[$d]'
+    - section: KDE
+      key: widgetStyle
+      value: '[$d]'
 
 
 a_kde_keyboard_layout: gb
@@ -62,5 +132,5 @@ a_kde_kxkb:
     key: Options
     value: caps:ctrl_modifier
   - section: Layout
-    key: ShowLayoutIndicator
+    key: ShowLayoutIndicator 
     value: 'True'

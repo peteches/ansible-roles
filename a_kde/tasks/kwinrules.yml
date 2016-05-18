@@ -1,0 +1,18 @@
+--- 
+
+- name: Edit KDE window rules rc file
+  ini_file: dest={{a_kde_config_dir}}/kwinrulesrc
+            section={{ item.section }}
+            option={{ item.key }}
+            value={{ item.value }}
+  with_items: "{{ a_kde_kwin.rules }}"
+
+- name: replace spaces in KDE window rules ini file
+  replace: dest={{a_kde_config_dir}}/kwinrulesrc
+           regexp=' = \[\$d\]'
+           replace='[$d]'
+
+- name: replace spaces in KDE window rules ini file
+  replace: dest={{a_kde_config_dir}}/kwinrulesrc
+           regexp=' = '
+           replace='='
