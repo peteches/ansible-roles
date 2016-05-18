@@ -8,6 +8,8 @@
   git: clone=yes
        dest={{a_repo_dir}}/nerd-fonts
        repo=https://github.com/ryanoasis/nerd-fonts.git
+       version='v0.8.0'
+       update=no
   register: result
 
 - name: Install Nerd Fonts
