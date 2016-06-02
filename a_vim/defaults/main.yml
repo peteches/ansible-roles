@@ -34,6 +34,7 @@ vim_config_dirs:
 
 vim_plugin_repos:
   - https://github.com/AndrewRadev/switch.vim.git
+  - https://github.com/Glench/Vim-Jinja2-Syntax
   - https://github.com/SirVer/ultisnips.git
   - https://github.com/airblade/vim-gitgutter.git
   - https://github.com/bling/vim-airline
