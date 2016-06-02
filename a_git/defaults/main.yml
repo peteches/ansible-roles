@@ -41,6 +41,6 @@ a_git_ignore:
   - "tags"
   - "TAGS"
   - "Vagrantfile"
-  - "doc"
   - "fonts.dir"
   - "*.pyc"
+  - "Session.vim"
