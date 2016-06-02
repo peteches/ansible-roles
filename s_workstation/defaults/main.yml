@@ -7,13 +7,13 @@ a_workstation_packages:
     - curl
     - htop
     - krdc
-    - xchat
     - socat
     - python3-ipython
     - python3-pip
     - jq
     - xclip
     - vim-X11
+    - scrot
   apt:
     - curl
     - htop
