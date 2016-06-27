@@ -1,0 +1,16 @@
+# Mandatory opts
+"console_admin_password": {{ puppetmaster_console_admin_password }}
+"puppet_enterprise::puppet_master_host": {{ ansible_fqdn }}
+
+# Database opts
+
+"puppet_enterprise::activity_database_name": {{puppetmaster_pe_activity|default("pe-activity")}}
+"puppet_enterprise::activity_database_user": {{puppetmaster_pe_activity|default("pe-activity")}}
+"puppet_enterprise::classifier_database_name": {{puppetmaster_pe_classifier|default("pe-classifier")}}
+"puppet_enterprise::classifier_database_user": {{puppetmaster_pe_classifier|default("pe-classifier")}}
+"puppet_enterprise::orchestrator_database_name": {{puppetmaster_pe_orchestrator|default("pe-orchestrator")}}
+"puppet_enterprise::orchestrator_database_user": {{puppetmaster_pe_orchestrator|default("pe-orchestrator")}}
+"puppet_enterprise::puppetdb_database_name": {{puppetmaster_pe_puppetdb|default("pe-puppetdb")}}
+"puppet_enterprise::puppetdb_database_user": {{puppetmaster_pe_puppetdb|default("pe-puppetdb")}}
+"puppet_enterprise::rbac_database_name": {{puppetmaster_pe_rbac|default("pe-rbac")}}
+"puppet_enterprise::rbac_database_user": {{puppetmaster_pe_rbac|default("pe-rbac")}}

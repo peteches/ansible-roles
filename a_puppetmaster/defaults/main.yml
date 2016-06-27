@@ -1,0 +1,8 @@
+---
+puppetmaster_console_admin_password: changeme
+
+puppetmaster_pe_activity: pe-activity
+puppetmaster_pe_classifier: pe-classifier
+puppetmaster_pe_orchestrator: pe-orchestrator
+puppetmaster_pe_puppetdb: pe-puppetdb
+puppetmaster_pe_rbac: pe-rbac

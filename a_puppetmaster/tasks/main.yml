@@ -1,0 +1,26 @@
+---
+
+- name: install libselinux-python
+  yum: name=libselinux-python
+       state=installed
+
+- name: Create pe.conf
+  template: dest=/tmp/pe.conf
+            src=pe.conf.j2
+
+- name: Retrieve puppet tarball
+  get_url: checksum="sha256:86a690bc435b421d5716bdb819bb54e763331f174f8d9a806831367bc904ffa4"
+           dest=/tmp/puppet.tar.gz
+           url=http://peteches.co.uk/puppet.tar.gz
+
+- name: Extract puppet archive
+  unarchive: dest=/tmp/
+             copy=no
+             src=/tmp/puppet.tar.gz
+
+- name: run installer
+  command: /tmp/puppet-*/puppet-*-installer -c /tmp/pe.conf
+
+- name: run puppet apply
+  command: puppet apply -t
+
