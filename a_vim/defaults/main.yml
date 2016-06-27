@@ -52,6 +52,7 @@ vim_plugin_repos:
   - https://github.com/navicore/vis.vim.git
   - https://github.com/pearofducks/ansible-vim.git
   - https://github.com/peteches/pep8.git
+  - https://github.com/rodjek/vim-puppet.git
   - https://github.com/rogerz/vim-json
   - https://github.com/rstacruz/sparkup
   - https://github.com/ryanoasis/vim-devicons
