@@ -9,14 +9,14 @@
        dest={{tmux_dir}}/plugins/{{item|basename}}
        repo={{item}}
        update=yes
-  with_items: tmux_submodules
+  with_items: "{{tmux_submodules}}"
 
 - name: Adding tmux colourschemes
   git: clone=yes
        dest={{tmux_dir}}/colours/{{item|basename}}
        repo={{item}}
        update=yes
-  with_items: tmux_colourschemes
+  with_items: "{{tmux_colourschemes}}"
 
 - name: Add main tmux config
   template: dest=~/.tmux.conf
@@ -27,4 +27,4 @@
   template: dest={{tmux_dir}}/{{item}}
             src={{item}}.j2
             mode=0644
-  with_items: tmux_confs
+  with_items: "{{tmux_confs}}"
