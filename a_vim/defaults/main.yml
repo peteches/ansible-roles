@@ -19,6 +19,13 @@ vim_plugin_deps:
     - "python3-jedi"
     - "python-pep8"
     - "python3-pep8"
+  homebrew:
+    - vim
+    - macvim
+    - pyenv-virtualenv
+  pip:
+    - pycodestyle
+    - jedi
 
 vim_config_dirs:
   - autoload
