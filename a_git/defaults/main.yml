@@ -35,6 +35,9 @@ a_git_software:
     - git
     - tig
     - git-gui
+  homebrew:
+    - git
+    - gitup
 
 a_git_ignore:
   - ".*.sw?"
