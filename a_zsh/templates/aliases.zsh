@@ -1,7 +1,12 @@
 # vim: ft=zsh
 
 #aliases
-alias sort="sort -S$(($(sed '/MemT/!d;s/[^0-9]*//g' /proc/meminfo)/1024-200))"
+{% if ansible_system == 'Linux' %}
+mem_kb=$(sed '/MemT/!d;s/[^0-9]*//g' /proc/meminfo)
+{% elif ansible_system == 'Darwin' %}
+mem_kb=$(($(sysctl -n hw.memsize)/1024))
+{% endif %}
+alias sort="sort -S$(($mem_kb/1024-200))"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

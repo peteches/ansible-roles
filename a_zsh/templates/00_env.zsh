@@ -61,6 +61,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/sbin:/usr/sbin:/
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
+{% if ansible_distribution == "MacOSX" %}
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+{% endif %}
+
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM={{a_zsh_customdir}}
 

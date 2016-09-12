@@ -8,11 +8,11 @@ a_zsh_cdpaths:
 
 a_zsh_configs:
   - aliases.zsh
-  - antigen.zsh
+  - 99_antigen.zsh
   - bindkeys.zsh
   - bindkey.zsh
   - completion.zsh
-  - env.zsh
+  - 00_env.zsh
   - example.zsh
   - opts.zsh
   - paths.zsh

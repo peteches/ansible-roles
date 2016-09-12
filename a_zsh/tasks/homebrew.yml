@@ -1,0 +1,13 @@
+---
+
+- name: Installing Zsh
+  homebrew: name=zsh
+       state=latest
+
+- name: Installing ack (required for some rc files)
+  homebrew: name=ack
+       state=latest
+
+- name: Installing fortune (required for some prompts)
+  homebrew: name=fortune
+       state=latest
