@@ -4,29 +4,29 @@
   file: dest=/etc/ansible/facts.d/
         state=directory
         owner=root
-        group=root
+        group=wheel
         mode=0755
 
 - name: Adding employer fact
   template: dest=/etc/ansible/facts.d/employer.fact
         src=employer.fact.j2
         owner=root
-        group=root
+        group=wheel
         mode=0755
 
 - name: Adding employer facts
   template: dest=/etc/ansible/facts.d/{{e_employer_name}}.fact
             src=employer.facts.j2
             owner=root
-            group=root
+            group=wheel
             mode=0755
 
-- name: Adding local users
-  user: append=yes
-        createhome={{item.createhome}}
-        groups={{item.groups}}
-        name={{item.name}}
-        password={{item.password}}
-        shell={{item.shell}}
-        state={{item.state}}
-  with_items: '{{e_employer_users}}'
+# - name: Adding local users
+#   user: append=yes
+#         createhome={{item.createhome}}
+#         groups={{item.groups}}
+#         name={{item.name}}
+#         password={{item.password}}
+#         shell={{item.shell}}
+#         state={{item.state}}
+#   with_items: '{{e_employer_users}}'
