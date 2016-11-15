@@ -4,11 +4,9 @@ a_skybet_antigen_plugins:
   - ssh://git@stash.skybet.net:7999/gdo/gdo_wrapper.git
 
 a_skybet_git_author: Pete 'Peteches' McCabe
-a_skybet_git_email: pete.mccabe@skybettingandgaming.com
+a_skybet_git_email: peter.mccabe@skybettingandgaming.com
 
-a_skybet_zsh_cdpaths:
-  - ~/area_51/workstation/repos
-  - ~/area_51/workstation/repos/cookbooks
+a_skybet_zsh_cdpaths: ""
 
 a_skybet_proxies:
   guea:

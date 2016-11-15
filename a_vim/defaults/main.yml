@@ -56,7 +56,7 @@ vim_plugin_repos:
   - https://github.com/kbarrette/mediummode.git
   - https://github.com/mitechie/pyflakes-pathogen
   - https://github.com/mrk21/yaml-vim.git
-  - https://github.com/navicore/vis.vim.git
+  - https://github.com/vim-scripts/vis.git
   - https://github.com/pearofducks/ansible-vim.git
   - https://github.com/peteches/pep8.git
   - https://github.com/rodjek/vim-puppet.git
