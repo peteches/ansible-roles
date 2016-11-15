@@ -1,29 +1,39 @@
 ---
 
 - name: create facts dir
-  file: dest=/etc/ansible/facts.d/
+  file: dest="{{item}}"
         state=directory
         owner=root
-        group=root
+        group=wheel
         mode=0755
+  with_items:
+    - /etc/ansible
+    - /etc/ansible/facts.d/
+  become: True
+  become_user: root
 
 - name: Adding employer fact
   copy: dest=/etc/ansible/facts.d/employer.fact
         src=employer.fact
         owner=root
-        group=root
+        group=wheel
         mode=0755
+  become: True
+  become_user: root
 
 - name: Adding skybet local facts
   template: dest=/etc/ansible/facts.d/skybet.fact
             src=skybet.fact.j2
             owner=root
-            group=root
+            group=wheel
             mode=0755
+  become: True
+  become_user: root
 
 - name: Ensure systemd dir exists
   file: dest=/etc/systemd/system
         state=directory
+  when: ansible_system == 'Linux'
 
 - name: Add SkyProxy service file
   copy: dest=/etc/systemd/system/skyproxy@.service
@@ -31,6 +41,7 @@
         owner=root
         group=root
         mode=0644
+  when: ansible_system == 'Linux'
 
 - name: Ensure skyproxy env dir exists
   file: dest=/etc/skyproxy/
@@ -38,6 +49,7 @@
         owner=root
         group=root
         mode=0755
+  when: ansible_system == 'Linux'
 
 - name: Ensure skyproxy env files exists
   template: dest=/etc/skyproxy/{{item.key}}
@@ -46,9 +58,11 @@
             group=root
             mode=0644
   with_dict: a_skybet_proxies
+  when: ansible_system == 'Linux'
 
 - name: Enable skyproxy
   service: name=skyproxy@{{item.key}}.service
            enabled=yes
            state=started
   with_dict: a_skybet_proxies
+  when: ansible_system == 'Linux'

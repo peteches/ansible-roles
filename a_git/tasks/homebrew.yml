@@ -4,6 +4,3 @@
   homebrew: name={{item}}
        state=latest
   with_items: "{{ a_git_software.homebrew }}"
-  become_user: root
-  become: true
-

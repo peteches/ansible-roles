@@ -3,8 +3,6 @@
 - name: Installing vim
   homebrew: name=vim
             state=latest
-  become: True
-  become_user: root
 
 - name: Installing packages required for some plugins
   homebrew: name={{item}}
@@ -17,8 +15,3 @@
   with_items: vim_plugin_deps.pip
   become: True
   become_user: root
-
-
-
-
-
