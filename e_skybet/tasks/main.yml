@@ -30,9 +30,14 @@
   become: True
   become_user: root
 
+- debug:
+    var: ansible_system
+  when: True # ansible_system
+
 - name: Ensure systemd dir exists
-  file: dest=/etc/systemd/system
-        state=directory
+  file:
+    dest: /etc/systemd/system
+    state: directory
   when: ansible_system == 'Linux'
 
 - name: Add SkyProxy service file
@@ -51,18 +56,21 @@
         mode=0755
   when: ansible_system == 'Linux'
 
+- debug:
+    var: a_skybet_proxies
+
 - name: Ensure skyproxy env files exists
   template: dest=/etc/skyproxy/{{item.key}}
             src=skyproxy_env.j2
             owner=root
             group=root
             mode=0644
-  with_dict: a_skybet_proxies
   when: ansible_system == 'Linux'
+  with_dict: "{{ a_skybet_proxies }}"
 
 - name: Enable skyproxy
   service: name=skyproxy@{{item.key}}.service
            enabled=yes
            state=started
-  with_dict: a_skybet_proxies
   when: ansible_system == 'Linux'
+  with_dict: "{{ a_skybet_proxies }}"

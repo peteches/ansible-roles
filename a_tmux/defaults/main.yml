@@ -55,6 +55,7 @@ tmux_table_bindings:
   'vi-copy':
     'y': copy-selection
     'v': begin-selection
+    'MouseDragEnd1Pane': 'copy-pipe "pbcopy"'
 
 tmux_unbindings:
   - 'p'

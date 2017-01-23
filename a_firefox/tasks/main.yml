@@ -17,7 +17,7 @@
             section=Profile0
             option={{item.key}}
             value={{item.value}}
-  with_dict: a_firefox_profile_ini_opts
+  with_dict: "{{a_firefox_profile_ini_opts}}"
 
 - name: remove whitespace around = in profiles.ini
   replace: dest={{a_firefox_config_dir}}/profiles.ini
@@ -35,18 +35,18 @@
 - name: Create extension dir for unpacked extensions
   file: dest={{a_firefox_profile_dir}}/extensions/{{item}}
         state=directory
-  with_items: a_firefox_extensions_to_unpack
+  with_items: "{{a_firefox_extensions_to_unpack}}"
 
 - name: Extract xpi incompatible extensions
   unarchive: copy=no
              creates={{a_firefox_profile_dir}}/extensions/{{item}}/install.rdf
              dest={{a_firefox_profile_dir}}/extensions/{{item}}
              src={{a_firefox_profile_dir}}/extensions/{{item}}.xpi
-  with_items: a_firefox_extensions_to_unpack
+  with_items: "{{a_firefox_extensions_to_unpack}}"
 
 - name: Remove archive for unpacked extensions
   file: dest={{a_firefox_profile_dir}}/extensions/{{item}}.xpi
         state=absent
-  with_items: a_firefox_extensions_to_unpack
+  with_items: "{{a_firefox_extensions_to_unpack}}"
 
 - include: plugins.yml

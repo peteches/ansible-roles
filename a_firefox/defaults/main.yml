@@ -1,7 +1,7 @@
 ---
 
 a_firefox_profile_name: peteches
-a_firefox_config_dir: ~/.mozilla/firefox/
+a_firefox_config_dir: "{% if ansible_system == 'Linux' %}~/.mozilla/firefox/{%elif ansible_system == 'Darwin'%}~/Library/Application Support/Firefox/{%endif%}"
 a_firefox_profile_dir: "{{a_firefox_config_dir}}/qwsa1234.{{a_firefox_profile_name}}"
 a_firefox_profile_default: 1
 
@@ -13,9 +13,9 @@ a_firefox_plugins:
       - molokai
       - solarized
 
-a_firefox_extensions_to_unpack:
-  - foxyproxy@eric.h.jung
-  - lp4
+a_firefox_extensions_to_unpack: []
+  # - foxyproxy@eric.h.jung
+  # - lp4
 
 a_firefox_profile_ini_opts:
   Name: "{{a_firefox_profile_name}}"

@@ -1,0 +1,7 @@
+- name: Install generic useful packages
+  homebrew:
+    name: "{{item}}"
+    state: present
+    install_options: "--with-default-names"
+  with_items:
+    "{{a_workstation_packages.homebrew}}"
