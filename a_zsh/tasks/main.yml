@@ -28,6 +28,12 @@
             mode=0644
   with_items: "{{a_zsh_configs}}"
 
+- name: Adding employer configs
+  template: dest="{{ a_zsh_customdir }}/{{ ansible_local['employer']['name'] }}.zsh"
+            src="{{ ansible_local['employer']['name'] }}.zsh"
+            mode=0644
+  when: ansible_local['employer']['name']
+
 - name: Adding zsh functions
   copy: dest="{{ a_zsh_customdir }}/"
         src=functions

@@ -1,0 +1,1 @@
+alias pk='pscli kitchen'
