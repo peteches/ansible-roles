@@ -21,7 +21,7 @@ tmux_global_opts:
   mouse-select-window: "on"
   mouse-resize-pane: "on"
   mouse-select-pane: "on"
-  mouse: on
+  mouse: "on"
   mouse-utf8: "on"
   mode-keys: "vi"
   renumber-windows: "on"
@@ -36,8 +36,6 @@ tmux_global_opts:
   '@continuum-restore': 'on'
 
 tmux_global_bindings:
-  'C-p': run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
-  'C-y': run "tmux save-buffer - | xclip -i"
   'p': paste-buffer
   'Escape': copy-mode
   'C-n': next-window -a
