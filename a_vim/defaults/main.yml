@@ -1,8 +1,8 @@
 ---
 
-vim_dir: ~/.vim
+vim_dir: ~/.config/nvim
 
-vim_colour_dir: ~/vim/colors
+vim_colour_dir: "{{vim_dir}}/colors"
 
 vim_plugin_deps:
   portage:
@@ -20,12 +20,13 @@ vim_plugin_deps:
     - "python-pep8"
     - "python3-pep8"
   homebrew:
-    - vim
+    - neovim
     - macvim
     - pyenv-virtualenv
   pip:
     - pycodestyle
     - jedi
+    - neovim
 
 vim_config_dirs:
   - autoload
@@ -36,7 +37,7 @@ vim_config_dirs:
   - spell
   - syntax
   - vim-pandoc-templates
-  - vimrc
+  - init.vim
   - UltiSnips
 
 vim_plugin_repos:
@@ -54,11 +55,9 @@ vim_plugin_repos:
   - https://github.com/kana/vim-textobj-indent.git
   - https://github.com/kana/vim-textobj-user.git
   - https://github.com/kbarrette/mediummode.git
-  - https://github.com/mitechie/pyflakes-pathogen
   - https://github.com/mrk21/yaml-vim.git
   - https://github.com/vim-scripts/vis.git
   - https://github.com/pearofducks/ansible-vim.git
-  - https://github.com/peteches/pep8.git
   - https://github.com/rodjek/vim-puppet.git
   - https://github.com/rogerz/vim-json
   - https://github.com/rstacruz/sparkup

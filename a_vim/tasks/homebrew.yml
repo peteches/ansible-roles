@@ -4,6 +4,9 @@
   homebrew: name=vim
             state=latest
 
+- name: Add neovim tap
+  command: brew tap neovim/neovim
+
 - name: Installing packages required for some plugins
   homebrew: name={{item}}
             state=present
