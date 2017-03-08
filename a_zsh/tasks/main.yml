@@ -33,6 +33,7 @@
             src="{{ ansible_local['employer']['name'] }}.zsh"
             mode=0644
   when: ansible_local['employer']['name']
+  ignore_errors: yes
 
 - name: Adding zsh functions
   copy: dest="{{ a_zsh_customdir }}/"
