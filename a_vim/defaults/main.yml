@@ -56,7 +56,7 @@ vim_plugin_repos:
   - https://github.com/kana/vim-textobj-user.git
   - https://github.com/kbarrette/mediummode.git
   - https://github.com/mrk21/yaml-vim.git
-  - https://github.com/vim-scripts/vis.git
+  - https://github.com/pbrisbin/vim-mkdir.git
   - https://github.com/pearofducks/ansible-vim.git
   - https://github.com/rodjek/vim-puppet.git
   - https://github.com/rogerz/vim-json
@@ -77,12 +77,15 @@ vim_plugin_repos:
   - https://github.com/tpope/vim-repeat.git
   - https://github.com/tpope/vim-scriptease.git
   - https://github.com/tpope/vim-sleuth.git
+  - https://github.com/tpope/vim-speeddating.git
   - https://github.com/tpope/vim-surround
   - https://github.com/tpope/vim-tbone.git
   - https://github.com/tpope/vim-unimpaired.git
   - https://github.com/vasconcelloslf/vim-interestingwords.git
   - https://github.com/vim-pandoc/vim-pandoc-syntax.git
   - https://github.com/vim-pandoc/vim-pandoc.git
+  - https://github.com/vim-scripts/ScrollColors.git
+  - https://github.com/vim-scripts/vis.git
   - https://github.com/wincent/ferret.git
   - https://github.com/zhaocai/vim-textobj-function.git
 
