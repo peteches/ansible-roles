@@ -48,7 +48,7 @@ vim_plugin_repos:
   - Shougo/deoplete.nvim
   - Shougo/neco-vim
   - airblade/vim-gitgutter
-  - ctrlpvim/ctrlp
+  - ctrlpvim/ctrlp.vim
   - mrk21/yaml-vim
   - pbrisbin/vim-mkdir
   - pearofducks/ansible-vim
@@ -74,7 +74,7 @@ vim_colour_repos:
   - ajh17/Spacegray.vim
   - alexjgriffin/sprinkles
   - altercation/vim-colors-solarized
-  - altercation/vim-colors-solarized.git
+  - altercation/vim-colors-solarized
   - andrwb/vim-lapis256
   - antlypls/vim-colors-codeschool
   - atelierbram/vim-colors_atelier-schemes
@@ -96,7 +96,7 @@ vim_colour_repos:
   - duythinht/vim-coffee
   - farseer90718/flattr.vim
   - freeo/vim-kalisi
-  - fxn/vim-monochrome.git
+  - fxn/vim-monochrome
   - GertjanReynaert/cobalt2-vim-theme
   - gilsondev/lizard
   - gmarik/ingretu
@@ -107,7 +107,7 @@ vim_colour_repos:
   - itchyny/landscape.vim
   - jnurmine/Zenburn
   - john2x/flatui.vim
-  - jonathanfilip/vim-lucius.git
+  - jonathanfilip/vim-lucius
   - junegunn/seoul256.vim
   - justincampbell/vim-railscasts
   - larssmit/vim-getafe
@@ -137,7 +137,7 @@ vim_colour_repos:
   - stulzer/heroku-colorscheme
   - svjunic/RadicalGoodSpeed.vim
   - tomasr/molokai
-  - trapd00r/neverland-vim-theme.git
+  - trapd00r/neverland-vim-theme
   - vim-scripts/0x7A69_dark.vim
   - vim-scripts/256-grayvim
   - vim-scripts/256-jungle
