@@ -2,23 +2,23 @@
 
 - include: "{{ansible_pkg_mgr}}.yml"
 
-- name: Checkout colourschemes
-  git: clone=yes
-       dest={{vim_colour_dir}}/{{item|basename}}
-       repo={{item}}
-       update=no
-       depth=1
-  with_items: "{{vim_colour_repos}}"
+# - name: Checkout colourschemes
+#   git: clone=yes
+#        dest={{vim_colour_dir}}/{{item|basename}}
+#        repo={{item}}
+#        update=no
+#        depth=1
+#   with_items: "{{vim_colour_repos}}"
 
-- name: Checkout Vim plugins
-  git: clone=yes
-       dest={{vim_dir}}/bundle/{{item|basename}}
-       repo={{item}}
-       update=yes
-       depth=1
-  with_items: "{{vim_plugin_repos}}"
+- name: Adding rc templates
+  template: dest="{{vim_dir}}/{{item}}"
+            src={{item}}.j2
+  with_items: "{{vim_config_templates}}"
 
 - name: Adding other configs
   copy: dest={{vim_dir}}
         src={{item}}
   with_items: "{{vim_config_dirs}}"
+
+- name: Install plugins
+  command: nvim --headless -c ':PlugInstall' -c ':qa'
