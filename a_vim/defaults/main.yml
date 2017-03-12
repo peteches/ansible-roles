@@ -49,6 +49,7 @@ vim_plugin_repos:
   - Shougo/neco-vim
   - airblade/vim-gitgutter
   - ctrlpvim/ctrlp.vim
+  - kassio/neoterm
   - mrk21/yaml-vim
   - pbrisbin/vim-mkdir
   - pearofducks/ansible-vim
@@ -59,6 +60,7 @@ vim_plugin_repos:
   - tpope/vim-capslock
   - tpope/vim-commentary
   - tpope/vim-dispatch
+  - tpope/vim-eunuch
   - tpope/vim-fugitive
   - tpope/vim-obsession
   - tpope/vim-repeat

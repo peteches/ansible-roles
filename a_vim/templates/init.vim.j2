@@ -13,6 +13,50 @@ Plug '{{ colorscheme }}'
 call plug#end()
 " {{ '}}}' }}
 
+" Functions {{ '{{{' }}
+
+	function! TrimWhiteSpace() " {{ '{{{' }}
+		%s/\s\+$//e
+	endfunction
+	" {{ '}}}' }}
+
+	function! IsBufferBlank() " {{ '{{{' }}
+		if getline(1, '$') == [''] && ! &mod
+			return 1
+		else
+			return 0
+		endif
+	endfunction
+	" {{ '}}}' }}
+
+	function! OpenRC() " {{ '{{{' }}
+		if IsBufferBlank()
+			:edit $MYVIMRC
+		else
+			:vnew $MYVIMRC
+		endif
+	endfunction
+	" {{ '}}}' }}
+
+	function! s:mapMoveToWindowInDirection(direction) " {{ '{{{' }}
+		func! s:maybeInsertMode(direction) " {{ '{{{' }}
+			stopinsert
+			execute "wincmd" a:direction
+
+			if &buftype == 'terminal'
+				startinsert!
+			endif
+		endfunction " {{ '}}}' }}
+
+		execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
+				\ "<C-\\><C-n>" .
+				\ ":call <SID>maybeInsertMode(\"". a:direction . "\")<CR>"
+		execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
+				\ ":call <SID>maybeInsertMode(\"". a:direction . "\")<CR>"
+	endfunction " {{ '}}}' }}
+
+" {{ '}}}' }}
+
 "Plugin Settings {{ '{{{' }}
 	"Deoplete {{ '{{{' }}
 	let g:deoplete#enable_at_startup = 1
@@ -26,11 +70,29 @@ call plug#end()
 	" Syntastic {{ '{{{' }}
 	let g:syntastic_python_checkers = ['pycodestyle']
 	" {{ '}}}' }}
+
+	" neoterm {{ '{{{' }}
+	let g:neoterm_position = 'vertical'
+	let g:neoterm_automap_keys = '<Leader>tt'
+	" {{ '}}}' }}
+
+	" RandomColour settings {{ '{{{' }}
+	let g:favorite_color_schemes = [
+		\ 'strange',
+		\ 'seoul256',
+	\ ]
+	" {{ '}}}' }}
 " {{ '}}}' }}
 
 "General settings {{ '{{{' }}
 set nohlsearch
+set number
 set relativenumber
+set noshowmode
+set showcmd
+set wildmode=full
+set wildignore=build,*.pyc,venv
+set shada=%0,'10,<1000,h,n~/.config/nvim/shada
 " {{ '}}}' }}
 
 "Backup settings {{ '{{{' }}
@@ -45,10 +107,14 @@ set writebackup
 
 "Key Mappings {{ '{{{' }}
 	"Window movements {{ '{{{' }}
-	nnoremap <C-h> <c-w>h
-	nnoremap <C-j> <c-w>j
-	nnoremap <C-k> <c-w>k
-	nnoremap <C-l> <c-w>l
+	for i in ["h", "j", "k", "l"]
+		call s:mapMoveToWindowInDirection(i)
+	endfor
+	" {{ '}}}' }}
+
+	" escapeisms {{ '{{{' }}
+	tnoremap <Esc> <C-\><C-n>
+	inoremap jj <Esc>
 	" {{ '}}}' }}
 
 	" swap : and ; {{ '{{{' }}
@@ -80,33 +146,16 @@ set writebackup
 	nnoremap <LEADER>gw :Gwrite<CR>
 	" {{ '}}}' }}
 
-	nnoremap <Leader>er :call OpenRC()
+	" neoterm mappings {{ '{{{' }}
+	nnoremap <silent> <leader>tl :TREPLSendLine<cr>
+	nnoremap <silent> <leader>tf :TREPLSendFile<cr>
+	vnoremap <silent> <leader>ts :TREPLSendSelection<cr>
 
-" {{ '}}}' }}
+	nnoremap <silent> <leader>tc :call neoterm#close()<cr>
+	nnoremap <silent> <c-c> :call neoterm#kill()<cr>
+	" {{ '}}}' }}
 
-" Functions {{ '{{{' }}
-function! TrimWhiteSpace() " {{ '{{{' }}
-	%s/\s\+$//e
-endfunction
-" {{ '}}}' }}
-
-function! IsBufferBlank() " {{ '{{{' }}
-	if getline(1, '$') == [''] && ! &mod
-		return 1
-	else
-		return 0
-	endif
-endfunction
-" {{ '}}}' }}
-
-function! OpenRC() " {{ '{{{' }}
-	if IsBufferBlank()
-		:edit $MYVIMRC
-	else
-		:vnew $MYVIMRC
-	endif
-endfunction
-" {{ '}}}' }}
+	nnoremap <Leader>er :call OpenRC()<CR>
 
 " {{ '}}}' }}
 
