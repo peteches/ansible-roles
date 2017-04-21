@@ -11,15 +11,15 @@ vim_plugin_deps:
     - dev-python/pep8
     - app-text/pandoc
   apt:
-    - "python-jedi"
-    - "python3-jedi"
-    - "pep8"
-    - "python3-pep8"
+    - python-jedi
+    - python3-jedi
+    - pep8
+    - python3-pep8
   dnf:
-    - "python-jedi"
-    - "python3-jedi"
-    - "python-pep8"
-    - "python3-pep8"
+    - python-jedi
+    - python3-jedi
+    - python-pep8
+    - python3-pep8
   homebrew:
     - neovim
     - macvim
@@ -36,7 +36,6 @@ vim_config_dirs:
   - indent
   - skel
   - spell
-  - syntax
 
 vim_config_templates:
   - init.vim

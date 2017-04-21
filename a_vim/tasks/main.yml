@@ -10,6 +10,11 @@
 #        depth=1
 #   with_items: "{{vim_colour_repos}}"
 
+- name: ensure {{vim_dir}} exists
+  file: dest="{{vim_dir}}"
+        state=directory
+
+
 - name: Adding rc templates
   template: dest="{{vim_dir}}/{{item}}"
             src={{item}}.j2

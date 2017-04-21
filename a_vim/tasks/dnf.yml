@@ -1,15 +1,18 @@
 ---
 
 - name: Installing vim
-  dnf: name=vim
+  dnf: name="{{item}}"
        state=latest
   become: True
   become_user: root
+  with_items:
+    - vim
+    - neovim
 
 - name: Installing packages required for some plugins
   dnf: name={{item}}
        state=present
-  with_items: vim_plugin_deps.dnf
+  with_items: "{{vim_plugin_deps.dnf}}"
   become: True
   become_user: root
 

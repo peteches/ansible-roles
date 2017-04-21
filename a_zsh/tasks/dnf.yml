@@ -13,7 +13,7 @@
   become_user: root
 
 - name: Installing fortune (required for some prompts)
-  dnf: name=fortune
+  dnf: name=fortune-mod
        state=latest
   become: True
   become_user: root

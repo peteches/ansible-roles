@@ -12,7 +12,6 @@ a_workstation_packages:
     - python3-pip
     - jq
     - xclip
-    - vim-X11
     - scrot
   homebrew:
     - jq
