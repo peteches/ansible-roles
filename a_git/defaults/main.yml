@@ -13,7 +13,7 @@ a_git_config:
     diff: auto
   core:
     pager: less -r
-    editor: vim
+    editor: nvim
     excludesfile: "{{a_git_ignorefile}}"
     mergetool: vimdiff
   alias:
