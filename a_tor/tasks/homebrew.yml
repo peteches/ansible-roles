@@ -1,0 +1,6 @@
+---
+
+- name: Install tor
+  homebrew: name=tor
+            state=present
+  notify: restart tor
