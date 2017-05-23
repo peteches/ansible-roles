@@ -1,4 +1,4 @@
-EDITOR=/usr/bin/vim
+EDITOR=$(whence nvim || echo /usr/bin/vim)
 # set colors used by ls:
 #
 # keys:
