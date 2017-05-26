@@ -38,23 +38,6 @@ call plug#end()
 	endfunction
 	" {{ '}}}' }}
 
-	function! s:mapMoveToWindowInDirection(direction) " {{ '{{{' }}
-		func! s:maybeInsertMode(direction) " {{ '{{{' }}
-			stopinsert
-			execute "wincmd" a:direction
-
-			if &buftype == 'terminal'
-				startinsert!
-			endif
-		endfunction " {{ '}}}' }}
-
-		execute "tnoremap" "<silent>" "<C-" . a:direction . ">"
-				\ "<C-\\><C-n>" .
-				\ ":call <SID>maybeInsertMode(\"". a:direction . "\")<CR>"
-		execute "nnoremap" "<silent>" "<C-" . a:direction . ">"
-				\ ":call <SID>maybeInsertMode(\"". a:direction . "\")<CR>"
-	endfunction " {{ '}}}' }}
-
 " {{ '}}}' }}
 
 "Plugin Settings {{ '{{{' }}
@@ -87,6 +70,7 @@ call plug#end()
 "General settings {{ '{{{' }}
 set list
 set listchars=eol:§,tab:▸›,extends:»,precedes:«,nbsp:•,trail:•
+set mouse=a
 set nohlsearch
 set number
 set relativenumber
@@ -109,13 +93,16 @@ set writebackup
 
 "Key Mappings {{ '{{{' }}
 	"Window movements {{ '{{{' }}
-	for i in ["h", "j", "k", "l"]
-		call s:mapMoveToWindowInDirection(i)
-	endfor
+	{% for mapping in [ 'H', 'h', 'J', 'j', 'K', 'k', 'L', 'l' ]: -%}
+	inoremap <C-{{mapping}}> <Esc><C-W>{{mapping}}
+	noremap <C-{{mapping}}> <Esc><C-W>{{mapping}}
+	tnoremap <C-{{mapping}}> <Esc><C-W>{{mapping}}
+	{% endfor %}
 	" {{ '}}}' }}
 
 	" escapeisms {{ '{{{' }}
 	tnoremap <Esc> <C-\><C-n>
+	tnoremap jj <C-\><C-n>
 	inoremap jj <Esc>
 	" {{ '}}}' }}
 
@@ -179,6 +166,16 @@ if has("autocmd")
 		autocmd BufWritePost $MYVIMRC source $MYVIMRC
 	augroup END " {{ '}}}' }}
 
+	augroup COLOURSCHEME " {{ '{{{' }}
+		autocmd!
+		autocmd VimEnter * RandomAll
+	augroup END " {{ '}}}' }}
+
+	augroup TERMINAL " {{ '{{{' }}
+		autocmd!
+		autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+	augroup END " {{ '}}}' }}
+
 endif
 " {{ '}}}' }}
 
@@ -198,8 +195,5 @@ endif
 	call matchadd('DIFFMIDDLE', '^=======')
 	call matchadd('DIFFBRANCH', '^>>>>>>>.*')
 	" {{ '}}}' }}
-
-	" Use random colourscheme
-	autocmd VimEnter * RandomAll
 
 " {{ '}}}' }}
