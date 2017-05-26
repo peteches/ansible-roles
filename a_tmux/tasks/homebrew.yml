@@ -3,3 +3,4 @@
 - name: Install Tmux
   homebrew: name=tmux
        state=latest
+  become: false
