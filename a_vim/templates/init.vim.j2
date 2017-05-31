@@ -54,6 +54,20 @@ call plug#end()
 	let g:syntastic_python_checkers = ['pycodestyle']
 	" {{ '}}}' }}
 
+	" Switch {{ '{{{' }}
+	let g:switch_mapping = "-"
+	let g:switch_custom_definitions =
+	\ [
+		\	['yes', 'no'],
+		\	['true', 'false'],
+		\	['left', 'right'],
+		\	['on', 'off'],
+		\	['||', '&&'],
+		\	['udp', 'tcp'],
+		\	['low', 'medium', 'high'],
+		\ ]
+	" {{ '}}}' }}
+
 	" neoterm {{ '{{{' }}
 	let g:neoterm_position = 'vertical'
 	let g:neoterm_automap_keys = '<Leader>tt'
