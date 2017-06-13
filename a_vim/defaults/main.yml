@@ -49,6 +49,7 @@ vim_plugin_repos:
   - airblade/vim-gitgutter
   - ctrlpvim/ctrlp.vim
   - kassio/neoterm
+  - mileszs/Ack.vim
   - mrk21/yaml-vim
   - pbrisbin/vim-mkdir
   - pearofducks/ansible-vim
