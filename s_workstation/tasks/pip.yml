@@ -1,0 +1,16 @@
+---
+- name: find pip executable
+  shell: which pip3 || which pip
+  register: pipbin
+
+- debug:
+    var=pipbin
+
+- name: Install generic useful packages
+  pip: name={{item}}
+       state=latest
+       executable="{{pipbin.stdout}}"
+  become: True
+  become_user: root
+  with_items: "{{a_workstation_packages.pip}}"
+  when: a_workstation_packages.pip

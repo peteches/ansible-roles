@@ -49,7 +49,7 @@ vim_plugin_repos:
   - airblade/vim-gitgutter
   - ctrlpvim/ctrlp.vim
   - kassio/neoterm
-  - mileszs/Ack.vim
+  - mileszs/ack.vim
   - mrk21/yaml-vim
   - pbrisbin/vim-mkdir
   - pearofducks/ansible-vim
@@ -64,11 +64,13 @@ vim_plugin_repos:
   - tpope/vim-fugitive
   - tpope/vim-obsession
   - tpope/vim-repeat
+  - tpope/vim-sleuth
   - tpope/vim-speeddating
   - tpope/vim-surround
   - tpope/vim-unimpaired
   - vasconcelloslf/vim-interestingwords
   - vim-airline/vim-airline
+  - w0rp/ale
   - zchee/deoplete-jedi
 
 vim_colour_repos:

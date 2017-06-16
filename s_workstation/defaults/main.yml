@@ -14,6 +14,8 @@ a_workstation_packages:
     - xclip
     - scrot
   homebrew:
+    - jsonlint
+    - ansible-lint
     - jq
     - coreutils
     - findutils
@@ -23,6 +25,12 @@ a_workstation_packages:
     - gnutls
     - gnu-indent
     - gnu-getopt
+  pip:
+    - mypy
+    - pylint
+    - yamllint
+    - proselint
+    - vim-vint
   apt:
     - curl
     - htop
