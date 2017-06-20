@@ -42,12 +42,15 @@ vim_config_templates:
 
 vim_plugin_repos:
   - AndrewRadev/switch.vim
+  - dougireton/vim-chef
   - FuDesign2008/randomColor.vim
   - Glench/Vim-Jinja2-Syntax
   - Shougo/deoplete.nvim
   - Shougo/neco-vim
   - airblade/vim-gitgutter
   - ctrlpvim/ctrlp.vim
+  - equalsraf/neovim-gui-shim
+  - fishbullet/deoplete-ruby
   - kassio/neoterm
   - mileszs/ack.vim
   - mrk21/yaml-vim
@@ -55,7 +58,6 @@ vim_plugin_repos:
   - pearofducks/ansible-vim
   - rogerz/vim-json
   - ryanoasis/vim-devicons
-  - scrooloose/syntastic
   - tommcdo/vim-exchange
   - tpope/vim-capslock
   - tpope/vim-commentary
@@ -74,10 +76,16 @@ vim_plugin_repos:
   - zchee/deoplete-jedi
 
 vim_colour_repos:
+  - ChasingLogic/ChasingLogic-colorscheme-vim
+  - CruizeMissile/Revolution.vim
+  - GertjanReynaert/cobalt2-vim-theme
+  - Lokaltog/vim-distinguished
+  - MaxSt/FlatColor
+  - MichaelMalick/vim-colors-bluedrake
+  - SacredCrumb/neonwave.vim
   - adlawson/vim-sorcerer
   - ajh17/Spacegray.vim
   - alexjgriffin/sprinkles
-  - altercation/vim-colors-solarized
   - altercation/vim-colors-solarized
   - andrwb/vim-lapis256
   - antlypls/vim-colors-codeschool
@@ -90,10 +98,8 @@ vim_colour_repos:
   - cdmedia/itg_flat_vim
   - changyuheng/color-scheme-holokai-of-vim
   - chankaward/vim-railscasts-theme
-  - ChasingLogic/ChasingLogic-colorscheme-vim
   - cocopon/iceberg.vim
   - croaker/mustang-vim
-  - CruizeMissile/Revolution.vim
   - cseelus/vim-colors-clearance
   - dsolstad/vim-wombat256i
   - duythinht/inori
@@ -101,7 +107,6 @@ vim_colour_repos:
   - farseer90718/flattr.vim
   - freeo/vim-kalisi
   - fxn/vim-monochrome
-  - GertjanReynaert/cobalt2-vim-theme
   - gilsondev/lizard
   - gmarik/ingretu
   - goatslacker/mango.vim
@@ -116,23 +121,19 @@ vim_colour_repos:
   - justincampbell/vim-railscasts
   - larssmit/vim-getafe
   - lodestone/lodestone.vim
-  - Lokaltog/vim-distinguished
   - lxmzhv/vim
   - marlun/vim-starwars
-  - MaxSt/FlatColor
-  - MichaelMalick/vim-colors-bluedrake
   - mopp/mopkai.vim
   - morhetz/gruvbox
   - mrkn/mrkn256.vim
   - mtglsk/mushroom
   - nanotech/jellybeans.vim
-  - noahfrederick/vim-hemisu
   - noah/fu
+  - noahfrederick/vim-hemisu
   - nowk/genericdc
   - reedes/vim-colors-pencil
   - romainl/Apprentice
   - romainl/flattened
-  - SacredCrumb/neonwave.vim
   - sandeepsinghmails/Dev_Delight
   - shawncplus/skittles_berry
   - sickill/vim-monokai
@@ -142,21 +143,25 @@ vim_colour_repos:
   - svjunic/RadicalGoodSpeed.vim
   - tomasr/molokai
   - trapd00r/neverland-vim-theme
+  - trevordmiller/nova-vim
   - vim-scripts/0x7A69_dark.vim
   - vim-scripts/256-grayvim
   - vim-scripts/256-jungle
-  - vim-scripts/abbott.vim
   - vim-scripts/AtelierDune
-  - vim-scripts/blacklight
-  - vim-scripts/burnttoast256
   - vim-scripts/BusyBee
   - vim-scripts/C64.vim
+  - vim-scripts/Gentooish
+  - vim-scripts/SlateDark
+  - vim-scripts/The-Vim-Gardener
+  - vim-scripts/Ubloh-Color-Scheme
+  - vim-scripts/abbott.vim
+  - vim-scripts/blacklight
+  - vim-scripts/burnttoast256
   - vim-scripts/calmar256-lightdark.vim
   - vim-scripts/colorful256.vim
   - vim-scripts/desertEx
   - vim-scripts/earendel
   - vim-scripts/ecostation
-  - vim-scripts/Gentooish
   - vim-scripts/greenvision
   - vim-scripts/grishin-color-scheme
   - vim-scripts/icansee.vim
@@ -169,14 +174,11 @@ vim_colour_repos:
   - vim-scripts/miko
   - vim-scripts/pink
   - vim-scripts/rdark-terminal
-  - vim-scripts/SlateDark
   - vim-scripts/strange
   - vim-scripts/swamplight
   - vim-scripts/synic.vim
   - vim-scripts/tchaba
-  - vim-scripts/The-Vim-Gardener
   - vim-scripts/twilight256.vim
-  - vim-scripts/Ubloh-Color-Scheme
   - wellsjo/wells-colorscheme.vim
   - whatyouhide/vim-gotham
   - yamafaktory/lumberjack.vim
