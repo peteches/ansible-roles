@@ -14,17 +14,18 @@ a_workstation_packages:
     - xclip
     - scrot
   homebrew:
-    - jsonlint
     - ansible-lint
-    - jq
     - coreutils
     - findutils
-    - gnu-tar
-    - gnu-sed
     - gawk
-    - gnutls
-    - gnu-indent
     - gnu-getopt
+    - gnu-indent
+    - gnu-sed
+    - gnu-tar
+    - gnutls
+    - jq
+    - jsonlint
+    - tree
   pip:
     - mypy
     - pylint
