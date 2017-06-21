@@ -28,24 +28,34 @@
   template: dest={{a_firefox_profile_dir}}/user.js
             src=user.js.j2
 
+- name: create Extensions  Dir
+  file: path={{a_firefox_extension_dir}}
+        state=directory
+
+- name: looking for existing extensions
+  shell: ls -d {{a_firefox_extension_dir|quote}}/* | xargs -I '{}' basename '{}'
+  register: existing_extensions
+
 - name: Add extensions
-  copy: dest={{a_firefox_profile_dir}}/
-        src=extensions
+  copy: dest="{{a_firefox_extension_dir}}/{{ item | basename }}"
+        src="{{ item }}"
+  when: "{{ item|basename not in existing_extensions.stdout_lines }}"
+  with_fileglob: "extensions/*"
 
 - name: Create extension dir for unpacked extensions
-  file: dest={{a_firefox_profile_dir}}/extensions/{{item}}
+  file: dest={{a_firefox_extension_dir}}/{{item}}
         state=directory
   with_items: "{{a_firefox_extensions_to_unpack}}"
 
 - name: Extract xpi incompatible extensions
   unarchive: copy=no
-             creates={{a_firefox_profile_dir}}/extensions/{{item}}/install.rdf
-             dest={{a_firefox_profile_dir}}/extensions/{{item}}
-             src={{a_firefox_profile_dir}}/extensions/{{item}}.xpi
+             creates={{a_firefox_extension_dir}}/{{item}}/install.rdf
+             dest={{a_firefox_extension_dir}}/{{item}}
+             src={{a_firefox_extension_dir}}/{{item}}.xpi
   with_items: "{{a_firefox_extensions_to_unpack}}"
 
 - name: Remove archive for unpacked extensions
-  file: dest={{a_firefox_profile_dir}}/extensions/{{item}}.xpi
+  file: dest={{a_firefox_extension_dir}}/{{item}}.xpi
         state=absent
   with_items: "{{a_firefox_extensions_to_unpack}}"
 

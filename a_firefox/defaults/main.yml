@@ -1,8 +1,9 @@
 ---
 
 a_firefox_profile_name: peteches
-a_firefox_config_dir: "{% if ansible_system == 'Linux' %}~/.mozilla/firefox/{%elif ansible_system == 'Darwin'%}~/Library/Application Support/Firefox/{%endif%}"
-a_firefox_profile_dir: "{{a_firefox_config_dir}}/qwsa1234.{{a_firefox_profile_name}}"
+a_firefox_config_dir: "{% if ansible_system == 'Linux' %}{{ '~/.mozilla/firefox/' | expanduser | realpath }}{%elif ansible_system == 'Darwin'%}{{ '~/Library/Application Support/Firefox/' | expanduser | realpath }}{%endif%}"
+a_firefox_profile_dir: "{{a_firefox_config_dir | realpath}}/qwsa1234.{{a_firefox_profile_name}}"
+a_firefox_extension_dir: "{{a_firefox_profile_dir | realpath}}/extensions"
 a_firefox_profile_default: 1
 
 a_firefox_vimperator_rc_dir: ~/.vimperator
