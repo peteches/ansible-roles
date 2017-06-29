@@ -1,1 +1,1 @@
-autocmd! BufNewFile,BufRead Berksfile* Vagrantfile setfiletype ruby
+autocmd! BufNewFile,BufRead Vagrantfile setfiletype ruby
