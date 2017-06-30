@@ -10,3 +10,4 @@ dependencies:
   - a_firefox
   - { role: 'a_tor', when: ansible_local.employer.name == 'home' }
   - { role: 'a_kde', when: ansible_system == 'Linux' }
+  - { role: 'a_iterm', when: ansible_system == 'Darwin' }

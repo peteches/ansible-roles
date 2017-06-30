@@ -1,0 +1,11 @@
+---
+
+- name: Install iterm
+  command: brew cask install iterm2
+
+- name: Add iterm configs
+  template:
+    src="profile_template.json.j2"
+    dst="{{ a_iterm.profile_dir }}/{{item}}.json"
+  with_items: a_iterm.profiles
+
