@@ -10,18 +10,3 @@ a_skybet_zsh_cdpaths: ""
 a_skybet_username: mccabep
 
 a_skybet_ssh_config:
-  - pattern: 'Host 172.16.*'
-    priority: 101
-    directives:
-      user: "{{a_skybet_username}}"
-      ProxyCommand: nc --proxy-type socks5 --proxy {{a_skybet_proxies.guea.bind}}:{{a_skybet_proxies.guea.port}} %h %p
-  - pattern: 'Host gue*'
-    priority: 101
-    directives:
-      User: "{{a_skybet_username}}"
-      ProxyCommand: nc --proxy-type socks5 --proxy {{a_skybet_proxies.guea.bind}}:{{a_skybet_proxies.guea.port}} %h %p
-  - pattern: 'Match user git'
-    priority: 10
-    directives:
-      RequestTTY: no
-
