@@ -2,13 +2,7 @@
 
 - include: "{{ansible_pkg_mgr}}.yml"
 
-# - name: Checkout colourschemes
-#   git: clone=yes
-#        dest={{vim_colour_dir}}/{{item|basename}}
-#        repo={{item}}
-#        update=no
-#        depth=1
-#   with_items: "{{vim_colour_repos}}"
+- include: pip.yml
 
 - name: ensure {{vim_dir}} exists
   file: dest="{{vim_dir}}"
@@ -27,3 +21,6 @@
 
 - name: Install plugins
   command: nvim --headless -c ':PlugInstall' -c ':qa'
+
+- name: update remote plugins
+  command: nvim --headless -c ':UpdateRemotePlugins' -c ':qa'
