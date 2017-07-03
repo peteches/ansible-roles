@@ -1,5 +1,4 @@
 ---
-
 a_repo_dir: ~/.repos
 
 a_workstation_packages:
@@ -13,7 +12,11 @@ a_workstation_packages:
     - jq
     - xclip
     - scrot
+  homebrewcask:
+    - slack
+    - docker
   homebrew:
+    - python3
     - ansible-lint
     - coreutils
     - findutils

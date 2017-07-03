@@ -6,3 +6,7 @@
   with_items:
     "{{a_workstation_packages.homebrew}}"
   become: False
+
+- name: Add cask's
+  command: brew cask install {{item}}
+  with_items: "{{a_workstation_packages.homebrewcask}}"
