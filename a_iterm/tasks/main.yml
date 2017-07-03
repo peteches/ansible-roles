@@ -3,9 +3,17 @@
 - name: Install iterm
   command: brew cask install iterm2
 
+- debug: var=a_iterm.profile_dir
+
+- name: Create profile dir
+  file:
+    path="{{ a_iterm.profile_dir }}"
+    state=directory
+    mode=0755
+
 - name: Add iterm configs
   template:
     src="profile_template.json.j2"
-    dst="{{ a_iterm.profile_dir }}/{{item}}.json"
-  with_items: a_iterm.profiles
+    dest="{{ a_iterm.profile_dir }}/{{item}}.json"
+  with_items: "{{a_iterm.profiles.keys()}}"
 
