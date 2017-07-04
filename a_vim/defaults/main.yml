@@ -74,6 +74,7 @@ vim_plugin_repos:
   - vim-airline/vim-airline
   - w0rp/ale
   - zchee/deoplete-jedi
+  - johngrib/vim-game-code-break
 
 vim_colour_repos:
   - ChasingLogic/ChasingLogic-colorscheme-vim
