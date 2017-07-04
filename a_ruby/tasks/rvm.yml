@@ -1,0 +1,45 @@
+---
+
+- command: "readlink -e {{ansible_env.HOME}}/.rvm"
+  register: rvm_dir
+
+- debug: var=rvm_dir
+
+- block:
+  - name: get rvm installer script
+    get_url:
+      url: "{{ a_ruby.rvm.installer_url }}"
+      dest: /tmp/rvm-installer
+      mode: 0700
+
+
+  - name: get rvm gpg signature
+    get_url:
+      url: "{{ a_ruby.rvm.installer_sig }}"
+      dest: /tmp/rvm-installer.asc
+      mode: 0600
+
+  - name: get signing public key
+    get_url:
+      url: https://rvm.io/mpapis.asc
+      dest: /tmp/mpapis.asc
+      mode: 0600
+
+  - name: import signing key
+    command: gpg --import /tmp/mpapis.asc
+
+  - name: install rvm
+    shell: |
+      # Verify the installer signature (might need `gpg2`), and if it validates...
+      # run the installer
+      gpg --verify rvm-installer.asc && bash rvm-installer stable
+    args:
+      chdir: /tmp
+      creates: "{{ansible_env.HOME}}/.rvm"
+  when: "{{ rvm_dir.rc == 0 }}"
+
+- name: install ruby
+  command: "{{ansible_env.HOME}}/.rvm/bin/rvm install {{a_ruby.version}}"
+  args:
+    creates: "{{ansible_env.HOME}}/.rvm/rubies/ruby-{{a_ruby.version}}/bin/ruby"
+

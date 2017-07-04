@@ -1,0 +1,8 @@
+---
+
+
+a_ruby:
+  version: 2.4.0
+  rvm:
+    installer_url:  https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
+    installer_sig:  https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc

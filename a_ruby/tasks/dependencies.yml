@@ -1,0 +1,7 @@
+---
+
+- name: install gpg
+  homebrew:
+    name: gpg
+    state: present
+
