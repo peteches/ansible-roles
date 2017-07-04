@@ -9,4 +9,6 @@ a_skybet_zsh_cdpaths: ""
 
 a_skybet_username: mccabep
 
-a_skybet_ssh_config:
+a_skybet_pscli_url: "https://artifactory.euw.platformservices.io/artifactory/gobinaries/ps/pscli/6.2.0/{{ansible_system|lower}}_amd64/pscli"
+
+a_skybet_ssh_config: []

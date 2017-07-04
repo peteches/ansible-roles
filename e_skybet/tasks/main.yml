@@ -74,3 +74,15 @@
            state=started
   when: ansible_system == 'Linux'
   with_dict: "{{ a_skybet_proxies }}"
+
+- name: download pscli
+  get_url:
+    url="{{ a_skybet_pscli_url }}"
+    dest=/usr/local/bin/pscli
+    mode=0755
+    validate_certs=no
+    force=no
+
+
+- name: update pscli
+  command: /usr/local/bin/pscli update
