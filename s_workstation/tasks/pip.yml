@@ -7,5 +7,7 @@
   pip: name={{item}}
        state=latest
        executable="{{pipbin.stdout}}"
+  become: True
+  become_user: root
   with_items: "{{a_workstation_packages.pip}}"
   when: a_workstation_packages.pip
