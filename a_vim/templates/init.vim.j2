@@ -75,6 +75,7 @@ call plug#end()
 	" neoterm {{ '{{{' }}
 	let g:neoterm_position = 'vertical'
 	let g:neoterm_automap_keys = '<Leader>tt'
+	let g:neoterm_autoscroll = 1
 	" {{ '}}}' }}
 
 	" RandomColour settings {{ '{{{' }}
@@ -86,17 +87,18 @@ call plug#end()
 " {{ '}}}' }}
 
 "General settings {{ '{{{' }}
+set inccommand=split
 set list
 set listchars=eol:§,tab:▸›,extends:»,precedes:«,nbsp:•,trail:•
 set mouse=a
 set nohlsearch
+set noshowmode
 set number
 set relativenumber
-set noshowmode
-set showcmd
-set wildmode=full
-set wildignore=build,*.pyc,venv
 set shada=%0,'10,<1000,h,n~/.config/nvim/shada
+set showcmd
+set wildignore=build,*.pyc,venv
+set wildmode=full
 " {{ '}}}' }}
 
 "Backup settings {{ '{{{' }}
@@ -187,11 +189,6 @@ if has("autocmd")
 	augroup COLOURSCHEME " {{ '{{{' }}
 		autocmd!
 		autocmd VimEnter * RandomAll
-	augroup END " {{ '}}}' }}
-
-	augroup TERMINAL " {{ '{{{' }}
-		autocmd!
-		autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 	augroup END " {{ '}}}' }}
 
 endif
