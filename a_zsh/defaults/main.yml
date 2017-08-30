@@ -3,6 +3,16 @@
 a_zsh_customdir: ~/.zsh_custom
 a_zsh_antigen_dir: ~/.antigen-repo
 
+a_zsh_options:
+  - appendhistory
+  - autocd
+  - automenu
+  - extendedglob
+  - multiios
+  - nomatch
+  - pipefail
+  - printexitvalue
+
 a_zsh_cdpaths:
   - ~/area_51
 
