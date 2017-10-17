@@ -1,3 +1,5 @@
+export ANTIGEN_CACHE=false
+
 source {{a_zsh_antigen_dir}}/antigen.zsh
 
 antigen use oh-my-zsh
@@ -15,7 +17,8 @@ antigen bundles <<EOF
 {%endif%}
 
 EOF
-antigen apply
 
 ZSH_THEME=$( shuf -n1 {{a_zsh_customdir}}/zsh_themes )
+
 antigen theme $ZSH_THEME
+antigen apply
