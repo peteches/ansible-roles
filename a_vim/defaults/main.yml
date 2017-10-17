@@ -75,6 +75,7 @@ vim_plugin_repos:
   - tpope/vim-surround
   - tpope/vim-unimpaired
   - mrk21/yaml-vim
+  - https://gitlab.com/peteches/testkitchen.vim.git
 
 vim_colour_repos:
   - ChasingLogic/ChasingLogic-colorscheme-vim
