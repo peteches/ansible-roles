@@ -103,6 +103,7 @@ vim_colour_repos:
   - cocopon/iceberg.vim
   - croaker/mustang-vim
   - cseelus/vim-colors-clearance
+  - dracula/vim
   - dsolstad/vim-wombat256i
   - duythinht/inori
   - duythinht/vim-coffee
