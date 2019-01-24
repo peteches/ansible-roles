@@ -14,6 +14,6 @@
 - name: Add iterm configs
   template:
     src="profile_template.json.j2"
-    dest="{{ a_iterm.profile_dir }}/{{item}}.json"
-  with_items: "{{a_iterm.profiles.keys()}}"
+    dest="{{ a_iterm.profile_dir }}/{{item.key}}.json"
+  with_items: "{{a_iterm.profiles|dict2items}}"
 

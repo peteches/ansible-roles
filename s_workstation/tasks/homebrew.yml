@@ -1,10 +1,8 @@
 - name: Install generic useful packages
   homebrew:
-    name: "{{item}}"
+    name: "{{a_workstation_packages.homebrew}}"
     state: present
     install_options: "--with-default-names"
-  with_items:
-    "{{a_workstation_packages.homebrew}}"
   become: False
 
 - name: Add cask's

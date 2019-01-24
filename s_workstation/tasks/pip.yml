@@ -4,8 +4,7 @@
   register: pipbin
 
 - name: Install generic useful packages
-  pip: name={{item}}
+  pip: name={{a_workstation_packages.pip}}
        state=latest
        executable="{{pipbin.stdout}}"
-  with_items: "{{a_workstation_packages.pip}}"
   when: a_workstation_packages.pip

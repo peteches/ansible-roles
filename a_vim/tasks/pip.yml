@@ -5,7 +5,5 @@
   register: pipbin
 
 - name: Installing packages required for some plugins
-  pip: name={{item}}
+  pip: name={{vim_plugin_deps.pip}}
             state=present
-            executable="{{pipbin.stdout}}"
-  with_items: "{{vim_plugin_deps.pip}}"

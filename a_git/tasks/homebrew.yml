@@ -1,7 +1,6 @@
 ---
 
 - name: Install git related software
-  homebrew: name={{item}}
-       state=latest
-  with_items: "{{ a_git_software.homebrew }}"
+  homebrew: name={{ a_git_software.homebrew }}
+            state=latest
   become: false

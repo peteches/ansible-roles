@@ -73,7 +73,7 @@ call plug#end()
 	" {{ '}}}' }}
 
 	" neoterm {{ '{{{' }}
-	let g:neoterm_position = 'vertical'
+	let g:neoterm_default_mod = 'vertical'
 	let g:neoterm_automap_keys = '<Leader>tt'
 	" {{ '}}}' }}
 
@@ -97,6 +97,7 @@ set showcmd
 set wildmode=full
 set wildignore=build,*.pyc,venv
 set shada=%0,'10,<1000,h,n~/.config/nvim/shada
+let g:python3_host_prog = '/Users/pmc01/.pyenv/versions/neovim3/bin/python'
 " {{ '}}}' }}
 
 "Backup settings {{ '{{{' }}
