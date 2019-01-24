@@ -40,6 +40,16 @@
         src=functions
         mode=0644
 
+- name: Adding personal scripts
+  copy: dest="{{a_zsh_customdir }}/"
+        src="scripts"
+        mode=0755
+
+- name: symlink scripts to ${HOME}/bin
+  file: state=link
+        src="{{a_zsh_customdir}}/scripts"
+        dest="${HOME}/bin"
+
 - name: Adding list of favorite zsh themes
   template: dest="{{a_zsh_customdir}}/zsh_themes"
             src=zsh_themes.j2

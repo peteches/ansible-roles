@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+
+
+import argparse
+import os
+import sys
+
+import subprocess as sp
+import urllib.parse
+
+PROJECT_DIR = os.path.expanduser('~/area_51/')
+
+def parse_cli():
+    args = argparse.ArgumentParser()
+
+    args.add_argument('repourl',
+                      type=urllib.parse.urlparse,
+                      help='url to clone',
+                      )
+
+    return args.parse_args()
+
+def get_project_repo(path):
+
+    path_list = path.split('/')
+
+    if path_list[1] == 'scm':
+        project_index = 2
+        repo_index = 3
+
+    elif path_list[1] == 'projects':
+        project_index = 2
+        repo_index = 4
+
+    else:
+        project_index = 1
+        repo_index = 2
+
+    return path_list[project_index], path_list[repo_index].split('.')[0]
+
+def main(args):
+    project, repo = get_project_repo(args.repourl.path)
+    clonedir = os.path.join(PROJECT_DIR,
+                            args.repourl.hostname,
+                            project,
+                            repo)
+
+    urlfmt = 'ssh://git@{host}:7999/{project}/{repo}.git'
+    cloneurl = urlfmt.format(host=args.repourl.hostname,
+                             project=project,
+                             repo=repo)
+
+    try:
+        sp.check_output(['git', 'clone', '--recursive', cloneurl, clonedir])
+    except sp.CalledProcessError as error:
+        sys.exit(error.returncode)
+
+if __name__ == '__main__':
+    args = parse_cli()
+    main(args)

@@ -2,11 +2,7 @@
 
 tmux_dir: ~/.tmux
 
-tmux_submodules:
-  - https://github.com/tmux-plugins/tmux-open
-  - https://github.com/tmux-plugins/tmux-resurrect
-  - https://github.com/tmux-plugins/tmux-logging
-  - https://github.com/peteches/tmux-continuum.git
+tmux_submodules: []
 
 tmux_colourschemes:
   - https://github.com/seebi/tmux-colors-solarized
@@ -17,43 +13,42 @@ tmux_confs:
   - perm_pane.conf
 
 tmux_global_opts:
-  prefix: "C-a"
-  mouse-select-window: "on"
-  mouse-resize-pane: "on"
-  mouse-select-pane: "on"
-  mouse: "on"
-  mouse-utf8: "on"
-  mode-keys: "vi"
-  renumber-windows: "on"
-  display-panes-time: 5000
-  display-time: 10000
   automatic-rename: "on"
-  utf8: "on"
-  history-limit: 1000000
   base-index: 1
   default-terminal: "screen-256color"
-  '@continuum-boot': 'on'
-  '@continuum-restore': 'on'
+  display-panes-time: 5000
+  display-time: 10000
+  escape-time: 10
+  history-limit: 1000000
+  mode-keys: "vi"
+  mouse-resize-pane: "on"
+  mouse-select-pane: "on"
+  mouse-select-window: "on"
+  mouse-utf8: "on"
+  mouse: "on"
+  prefix: "C-a"
+  renumber-windows: "on"
+  utf8: "on"
 
 tmux_global_bindings:
-  'p': paste-buffer
-  'Escape': copy-mode
-  'C-n': next-window -a
-  'N': previous-window
-  'n': next-window
-  'l': select-pane -R
-  'k': select-pane -U
-  'j': select-pane -D
-  'h': select-pane -L
   '-': split-window -v
-  '|': split-window -h
+  'C-n': next-window -a
+  'Escape': copy-mode
+  'N': previous-window
   'a': send-prefix
+  'h': select-pane -L
+  'j': select-pane -D
+  'k': select-pane -U
+  'l': select-pane -R
+  'n': next-window
+  'p': paste-buffer
+  '|': split-window -h
 
 tmux_table_bindings:
   'vi-copy':
     'y': copy-selection
     'v': begin-selection
-    'MouseDragEnd1Pane': 'copy-pipe "pbcopy"'
+    'MouseDragEnd1Pane': 'send-keys -X copy-pipe-and-cancel "pbcopy"'
 
 tmux_unbindings:
   - 'p'

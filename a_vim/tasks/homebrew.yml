@@ -10,7 +10,6 @@
   become: false
 
 - name: Installing packages required for some plugins
-  homebrew: name={{item}}
+  homebrew: name={{ vim_plugin_deps.homebrew }}
             state=present
-  with_items: "{{ vim_plugin_deps.homebrew }}"
   become: false

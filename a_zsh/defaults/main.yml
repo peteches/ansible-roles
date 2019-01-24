@@ -14,15 +14,25 @@ a_zsh_options:
   - printexitvalue
 
 a_zsh_cdpaths:
-  - ~/area_51
+  - ~/area_51/*
+  - ~/area_51/*/*
+
+a_zsh_path_dirs:
+  - ${HOME}/bin
+  - /usr/local/bin
+  - /usr/bin
+  - /bin
+  - /usr/sbin
+  - /sbin
+  - /usr/local/sbin
 
 a_zsh_configs:
-  - aliases.zsh
-  - 99_antigen.zsh
-  - bindkeys.zsh
-  - bindkey.zsh
-  - completion.zsh
   - 00_env.zsh
+  - 99_antigen.zsh
+  - aliases.zsh
+  - bindkey.zsh
+  - bindkeys.zsh
+  - completion.zsh
   - example.zsh
   - opts.zsh
   - paths.zsh

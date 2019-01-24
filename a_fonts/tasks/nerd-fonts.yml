@@ -6,7 +6,7 @@
 
 - name: Clone Nerd Fonts
   git: clone=yes
-       dest={{a_repo_dir}}/nerd-fonts
+       dest="{{a_repo_dir}}/nerd-fonts"
        repo=https://github.com/ryanoasis/nerd-fonts.git
        version='v0.8.0'
        update=no
@@ -16,4 +16,4 @@
   shell: "./install.sh"
   args:
     chdir: "{{a_repo_dir}}/nerd-fonts"
-  when: result|changed
+  when: result is changed

@@ -14,7 +14,6 @@ a_workstation_packages:
     - scrot
   homebrewcask:
     - slack
-    - docker
   homebrew:
     - python3
     - ansible-lint

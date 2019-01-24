@@ -57,21 +57,10 @@ export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 # set a keytimeout for when multi-key keybindings are used
 export KEYTIMEOUT=500
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/local/sbin:/usr/sbin:/home/peteches/.local/bin:/home/peteches/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/peteches/scripts:/home/peteches/bin:/home/peteches/.local/bin:/home/peteches/bin"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-{% if ansible_distribution == "MacOSX" %}
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-{% endif %}
+PATH={{ a_zsh_path_dirs|join(":") }}
 
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM={{a_zsh_customdir}}
-
-{% if ansible_local[ansible_local.employer.name].a_zsh_cdpaths is defined
-    and ansible_local[ansible_local.employer.name].a_zsh_cdpaths is iterable %}
-    cdpath=({{ ansible_local[ansible_local.employer.name].a_zsh_cdpaths|join(" ")}})
-{%endif%}
 
 cdpath=( $cdpath {{a_zsh_cdpaths|join(" ")}})
 export cdpath
