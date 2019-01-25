@@ -18,7 +18,8 @@ antigen bundles <<EOF
 
 EOF
 
-ZSH_THEME=$( shuf -n1 {{a_zsh_customdir}}/zsh_themes )
+ZSH_THEMES=$(cat {{a_zsh_customdir}}/zsh_themes )
+ZSH_THEME=${ZSH_THEMES[RANDOM % $#ZSH_THEMES + 1]}
 
 antigen theme $ZSH_THEME
 antigen apply

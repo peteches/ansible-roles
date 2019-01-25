@@ -14,7 +14,9 @@ if ! {setopt | grep -x extendedglob >/dev/null 2>&1}; then
 	setopt extendedglob
 	extglob=False
 fi
+
 [[ -r {{a_zsh_customdir}}/antigen.zsh ]] && source {{a_zsh_customdir}}/antigen.zsh
+
 for file in {{a_zsh_customdir}}/*.zsh~*/antigen.zsh; do
 	source $file
 done
@@ -22,12 +24,4 @@ done
 # reset ext glob to how we found it.
 if [[ extglob == 'False' ]]; then
 	unsetopt extendedglob
-fi
-
-if [[ -d $HOME/.rvm/bin ]]; then
-	export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-fi
-
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-	source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
